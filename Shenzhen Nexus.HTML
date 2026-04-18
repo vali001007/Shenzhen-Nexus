@@ -1,0 +1,3252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shenzhen Nexus - APEC 2026 Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0f172a; /* Slate 900 */
+            color: #f8fafc; /* Slate 50 */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* 赛博朋克风格的霓虹发光效果 */
+        .neon-border {
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.5), inset 0 0 10px rgba(56, 189, 248, 0.2);
+            border: 1px solid rgba(56, 189, 248, 0.8);
+        }
+        
+        .neon-text {
+            text-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
+        }
+
+        .glass-panel {
+            background: rgba(30, 41, 59, 0.7); /* Slate 800 with opacity */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* 隐藏滚动条但允许滚动 */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* 简单的动画类 */
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 模拟手机边框 (仅桌面端显示) */
+        @media (min-width: 640px) {
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-image: radial-gradient(circle at 50% 50%, #1e293b 0%, #020617 100%);
+            }
+            #app-container {
+                width: 390px;
+                height: 844px; /* iPhone 12/13/14 Pro height */
+                border-radius: 40px;
+                overflow: hidden;
+                border: 8px solid #334155;
+                box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+                position: relative;
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-900 sm:p-4">
+
+    <div id="app-container" class="w-full min-h-screen sm:min-h-0 bg-slate-900 relative flex flex-col">
+        
+        <header class="pt-12 pb-6 px-6 relative z-10 transition-all duration-300">
+            <div class="absolute top-0 left-0 w-full h-48 bg-gradient-to-b from-sky-900/40 to-transparent -z-10" id="header-bg"></div>
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-3xl font-bold tracking-tight text-white neon-text" id="header-title">NEXUS</h1>
+                    <p class="text-sky-400 text-xs font-semibold tracking-widest mt-1 uppercase transition-opacity duration-300" id="header-subtitle">Shenzhen 2026</p>
+                </div>
+                <button class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700 hover:bg-slate-700 transition" onclick="openLanguageSettings()">
+                    <i data-lucide="globe" class="w-5 h-5 text-slate-300"></i>
+                </button>
+            </div>
+            
+            <p class="text-slate-400 text-sm leading-relaxed max-w-[280px] transition-opacity duration-300" id="header-desc" data-i18n="header-desc">
+                Decode Shenzhen. Connect the Future. Your digital survival guide for APEC.
+            </p>
+        </header>
+
+        <main class="flex-1 px-4 pb-24 relative overflow-y-auto no-scrollbar">
+            
+            <div id="view-explore" class="tab-view block space-y-6">
+
+                <section class="fade-in" style="animation-delay: 0s;">
+                    <div class="glass-panel p-5 rounded-3xl bg-gradient-to-br from-sky-900/80 to-indigo-900/80 border border-sky-500/50 cursor-pointer hover:shadow-[0_0_20px_rgba(56,189,248,0.3)] transition relative overflow-hidden group" onclick="openModule('ai-planner')">
+                        <div class="absolute -right-4 -top-4 w-32 h-32 bg-sky-500/30 blur-3xl rounded-full group-hover:bg-sky-400/40 transition"></div>
+                        
+                        <div class="flex items-center justify-between relative z-10">
+                            <div>
+                                <h3 class="font-bold text-white text-lg flex items-center gap-2">
+                                    <i data-lucide="sparkles" class="w-5 h-5 text-sky-400 fill-sky-400/20"></i>
+                                    <span data-i18n="ai-planner-title">AI Itinerary Planner</span>
+                                </h3>
+                                <p class="text-xs text-sky-100/70 mt-1 max-w-[200px]" data-i18n="ai-planner-desc">Tap to customize your tech & culture tour with Gemini AI.</p>
+                            </div>
+                            <div class="w-10 h-10 rounded-full bg-sky-500 flex items-center justify-center shadow-[0_0_15px_rgba(56,189,248,0.5)] group-hover:scale-110 transition-transform">
+                                <i data-lucide="arrow-right" class="w-5 h-5 text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="fade-in" style="animation-delay: 0.05s;">
+                    <div class="glass-panel p-4 rounded-2xl cursor-pointer hover:bg-slate-800 transition group neon-border flex items-center justify-between" onclick="openModule('ai-concierge')">
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-fuchsia-500/20 flex items-center justify-center group-hover:bg-fuchsia-500/30 transition">
+                                <i data-lucide="bot" class="w-5 h-5 text-fuchsia-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-sm mb-0.5 text-white" data-i18n="ai-concierge">AI Concierge</h3>
+                                <p class="text-xs text-slate-400" data-i18n="ai-concierge-desc">Ask anything about Shenzhen or APEC.</p>
+                            </div>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+                    </div>
+                </section>
+
+                <section class="fade-in" style="animation-delay: 0.1s;">
+                    <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 px-2" data-i18n="essential-toolkit">Essential Toolkit</h2>
+                    <div class="grid grid-cols-2 gap-3">
+                        
+                        <div class="glass-panel p-4 rounded-2xl cursor-pointer hover:bg-slate-800 transition group neon-border" onclick="openModule('ar-decoder')">
+                            <div class="w-10 h-10 rounded-xl bg-sky-500/20 flex items-center justify-center mb-3 group-hover:bg-sky-500/30 transition">
+                                <i data-lucide="scan-line" class="w-5 h-5 text-sky-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-sm mb-1" data-i18n="ar-decoder">AR Decoder</h3>
+                            <p class="text-xs text-slate-400 line-clamp-2" data-i18n="ar-decoder-desc">Translate menus & signs with cultural context.</p>
+                        </div>
+
+                        <div class="glass-panel p-4 rounded-2xl cursor-pointer hover:bg-slate-800 transition group" onclick="openModule('payment-setup')">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center mb-3 group-hover:bg-emerald-500/30 transition">
+                                <i data-lucide="credit-card" class="w-5 h-5 text-emerald-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-sm mb-1" data-i18n="pay-local">Pay Like Local</h3>
+                            <p class="text-xs text-slate-400 line-clamp-2" data-i18n="pay-local-desc">Bind foreign cards to WeChat/Alipay.</p>
+                        </div>
+
+                        <div class="glass-panel p-4 rounded-2xl cursor-pointer hover:bg-slate-800 transition group" onclick="openModule('mobility')">
+                            <div class="w-10 h-10 rounded-xl bg-amber-500/20 flex items-center justify-center mb-3 group-hover:bg-amber-500/30 transition">
+                                <i data-lucide="car-taxi-front" class="w-5 h-5 text-amber-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-sm mb-1" data-i18n="mobility">Mobility Hub</h3>
+                            <p class="text-xs text-slate-400 line-clamp-2" data-i18n="mobility-desc">DiDi English guide & emergency phrases.</p>
+                        </div>
+
+                        <div class="glass-panel p-4 rounded-2xl cursor-pointer hover:bg-slate-800 transition group" onclick="openModule('connectivity')">
+                            <div class="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center mb-3 group-hover:bg-purple-500/30 transition">
+                                <i data-lucide="wifi" class="w-5 h-5 text-purple-400"></i>
+                            </div>
+                            <h3 class="font-semibold text-sm mb-1" data-i18n="connected">Stay Connected</h3>
+                            <p class="text-xs text-slate-400 line-clamp-2" data-i18n="connected-desc">eSIM setup & airport Wi-Fi without SMS.</p>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="fade-in" style="animation-delay: 0.2s;">
+                    <div class="flex justify-between items-end mb-3 px-2">
+                        <h2 class="text-xs font-bold text-slate-500 uppercase tracking-wider" data-i18n="tech-safari">Tech Safari Experiences</h2>
+                        <span class="text-[10px] bg-sky-900/50 text-sky-400 px-2 py-0.5 rounded-full border border-sky-800" data-i18n="premium">Premium</span>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="glass-panel p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-slate-800 transition relative overflow-hidden" onclick="openModule('drone-delivery')">
+                            <div class="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-sky-600/10 to-transparent"></div>
+                            <div class="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0 z-10">
+                                <i data-lucide="plane" class="w-5 h-5 text-slate-300"></i>
+                            </div>
+                            <div class="z-10">
+                                <h3 class="font-semibold text-sm" data-i18n="drone">Order by Drone (Sky-Drop)</h3>
+                                <p class="text-xs text-slate-400 mt-0.5" data-i18n="drone-desc">Experience Meituan drone delivery at Talent Park.</p>
+                            </div>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 ml-auto z-10"></i>
+                        </div>
+
+                        <div class="glass-panel p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-slate-800 transition" onclick="openModule('robotaxi')">
+                            <div class="w-12 h-12 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center shrink-0">
+                                <i data-lucide="cpu" class="w-5 h-5 text-slate-300"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-sm" data-i18n="robotaxi">Hail a Robotaxi</h3>
+                                <p class="text-xs text-slate-400 mt-0.5" data-i18n="robotaxi-desc">Guide to fully autonomous rides in Nanshan.</p>
+                            </div>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500 ml-auto"></i>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="view-leaderboard" class="tab-view hidden space-y-6 pt-2 flex flex-col">
+                
+                <div class="flex overflow-x-auto gap-2 px-2 no-scrollbar pb-2 shrink-0">
+                    <button class="top-spot-tab active-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition bg-sky-500 text-white shadow-[0_0_10px_rgba(56,189,248,0.5)]" onclick="filterSpots('all', this)" data-i18n="tab-all">All</button>
+                    <button class="top-spot-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700" onclick="filterSpots('landmark', this)" data-i18n="tab-landmark">Landmarks</button>
+                    <button class="top-spot-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700" onclick="filterSpots('tech', this)" data-i18n="tab-tech">Tech</button>
+                    <button class="top-spot-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700" onclick="filterSpots('culture', this)" data-i18n="tab-culture">Culture</button>
+                    <button class="top-spot-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700" onclick="filterSpots('food', this)" data-i18n="tab-food">Food</button>
+                </div>
+
+                <div class="space-y-4 pb-8 px-2">
+
+                    <div id="leaderboard-spot-grid" class="space-y-4"></div>
+                </div>
+
+            </div>
+
+            <div id="view-route" class="tab-view hidden space-y-6">
+                <section class="fade-in" style="animation-delay: 0s;">
+                    <div class="glass-panel p-5 rounded-2xl border border-sky-500/50 relative overflow-hidden">
+                        <div class="absolute right-0 top-0 w-48 h-full bg-gradient-to-l from-sky-600/20 to-transparent"></div>
+                        <div class="flex justify-between items-start mb-5 relative z-10">
+                            <div>
+                                <span class="text-[10px] bg-sky-500 text-white px-2 py-0.5 rounded-full font-bold uppercase tracking-wider mb-2 inline-block shadow-[0_0_10px_rgba(56,189,248,0.5)]">Upcoming</span>
+                                <h3 class="font-bold text-lg text-white">Nanshan Hardware & AI Tour</h3>
+                                <p class="text-xs text-slate-400 mt-1">Tomorrow • 4.5 Hours</p>
+                            </div>
+                            <button class="w-10 h-10 rounded-full bg-sky-500/20 flex items-center justify-center border border-sky-500/50 text-sky-400" onclick="showNotification('msg-map')">
+                                <i data-lucide="navigation" class="w-5 h-5 fill-current"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="relative pl-4 border-l-2 border-slate-700 space-y-5 relative z-10 ml-2">
+                            <div class="relative">
+                                <div class="absolute -left-[21px] top-1 w-3 h-3 bg-sky-500 rounded-full shadow-[0_0_10px_#38bdf8] border-2 border-slate-900"></div>
+                                <p class="text-sm text-white font-semibold">14:00 - DJI Sky City</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Global HQ & Drone Exhibition</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -left-[21px] top-1 w-3 h-3 bg-slate-500 rounded-full border-2 border-slate-900"></div>
+                                <p class="text-sm text-slate-300">15:30 - Robotaxi to Park</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Apollo Go Autonomous Ride</p>
+                            </div>
+                            <div class="relative">
+                                <div class="absolute -left-[21px] top-1 w-3 h-3 bg-slate-500 rounded-full border-2 border-slate-900"></div>
+                                <p class="text-sm text-slate-300">16:00 - Drone Delivery</p>
+                                <p class="text-[10px] text-slate-400 mt-0.5">Talent Park Kiosk A</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div id="view-profile" class="tab-view hidden space-y-6">
+                <section class="fade-in" style="animation-delay: 0s;">
+                    <div class="flex items-center gap-5 glass-panel p-5 rounded-3xl border border-slate-700">
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-full bg-gradient-to-br from-sky-400 to-indigo-600 p-0.5 shadow-[0_0_15px_rgba(56,189,248,0.3)]">
+                                <div class="w-full h-full bg-slate-900 rounded-full flex items-center justify-center border-2 border-slate-900">
+                                    <span class="text-xl font-bold text-white tracking-widest">AG</span>
+                                </div>
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 bg-emerald-500 w-4 h-4 rounded-full border-2 border-slate-900"></div>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-white">Alex Global</h2>
+                            <p class="text-sm text-sky-400 flex items-center gap-1 mt-1">
+                                <i data-lucide="badge-check" class="w-4 h-4"></i> <span data-i18n="delegate">APEC 2026 Delegate</span>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="fade-in" style="animation-delay: 0.1s;">
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider px-2 mb-3" data-i18n="pref">Preferences</h3>
+                    
+                    <div class="glass-panel rounded-2xl border border-slate-700 overflow-hidden">
+                        <button class="w-full p-4 flex items-center justify-between hover:bg-slate-800 transition border-b border-slate-700/50" onclick="openLanguageSettings()">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center"><i data-lucide="globe" class="w-4 h-4"></i></div>
+                                <span class="text-sm font-semibold text-slate-200" data-i18n="lang-setting">Language Settings</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-slate-500">
+                                <span class="text-xs" id="current-lang-display">English</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                            </div>
+                        </button>
+                        
+                        <button class="w-full p-4 flex items-center justify-between hover:bg-slate-800 transition border-b border-slate-700/50" onclick="openModule('payment-setup')">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center"><i data-lucide="credit-card" class="w-4 h-4"></i></div>
+                                <span class="text-sm font-semibold text-slate-200" data-i18n="pay-local">Payment Setup</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-emerald-500">
+                                <span class="text-[10px] font-bold uppercase tracking-wider bg-emerald-500/20 px-2 py-0.5 rounded">Linked</span>
+                                <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+                            </div>
+                        </button>
+                        
+                        <button class="w-full p-4 flex items-center justify-between hover:bg-slate-800 transition" onclick="toggleSwitch(this)">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center"><i data-lucide="download-cloud" class="w-4 h-4"></i></div>
+                                <div class="text-left">
+                                    <p class="text-sm font-semibold text-slate-200" data-i18n="offline-maps">Offline Maps</p>
+                                    <p class="text-[10px] text-slate-500 mt-0.5">Shenzhen Area (450MB)</p>
+                                </div>
+                            </div>
+                            <div class="w-10 h-5 bg-sky-500 rounded-full relative transition-colors duration-300 toggle-track">
+                                <div class="absolute right-1 top-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-300 toggle-thumb shadow-sm"></div>
+                            </div>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="fade-in" style="animation-delay: 0.2s;">
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider px-2 mt-6 mb-3" data-i18n="support-safety">Support & Safety</h3>
+                    
+                    <div class="glass-panel rounded-2xl border border-slate-700 overflow-hidden">
+                        <button class="w-full p-4 flex items-center justify-between hover:bg-slate-800 transition border-b border-slate-700/50" onclick="showNotification('emergency')">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-red-500/20 text-red-400 flex items-center justify-center"><i data-lucide="phone-call" class="w-4 h-4"></i></div>
+                                <span class="text-sm font-semibold text-slate-200" data-i18n="emergency">Emergency & Police (110)</span>
+                            </div>
+                            <i data-lucide="external-link" class="w-4 h-4 text-slate-500"></i>
+                        </button>
+                        
+                        <button class="w-full p-4 flex items-center justify-between hover:bg-slate-800 transition" onclick="showNotification('embassy')">
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center"><i data-lucide="building" class="w-4 h-4"></i></div>
+                                <span class="text-sm font-semibold text-slate-200" data-i18n="embassy">Embassy Contacts</span>
+                            </div>
+                            <i data-lucide="chevron-right" class="w-4 h-4 text-slate-500"></i>
+                        </button>
+                    </div>
+                </section>
+
+                <section class="fade-in" style="animation-delay: 0.25s;">
+                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider px-2 mt-6 mb-3">Ops & QA</h3>
+                    <div class="grid grid-cols-1 gap-2">
+                        <button class="glass-panel rounded-xl border border-slate-700 p-3 text-left hover:bg-slate-800 transition" onclick="openModule('analytics-funnel')">
+                            <p class="text-sm font-semibold text-white" data-i18n="analytics-open">Open Funnel</p>
+                            <p class="text-[11px] text-slate-400">Exposure → Click → CTA → Payment → Redeem</p>
+                        </button>
+                        <button class="glass-panel rounded-xl border border-slate-700 p-3 text-left hover:bg-slate-800 transition" onclick="openModule('release-gate')">
+                            <p class="text-sm font-semibold text-white" data-i18n="qa-module-title">P0 Release Gate</p>
+                            <p class="text-[11px] text-slate-400">Run smoke check before release</p>
+                        </button>
+                        <button class="glass-panel rounded-xl border border-slate-700 p-3 text-left hover:bg-slate-800 transition" onclick="openModule('pass-redeem')">
+                            <p class="text-sm font-semibold text-white" data-i18n="redeem-module-title">Merchant Redemption</p>
+                            <p class="text-[11px] text-slate-400">Verify and redeem pass on-site</p>
+                        </button>
+                    </div>
+                </section>
+
+                <div class="text-center pt-6 pb-2 fade-in" style="animation-delay: 0.3s;">
+                    <p class="text-[10px] text-slate-600 font-semibold tracking-widest uppercase">Shenzhen Nexus v1.0.0</p>
+                </div>
+            </div>
+
+        </main>
+
+        <nav class="absolute bottom-0 w-full glass-panel border-t border-slate-800 pb-safe sm:pb-0 z-50">
+            <div class="flex justify-around items-center h-16 px-1">
+                <button class="nav-btn flex flex-col items-center justify-center w-full h-full text-sky-400 transition" onclick="switchTab('explore', this)">
+                    <i data-lucide="compass" class="w-5 h-5 mb-1"></i>
+                    <span class="text-[10px] font-medium" data-i18n="nav-explore">Explore</span>
+                </button>
+                <button class="nav-btn flex flex-col items-center justify-center w-full h-full text-slate-500 hover:text-slate-300 transition" onclick="switchTab('leaderboard', this)">
+                    <i data-lucide="trophy" class="w-5 h-5 mb-1"></i>
+                    <span class="text-[10px] font-medium" data-i18n="nav-leaderboard">Top Spots</span>
+                </button>
+                <button class="nav-btn flex flex-col items-center justify-center w-full h-full text-slate-500 hover:text-slate-300 transition" onclick="switchTab('route', this)">
+                    <i data-lucide="map" class="w-5 h-5 mb-1"></i>
+                    <span class="text-[10px] font-medium" data-i18n="nav-route">My Route</span>
+                </button>
+                <button class="nav-btn flex flex-col items-center justify-center w-full h-full text-slate-500 hover:text-slate-300 transition" onclick="switchTab('profile', this)">
+                    <i data-lucide="user" class="w-5 h-5 mb-1"></i>
+                    <span class="text-[10px] font-medium" data-i18n="nav-profile">Profile</span>
+                </button>
+            </div>
+        </nav>
+
+        <div id="module-overlay" class="absolute inset-0 bg-slate-900 z-[100] transform translate-y-full transition-transform duration-300 flex flex-col">
+            <div class="flex justify-between items-center p-4 border-b border-slate-800">
+                <div class="flex items-center gap-2">
+                    <button id="overlay-back-btn" class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center transition hover:bg-slate-700 hidden" onclick="goBackToSpot()">
+                        <i data-lucide="arrow-left" class="w-4 h-4 text-slate-300"></i>
+                    </button>
+                    <h2 id="overlay-title" class="font-bold text-lg">Module Title</h2>
+                </div>
+                <button class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center transition hover:bg-slate-700" onclick="closeModule()">
+                    <i data-lucide="x" class="w-4 h-4 text-slate-300"></i>
+                </button>
+            </div>
+            
+            <div id="overlay-content" class="flex-1 overflow-y-auto p-4">
+                </div>
+        </div>
+
+        <div id="toast" class="absolute top-10 left-1/2 transform -translate-x-1/2 bg-slate-800 border border-slate-700 text-white px-4 py-2 rounded-full text-sm shadow-xl opacity-0 pointer-events-none transition-opacity duration-300 z-[200] flex items-center gap-2">
+            <i data-lucide="info" class="w-4 h-4 text-sky-400"></i>
+            <span id="toast-msg">Notification</span>
+        </div>
+
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+        
+        // --- i18n Localization Engine ---
+        let currentLang = 'en';
+        let currentTabId = 'explore';
+        let activeSpotCategory = 'all';
+        let currentSpotFusionId = null;
+        let currentModuleId = null;
+        let currentModulePayload = {};
+        let moduleOriginSpotId = null;
+        let leaderboardRequestToken = 0;
+        let overlayRequestToken = 0;
+        const userProfile = { userId: 'delegate-alex-global' };
+
+        const appState = {
+            sessionId: `SNX-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
+            selectedMerchantBySpot: {},
+            leaderboardPageByCategory: { all: 1, landmark: 1, tech: 1, culture: 1, food: 1 },
+            orders: [],
+            passes: [],
+            redemptions: [],
+            paymentCallbackLedger: [],
+            events: []
+        };
+
+
+        const i18nDict = {
+            en: {
+                "header-desc": "Decode Shenzhen. Connect the Future. Your digital survival guide for APEC.",
+                "ai-planner-title": "AI Itinerary Planner",
+                "ai-planner-desc": "Tap to customize your tech & culture tour with Gemini AI.",
+                "essential-toolkit": "Essential Toolkit",
+                "ar-decoder": "AR Decoder",
+                "ar-decoder-desc": "Translate menus & signs with cultural context.",
+                "pay-local": "Pay Like Local",
+                "pay-local-desc": "Bind foreign cards to WeChat/Alipay.",
+                "mobility": "Mobility Hub",
+                "mobility-desc": "DiDi English guide & emergency phrases.",
+                "connected": "Stay Connected",
+                "connected-desc": "eSIM setup & airport Wi-Fi without SMS.",
+                "tech-safari": "Tech Safari Experiences",
+                "premium": "Premium",
+                "drone": "Order by Drone (Sky-Drop)",
+                "drone-desc": "Experience Meituan drone delivery at Talent Park.",
+                "robotaxi": "Hail a Robotaxi",
+                "robotaxi-desc": "Guide to fully autonomous rides in Nanshan.",
+                "nav-explore": "Explore",
+                "nav-leaderboard": "Top Spots",
+                "nav-route": "My Route",
+                "nav-profile": "Profile",
+                "tab-route-title": "MY ROUTE",
+                "tab-route-sub": "Saved Journeys",
+                "tab-route-desc": "Manage your curated tech safaris and local experiences during the summit.",
+                "tab-profile-title": "PROFILE",
+                "tab-profile-sub": "Alex Global",
+                "tab-profile-desc": "APEC 2026 Delegate • Manage your preferences, privacy, and safety settings.",
+                "tab-leader-title": "TOP SPOTS",
+                "tab-leader-sub": "Trending Now",
+                "tab-leader-desc": "Discover the most popular check-in locations among APEC delegates.",
+                "delegate": "APEC 2026 Delegate",
+                "pref": "Preferences",
+                "lang-setting": "Language Settings",
+                "offline-maps": "Offline Maps",
+                "support-safety": "Support & Safety",
+                "emergency": "Emergency & Police (110)",
+                "embassy": "Embassy Contacts",
+                "lang-prompt": "Select your preferred language for the Nexus interface and AI translation outputs.",
+                "cat-landmark": "City Landmarks",
+                "cat-tech": "Tech Innovation",
+                "cat-culture": "Heritage & Arts",
+                "cat-food": "Local Flavors",
+                
+                "chk-6k": "6.1k Check-ins",
+                "chk-6k-2": "6.2k Check-ins",
+                "chk-5k": "5.2k Check-ins",
+                "chk-5k-2": "5.5k Check-ins",
+                "chk-4k": "4.8k Check-ins",
+                "chk-4k-2": "4.2k Check-ins",
+                "chk-4k-3": "4.1k Check-ins",
+                "chk-3k": "3.5k Check-ins",
+                "chk-3k-2": "3.8k Check-ins",
+                "chk-3k-3": "3.4k Check-ins",
+                "chk-2k": "2.5k Check-ins",
+                "chk-1k": "1.9k Check-ins",
+                
+                "loc-pingan": "Ping An Finance Center",
+                "loc-pingan-sub": "Futian CBD • 599m Tower",
+                "loc-bayglory": "Bay Glory Ferris Wheel",
+                "loc-bayglory-sub": "Bao'an • Coastal Views",
+                "loc-talentpark": "Shenzhen Talent Park",
+                "loc-talentpark-sub": "Nanshan • Drone Light Shows",
+                "loc-dji": "DJI Sky City",
+                "loc-dji-sub": "Nanshan • Global Drone HQ",
+                "loc-byd": "BYD Global Headquarters",
+                "loc-byd-sub": "Pingshan • EV Revolution",
+                "loc-hqb": "Huaqiangbei Electronics Hub",
+                "loc-hqb-sub": "Futian • Hardware Silicon Valley",
+                "loc-robotaxi-spot": "Nanshan Robotaxi Zones",
+                "loc-robotaxi-spot-sub": "Nanshan • Driverless Experience",
+                "loc-nantou": "Nantou Ancient City",
+                "loc-nantou-sub": "Nanshan • 1700yr Heritage & Cafes",
+                "loc-seaworld": "Sea World Culture & Arts Center",
+                "loc-seaworld-sub": "Shekou • Modern Exhibitions",
+                "loc-dafen": "Dafen Oil Painting Village",
+                "loc-dafen-sub": "Longgang • Art Production Hub",
+                "loc-wenheyou": "Shenzhen Wenheyou",
+                "loc-wenheyou-sub": "Luohu • Cyberpunk Retro Dining",
+                "loc-shuiwei": "Shuiwei 1368 Night Market",
+                "loc-shuiwei-sub": "Futian • Vibrant Street Food",
+                "loc-fanlou": "Fan Lou Dim Sum",
+                "loc-fanlou-sub": "Futian • Classic Cantonese Brunch",
+                
+                "ai-concierge": "AI Concierge",
+                "ai-concierge-desc": "Ask anything about Shenzhen or APEC.",
+                "hire-guide": "Hire a Local Guide",
+                "hire-guide-desc": "Enhance your tour with a bilingual local expert.",
+                "guide-lang": "Language",
+                "guide-gender": "Gender",
+                "gender-any": "No Preference",
+                "gender-m": "Male",
+                "gender-f": "Female",
+                "book-guide": "Request Guide",
+                "save-route": "Save to My Route",
+                "tab-all": "All",
+                "tab-landmark": "Landmarks",
+                "tab-tech": "Tech",
+                "tab-culture": "Culture",
+                "tab-food": "Food",
+                "leader-fusion-badge": "APEC Fusion",
+                "leader-fusion-title": "Top Spots × APEC-Friendly Merchants",
+                "leader-fusion-desc": "Every destination now carries dining, concierge, and pass-ready merchants nearby.",
+                "leader-fusion-tip": "Tap any spot to see a business-break route, nearby merchants, and premium services.",
+                "leader-card-cta": "Tap to unlock nearby merchants",
+                "leader-scene-fit": "APEC scene fit",
+                "leader-nearby-merchants": "Nearby APEC-friendly merchants",
+                "leader-route-idea": "Suggested spend path",
+                "leader-btn-pass": "Claim Pass",
+                "leader-btn-book": "Book Service",
+                "leader-btn-translate": "Need Translator",
+                "leader-btn-map": "Get Directions",
+                "leader-flow-short": "APEC Flow",
+                
+                "ai-concierge-mod-title": "✨ AI Concierge",
+                "ai-concierge-guide": "Your Personal Guide",
+                "ai-concierge-prompt": "Ask me about Shenzhen weather, business etiquette, transportation, or APEC schedules.",
+                "ai-concierge-placeholder": "e.g., How do I exchange business cards in China?",
+                
+                "ai-planner-mod-title": "✨ Custom Tour Builder",
+                "ai-planner-time": "How much time do you have?",
+                "ai-planner-t1": "⏱️ 2-3 Hours",
+                "ai-planner-t2": "⏱️ Half Day",
+                "ai-planner-t3": "⏱️ Full Day",
+                "ai-planner-interest": "What do you want to see?",
+                "ai-planner-i1": "🚁 Drone Tech",
+                "ai-planner-i2": "🔋 EVs & Auto",
+                "ai-planner-i3": "🤖 Robotics",
+                "ai-planner-i4": "🥟 Local Dim Sum",
+                "ai-planner-i5": "🍺 Nightlife",
+                "ai-planner-i6": "🏛️ Culture & History",
+                "ai-planner-i7": "🛍️ Tech Markets",
+                "ai-planner-req": "Any specific requests?",
+                "ai-planner-req-opt": "(Optional)",
+                "ai-planner-placeholder": "e.g., I want to visit DJI Sky City and eat spicy hotpot for dinner...",
+                "ai-planner-btn": "✨ Generate My Tour",
+                
+                "pay-mod-title": "Pay Like Local",
+                "pay-tip": "Crucial Pro Tip",
+                "pay-tip-desc": "Set this up <strong>before arriving in China</strong> to ensure you can receive SMS verification codes from your overseas bank.",
+                "pay-alipay-rec": "(Recommended)",
+                "pay-alipay-tour": "TourCard Supported",
+                "pay-step1": "1. Download & Register",
+                "pay-step1-desc": "Use your home country phone number.",
+                "pay-step2": "2. Identity Verification",
+                "pay-step2-desc": "Go to Account > Settings > Real-name Verification. Scan your passport.",
+                "pay-step3": "3. Add Bank Card",
+                "pay-step3-desc": "Go to Me > Bank Cards. Add your Visa, Mastercard, or JCB.",
+                "pay-btn-alipay": "Download Alipay",
+                "pay-wechat-ess": "Essential for mini-programs",
+                "pay-w-step1": "1. Setup WeChat",
+                "pay-w-step1-desc": "Register for WeChat first. You may need a friend to verify your account.",
+                "pay-w-step2": "2. Enable WeChat Pay",
+                "pay-w-step2-desc": "Go to Me > Services > Wallet > Cards to add your foreign credit card.",
+                "pay-btn-wechat": "Download WeChat",
+                
+                "mob-mod-title": "Mobility Hub",
+                "mob-map-adv": "Map Advice",
+                "mob-map-desc": "Google Maps data is inaccurate in mainland China. <strong>Use Apple Maps</strong> for accurate walking and public transit directions in English.",
+                "mob-ride": "Ride Hailing",
+                "mob-didi": "DiDi (English)",
+                "mob-didi-open": "Open in Alipay/WeChat",
+                "mob-open-btn": "Open",
+                "mob-emer-phrases": "Emergency Phrases",
+                "mob-ai-audio": "AI Audio",
+                "mob-emer-desc": "Play these AI-generated native phrases to your driver if you can't find the pickup point.",
+                "mob-p1-en": "I am waiting at the ride-hailing pickup area.",
+                "mob-p2-en": "Please come to the underground parking (B1).",
+                
+                "conn-mod-title": "Stay Connected",
+                "conn-restrict": "Internet Restrictions",
+                "conn-restrict-desc": "Google, WhatsApp, Instagram, and X are blocked in mainland China without a VPN or roaming data.",
+                "conn-s1": "Solution 1: Travel eSIM (Best)",
+                "conn-s1-sub": "Bypass the firewall automatically.",
+                "conn-s1-desc": "Buying a travel eSIM before you arrive means you instantly have unfiltered internet upon landing. No VPN required.",
+                "conn-s2": "Solution 2: Public Wi-Fi",
+                "conn-s2-sub": "Airport Wi-Fi via Kiosk",
+                "conn-s2-desc": "Most public Wi-Fi in China requires a Chinese phone number to receive a verification SMS. To get online at Shenzhen Airport:",
+                "conn-s2-l1": "Find a \"Wi-Fi Password Kiosk\" near information desks.",
+                "conn-s2-l2": "Scan the photo page of your passport on the machine.",
+                "conn-s2-l3": "It will print a ticket with a PIN code to connect.",
+                
+                "ar-mod-title": "✨ AI Cultural Decoder",
+                "ar-upload-desc": "Upload or take a photo of Chinese menus, signs, or text.",
+                "ar-btn-decode": "✨ Take Photo to Decode",
+                "ar-analyzing": "✨ Gemini is analyzing the image...",
+                
+                "drone-mod-title": "Order by Drone",
+                "drone-title": "Meituan Sky-Drop",
+                "drone-desc": "Experience the future of logistics. Order coffee or snacks and a drone will drop it at a designated kiosk in Shenzhen Talent Park within 15 mins.",
+                "drone-s1": "Step 1: Go to Drop Zone",
+                "drone-s1-sub": "Talent Park Kiosk A",
+                "drone-s1-desc": "Near the main gate",
+                "drone-get-dir": "Get Dir",
+                "drone-s2": "Step 2: Select Item",
+                "drone-s2-desc": "Arrive at the kiosk first to unlock menu options.",
+                "drone-btn": "I am at the Kiosk",
+                
+                "robo-mod-title": "Hail a Robotaxi",
+                "robo-title": "Apollo Go Autonomous Ride",
+                "robo-desc": "Experience a fully driverless taxi ride. Shenzhen has extensive autonomous driving zones, especially in Nanshan and Pingshan districts.",
+                "robo-area": "Service Area",
+                "robo-active": "Active",
+                "robo-nanshan": "Nanshan District (Tech Park)",
+                "robo-time": "Available from 07:00 to 23:00.",
+                "robo-btn": "Open Booking App",
+                
+                "ai-res-mod-title": "✨ Your Tech Safari",
+                
+                "msg-loading": "✨ AI is curating your tour...",
+                "msg-failed": "Failed to connect to AI. Please try again.",
+                "msg-appstore": "Redirecting to App Store...",
+                "msg-miniprogram": "Redirecting to mini-program...",
+                "msg-map": "Opening Map...",
+                "msg-kiosk": "You must be near a kiosk to order",
+                "msg-copied": "Copied to clipboard",
+                "msg-airalo": "Opening Airalo...",
+                "msg-holafly": "Opening Holafly..."
+            },
+            zh: {
+                "header-desc": "解码深圳，链接未来。您的 APEC 数字生存指南。",
+                "ai-planner-title": "AI 行程规划师",
+                "ai-planner-desc": "点击使用 Gemini AI 定制您的科技与文化之旅。",
+                "essential-toolkit": "必备工具箱",
+                "ar-decoder": "AR 文化解码器",
+                "ar-decoder-desc": "智能翻译菜单和路牌，并提供文化背景解析。",
+                "pay-local": "本地化支付",
+                "pay-local-desc": "将外卡极速绑定至微信支付 / 支付宝。",
+                "mobility": "出行枢纽",
+                "mobility-desc": "滴滴出行指南及网约车应急沟通短语。",
+                "connected": "网络连接",
+                "connected-desc": "eSIM 设置指南及免验证码连接机场 Wi-Fi。",
+                "tech-safari": "科技游猎体验",
+                "premium": "高级",
+                "drone": "无人机外卖 (空投)",
+                "drone-desc": "在人才公园体验美团无人机极速配送。",
+                "robotaxi": "呼叫自动驾驶 (Robotaxi)",
+                "robotaxi-desc": "南山区全自动驾驶出租车乘坐指南。",
+                "nav-explore": "探索",
+                "nav-leaderboard": "打卡排行",
+                "nav-route": "我的行程",
+                "nav-profile": "个人",
+                "tab-route-title": "我的行程",
+                "tab-route-sub": "已保存的路线",
+                "tab-route-desc": "管理您在峰会期间定制的科技游猎路线与本地体验。",
+                "tab-profile-title": "个人中心",
+                "tab-profile-sub": "Alex Global",
+                "tab-profile-desc": "APEC 2026 代表 • 管理您的偏好、隐私及安全设置。",
+                "tab-leader-title": "打卡排行",
+                "tab-leader-sub": "实时趋势",
+                "tab-leader-desc": "探索 APEC 代表中最受欢迎的深圳打卡地。",
+                "delegate": "APEC 2026 代表",
+                "pref": "偏好设置",
+                "lang-setting": "语言设置",
+                "offline-maps": "离线地图",
+                "support-safety": "安全与支持",
+                "emergency": "紧急报警 (110)",
+                "embassy": "大使馆联系方式",
+                "lang-prompt": "选择您首选的 Nexus 界面语言及 AI 翻译输出语言。",
+                "cat-landmark": "城市地标",
+                "cat-tech": "科技前沿",
+                "cat-culture": "历史文化",
+                "cat-food": "地道美食",
+                
+                "chk-6k": "6.1k 次打卡",
+                "chk-6k-2": "6.2k 次打卡",
+                "chk-5k": "5.2k 次打卡",
+                "chk-5k-2": "5.5k 次打卡",
+                "chk-4k": "4.8k 次打卡",
+                "chk-4k-2": "4.2k 次打卡",
+                "chk-4k-3": "4.1k 次打卡",
+                "chk-3k": "3.5k 次打卡",
+                "chk-3k-2": "3.8k 次打卡",
+                "chk-3k-3": "3.4k 次打卡",
+                "chk-2k": "2.5k 次打卡",
+                "chk-1k": "1.9k 次打卡",
+                
+                "loc-pingan": "平安金融中心",
+                "loc-pingan-sub": "福田 CBD • 599米摩天大楼",
+                "loc-bayglory": "欢乐港湾摩天轮",
+                "loc-bayglory-sub": "宝安区 • 绝美海景",
+                "loc-talentpark": "深圳人才公园",
+                "loc-talentpark-sub": "南山区 • 无人机灯光秀",
+                "loc-dji": "大疆天空之城",
+                "loc-dji-sub": "南山区 • 全球无人机总部",
+                "loc-byd": "比亚迪全球总部",
+                "loc-byd-sub": "坪山区 • 新能源汽车革命",
+                "loc-hqb": "华强北电子第一街",
+                "loc-hqb-sub": "福田区 • 硬件创客天堂",
+                "loc-robotaxi-spot": "南山自动驾驶体验区",
+                "loc-robotaxi-spot-sub": "南山区 • 全无人驾驶体验",
+                "loc-nantou": "南头古城",
+                "loc-nantou-sub": "南山区 • 1700年历史与咖啡馆",
+                "loc-seaworld": "海上世界文化艺术中心",
+                "loc-seaworld-sub": "蛇口 • 现代艺术展览",
+                "loc-dafen": "大芬油画村",
+                "loc-dafen-sub": "龙岗区 • 艺术村落",
+                "loc-wenheyou": "深圳文和友",
+                "loc-wenheyou-sub": "罗湖区 • 赛博朋克复古餐饮",
+                "loc-fanlou": "蘩楼",
+                "loc-fanlou-sub": "福田区 • 传统广式早茶",
+                "loc-shuiwei": "水围1368文化街区",
+                "loc-shuiwei-sub": "福田区 • 活力市井夜市美食",
+                
+                "ai-concierge": "AI 智能管家",
+                "ai-concierge-desc": "询问任何关于深圳或 APEC 的问题。",
+                "hire-guide": "聘请本地导游",
+                "hire-guide-desc": "由双语本地专家带您深度游览。",
+                "guide-lang": "服务语种",
+                "guide-gender": "导游性别",
+                "gender-any": "无偏好",
+                "gender-m": "男",
+                "gender-f": "女",
+                "book-guide": "发送预约请求",
+                "save-route": "保存至我的行程",
+                "tab-all": "综合",
+                "tab-landmark": "地标",
+                "tab-tech": "科技",
+                "tab-culture": "文化",
+                "tab-food": "美食",
+                
+                "ai-concierge-mod-title": "✨ AI 智能管家",
+                "ai-concierge-guide": "您的私人向导",
+                "ai-concierge-prompt": "向我询问关于深圳天气、商务礼仪、交通或 APEC 日程的任何问题。",
+                "ai-concierge-placeholder": "例如：在中国如何交换名片？",
+                
+                "ai-planner-mod-title": "✨ 定制专属行程",
+                "ai-planner-time": "您有多少时间？",
+                "ai-planner-t1": "⏱️ 2-3 小时",
+                "ai-planner-t2": "⏱️ 半天",
+                "ai-planner-t3": "⏱️ 全天",
+                "ai-planner-interest": "您想体验什么？",
+                "ai-planner-i1": "🚁 无人机科技",
+                "ai-planner-i2": "🔋 新能源汽车",
+                "ai-planner-i3": "🤖 机器人",
+                "ai-planner-i4": "🥟 本地早茶",
+                "ai-planner-i5": "🍺 夜生活",
+                "ai-planner-i6": "🏛️ 历史文化",
+                "ai-planner-i7": "🛍️ 科技市场",
+                "ai-planner-req": "有什么特殊要求吗？",
+                "ai-planner-req-opt": "(可选)",
+                "ai-planner-placeholder": "例如：我想参观大疆天空之城，晚餐想吃正宗的麻辣火锅...",
+                "ai-planner-btn": "✨ 生成专属行程",
+                
+                "pay-mod-title": "本地化支付",
+                "pay-tip": "关键提示",
+                "pay-tip-desc": "请在<strong>抵达中国前</strong>完成此设置，以确保您能顺利接收到海外银行的短信验证码。",
+                "pay-alipay-rec": "（推荐）",
+                "pay-alipay-tour": "支持 TourCard",
+                "pay-step1": "1. 下载与注册",
+                "pay-step1-desc": "使用您本国的手机号进行注册。",
+                "pay-step2": "2. 身份验证",
+                "pay-step2-desc": "前往 账号 > 设置 > 实名认证。通过扫描护照完成认证。",
+                "pay-step3": "3. 添加银行卡",
+                "pay-step3-desc": "前往 我的 > 银行卡。添加您的 Visa、Mastercard 或 JCB 卡。",
+                "pay-btn-alipay": "下载支付宝 (Alipay)",
+                "pay-wechat-ess": "小程序必备",
+                "pay-w-step1": "1. 注册微信",
+                "pay-w-step1-desc": "首先注册微信账号，您可能需要一位微信用户的辅助验证。",
+                "pay-w-step2": "2. 开启微信支付",
+                "pay-w-step2-desc": "前往 我 > 服务 > 钱包 > 银行卡，添加您的外币信用卡。",
+                "pay-btn-wechat": "下载微信 (WeChat)",
+                
+                "mob-mod-title": "出行枢纽",
+                "mob-map-adv": "地图建议",
+                "mob-map-desc": "谷歌地图 (Google Maps) 在中国大陆的数据可能存在偏差。<strong>强烈建议使用 Apple Maps</strong> 获取准确的英文步行和公交导航。",
+                "mob-ride": "网约车",
+                "mob-didi": "滴滴出行 (英文版)",
+                "mob-didi-open": "在支付宝 / 微信中打开",
+                "mob-open-btn": "打开",
+                "mob-emer-phrases": "应急短语",
+                "mob-ai-audio": "AI 语音",
+                "mob-emer-desc": "如果您找不到上车点，可以向司机播放这些由 AI 生成的地道中文语音。",
+                "mob-p1-en": "I am waiting at the ride-hailing pickup area.",
+                "mob-p2-en": "Please come to the underground parking (B1).",
+                
+                "conn-mod-title": "网络连接",
+                "conn-restrict": "网络限制",
+                "conn-restrict-desc": "如果没有 VPN 或漫游数据，Google、WhatsApp、Instagram 和 X 等应用在中国大陆将无法直接访问。",
+                "conn-s1": "方案一：旅行 eSIM（最佳体验）",
+                "conn-s1-sub": "自动突破网络防火墙。",
+                "conn-s1-desc": "在抵达前购买并激活旅行 eSIM，意味着您落地即可无缝访问所有国际互联网应用，无需配置 VPN。",
+                "conn-s2": "方案二：公共 Wi-Fi",
+                "conn-s2-sub": "通过自助终端获取机场 Wi-Fi",
+                "conn-s2-desc": "中国大多数公共 Wi-Fi 需要使用中国手机号接收短信验证码。若要在深圳机场上网：",
+                "conn-s2-l1": "在问询台附近找到“Wi-Fi 密码获取机”。",
+                "conn-s2-l2": "在机器的扫描区刷一下您的护照照片页。",
+                "conn-s2-l3": "机器将打印一张带有连接 PIN 码的纸条。",
+                
+                "ar-mod-title": "✨ AI 文化解码器",
+                "ar-upload-desc": "上传或拍摄中文菜单、路牌或文字照片，获取文化级深度翻译。",
+                "ar-btn-decode": "✨ 拍照并解码",
+                "ar-analyzing": "✨ Gemini 正在分析图片...",
+                
+                "drone-mod-title": "无人机点单",
+                "drone-title": "美团无人机空投",
+                "drone-desc": "体验未来物流。点一杯咖啡或零食，无人机将在 15 分钟内将其精准投递至深圳人才公园的指定空投柜。",
+                "drone-s1": "第一步：前往空投区",
+                "drone-s1-sub": "人才公园 A 取餐柜",
+                "drone-s1-desc": "靠近公园正门",
+                "drone-get-dir": "路线导航",
+                "drone-s2": "第二步：选择餐品",
+                "drone-s2-desc": "请先抵达取餐柜，系统验证后将为您解锁附近商家的菜单选项。",
+                "drone-btn": "我已到达取餐柜",
+                
+                "robo-mod-title": "呼叫自动驾驶",
+                "robo-title": "萝卜快跑自动驾驶体验",
+                "robo-desc": "体验全无人驾驶出租车。深圳拥有广泛的自动驾驶测试区域，特别是在南山区（科技园）和坪山区。",
+                "robo-area": "服务区域",
+                "robo-active": "运营中",
+                "robo-nanshan": "南山区 (科技园)",
+                "robo-time": "运营时间：07:00 至 23:00。",
+                "robo-btn": "打开预订小程序",
+                
+                "ai-res-mod-title": "✨ 您的专属科技游猎",
+                
+                "msg-loading": "✨ 正在为您生成专属行程...",
+                "msg-failed": "连接 AI 失败，请重试。",
+                "msg-appstore": "正在跳转至应用商店...",
+                "msg-miniprogram": "正在跳转至小程序...",
+                "msg-map": "正在打开地图...",
+                "msg-kiosk": "您必须靠近取餐柜才能点单",
+                "msg-copied": "已复制到剪贴板",
+                "msg-airalo": "正在打开 Airalo...",
+                "msg-holafly": "正在打开 Holafly...",
+                "leader-loading": "正在加载 APEC 榜单...",
+                "leader-empty": "该分类暂无可展示目的地。",
+                "leader-error": "榜单加载失败，请重试。",
+                "leader-retry": "重试",
+                "leader-load-more": "加载更多",
+                "merchant-available": "可承接",
+                "merchant-unavailable": "暂不可用",
+                "merchant-fallback": "推荐替补",
+                "merchant-unavailable-tip": "该商户当前不可预约，请选择可承接商户。",
+                "order-module-title": "Concierge+ 预约",
+                "order-create": "创建订单",
+                "order-cancel": "取消订单",
+                "order-pay": "立即支付",
+                "order-status-pending": "待支付",
+                "order-status-paid": "已支付",
+                "order-status-failed": "支付失败",
+                "order-status-cancelled": "已取消",
+                "pass-module-title": "APEC 通行 Pass",
+                "pass-claim": "立即领取",
+                "pass-claimed": "Pass 领取成功",
+                "pass-duplicate": "您已领取过该 Pass",
+                "redeem-module-title": "商户核销",
+                "redeem-now": "执行核销",
+                "redeem-success": "核销成功",
+                "redeem-failed": "核销失败",
+                "redeem-duplicate": "该 Pass 已被核销",
+                "qa-module-title": "P0 发布门禁",
+                "qa-run": "运行 P0 闭环冒烟检查",
+                "qa-pass": "发布门禁通过",
+                "qa-fail": "发布门禁失败",
+                "analytics-module-title": "漏斗分析",
+                "analytics-open": "查看漏斗"
+            }
+        };
+
+        function applyTranslations() {
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = dict[key];
+                    } else if (el.hasAttribute('data-i18n-html')) {
+                        el.innerHTML = dict[key];
+                    } else {
+                        el.textContent = dict[key];
+                    }
+                }
+            });
+            // Also update dynamic header text
+            updateHeaderUI();
+        }
+
+        // --- Gemini API Setup ---
+        const apiKey = ""; // Execution environment provides the key
+
+        async function fetchWithRetry(url, payload, retries = 5) {
+            let delay = 1000;
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    return await response.json();
+                } catch (e) {
+                    if (i === retries - 1) throw e;
+                    await new Promise(res => setTimeout(res, delay));
+                    delay *= 2;
+                }
+            }
+        }
+
+        async function callGeminiText(prompt, schema) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            // If the user selects Chinese, force the AI to respond in Simplified Chinese.
+            const langInstruction = currentLang === 'zh' 
+                ? "IMPORTANT: YOU MUST RESPOND ENTIRELY IN SIMPLIFIED CHINESE (简体中文), except for specific original names." 
+                : "";
+
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: { parts: [{ text: `You are an expert local guide in Shenzhen curating experiences for foreign APEC visitors. ${langInstruction}` }] },
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: schema
+                }
+            };
+            const result = await fetchWithRetry(url, payload);
+            return JSON.parse(result.candidates[0].content.parts[0].text);
+        }
+
+        // NEW: TTS API Call
+        async function callGeminiTTS(text) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-tts:generateContent?key=${apiKey}`;
+            const payload = {
+                contents: [{ parts: [{ text: text }] }],
+                generationConfig: {
+                    responseModalities: ["AUDIO"],
+                    speechConfig: { voiceConfig: { prebuiltVoiceConfig: { voiceName: "Aoede" } } }
+                },
+                model: "gemini-2.5-flash-preview-tts"
+            };
+            const result = await fetchWithRetry(url, payload);
+            return result.candidates[0].content.parts[0].inlineData;
+        }
+
+        // AR Decode: Vision API Call
+        async function callGeminiImage(base64Data, mimeType) {
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            const langInstruction = currentLang === 'zh'
+                ? "IMPORTANT: YOU MUST RESPOND ENTIRELY IN SIMPLIFIED CHINESE (简体中文), except for 'term' and 'pinyin' fields."
+                : "";
+            const schema = {
+                type: "OBJECT",
+                properties: {
+                    term:        { type: "STRING" },
+                    pinyin:      { type: "STRING" },
+                    translation: { type: "STRING" },
+                    context:     { type: "STRING" },
+                    tags:        { type: "ARRAY", items: { type: "STRING" } }
+                },
+                required: ["term", "pinyin", "translation", "context", "tags"]
+            };
+            const payload = {
+                contents: [{
+                    parts: [
+                        { text: `You are an expert local guide in Shenzhen. Analyze this image (menu, sign, landmark, or product) and return structured information. ${langInstruction}` },
+                        { inlineData: { mimeType, data: base64Data } }
+                    ]
+                }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: schema
+                }
+            };
+            const result = await fetchWithRetry(url, payload);
+            return JSON.parse(result.candidates[0].content.parts[0].text);
+        }
+
+        // NEW: Play PCM Audio
+        async function playPCM16(base64Data, mimeType) {
+            try {
+                let sampleRate = 24000; // Default
+                const rateMatch = mimeType.match(/rate=(\d+)/);
+                if (rateMatch && rateMatch[1]) {
+                    sampleRate = parseInt(rateMatch[1], 10);
+                }
+
+                const binaryString = atob(base64Data);
+                const bytes = new Uint8Array(binaryString.length);
+                for (let i = 0; i < binaryString.length; i++) {
+                    bytes[i] = binaryString.charCodeAt(i);
+                }
+                const pcm16 = new Int16Array(bytes.buffer);
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const audioBuffer = audioCtx.createBuffer(1, pcm16.length, sampleRate);
+                const channelData = audioBuffer.getChannelData(0);
+                for (let i = 0; i < pcm16.length; i++) {
+                    channelData[i] = pcm16[i] / 32768.0;
+                }
+                const source = audioCtx.createBufferSource();
+                source.buffer = audioBuffer;
+                source.connect(audioCtx.destination);
+                source.start();
+            } catch (err) {
+                console.error("Audio playback failed:", err);
+                showNotification(currentLang === 'zh' ? '音频播放失败。' : 'Audio playback failed.');
+            }
+        }
+
+        async function speakText(text, btnElement) {
+            if (!text) return;
+            const originalHTML = btnElement.innerHTML;
+            btnElement.innerHTML = '<i class="fas fa-spinner fa-spin text-sky-400"></i>';
+            try {
+                const audioData = await callGeminiTTS(text);
+                await playPCM16(audioData.data, audioData.mimeType);
+            } catch (err) {
+                console.error(err);
+                showNotification(currentLang === 'zh' ? '语音合成失败。' : 'Text-to-speech failed.');
+            } finally {
+                btnElement.innerHTML = originalHTML;
+            }
+        }
+
+        // NEW: Concierge API Call
+        async function askConcierge() {
+            const input = document.getElementById('concierge-input').value;
+            if (!input) return;
+
+            const btn = document.getElementById('concierge-btn');
+            const resultBox = document.getElementById('concierge-result');
+            
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            resultBox.innerHTML = `<p class="text-slate-400 text-xs mt-4 animate-pulse">✨ ${currentLang === 'zh' ? 'AI 正在思考...' : 'AI is thinking...'}</p>`;
+
+            try {
+                const langInstruction = currentLang === 'zh' ? "Respond in Simplified Chinese." : "Respond in English.";
+                const prompt = `As a helpful APEC 2026 Shenzhen Concierge, briefly answer this query: "${input}". Keep it under 3 sentences. Provide practical, culturally aware advice. ${langInstruction}`;
+                const schema = {
+                    type: "OBJECT",
+                    properties: {
+                        answer: { type: "STRING", description: "The concise answer to the user's question" }
+                    }
+                };
+                const data = await callGeminiText(prompt, schema);
+                
+                resultBox.innerHTML = `
+                    <div class="glass-panel p-4 rounded-xl border border-fuchsia-500/50 mt-4 relative fade-in">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-fuchsia-400 absolute top-3 right-3"></i>
+                        <p class="text-sm text-white leading-relaxed">${data.answer}</p>
+                    </div>
+                `;
+                lucide.createIcons();
+            } catch (err) {
+                console.error(err);
+                resultBox.innerHTML = `<p class="text-red-400 text-xs mt-4">${currentLang === 'zh' ? '获取回答失败，请重试。' : 'Failed to get an answer. Please try again.'}</p>`;
+            } finally {
+                btn.innerHTML = '<i data-lucide="send" class="w-4 h-4 text-white"></i>';
+                lucide.createIcons();
+            }
+        }
+
+        function showNotification(messageKey) {
+            const toast = document.getElementById('toast');
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            
+            document.getElementById('toast-msg').textContent = dict[messageKey] || messageKey;
+            
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 3000);
+        }
+
+        function updateHeaderUI() {
+            const titleEl = document.getElementById('header-title');
+            const subEl = document.getElementById('header-subtitle');
+            const descEl = document.getElementById('header-desc');
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+
+            if (currentTabId === 'explore') {
+                titleEl.textContent = 'NEXUS';
+                subEl.textContent = currentLang === 'zh' ? '深圳 2026' : 'Shenzhen 2026';
+            } else if (currentTabId === 'leaderboard') {
+                titleEl.textContent = dict['tab-leader-title'];
+                subEl.textContent = dict['tab-leader-sub'];
+                descEl.textContent = dict['tab-leader-desc'];
+            } else if (currentTabId === 'route') {
+                titleEl.textContent = dict['tab-route-title'];
+                subEl.textContent = dict['tab-route-sub'];
+                descEl.textContent = dict['tab-route-desc'];
+            } else if (currentTabId === 'profile') {
+                titleEl.textContent = dict['tab-profile-title'];
+                subEl.textContent = dict['tab-profile-sub'];
+                descEl.textContent = dict['tab-profile-desc'];
+            }
+        }
+
+        // --- Tab Navigation Logic ---
+        function switchTab(tabId, element) {
+            currentTabId = tabId;
+            
+            // Update Active Nav Icon Styling
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-sky-400');
+                btn.classList.add('text-slate-500');
+            });
+            element.classList.remove('text-slate-500');
+            element.classList.add('text-sky-400');
+
+            // Hide all tab views and reset animations
+            document.querySelectorAll('.tab-view').forEach(view => {
+                view.classList.remove('block');
+                view.classList.add('hidden');
+                void view.offsetWidth; 
+            });
+
+            // Show target view
+            document.getElementById('view-' + tabId).classList.remove('hidden');
+            document.getElementById('view-' + tabId).classList.add('block');
+
+            updateHeaderUI();
+        }
+
+        const loc = (en, zh) => ({ en, zh });
+
+        const spotFusionData = [
+            {
+                id: 'pingan',
+                category: 'landmark',
+                rank: '#1',
+                checkinsKey: 'chk-5k',
+                image: 'images/top-spots/平安金融中心.jpg',
+                borderClass: 'border-sky-500/50',
+                rankClass: 'bg-sky-500 text-white shadow-[0_0_10px_rgba(56,189,248,0.5)]',
+                title: loc('Ping An Finance Center', '平安金融中心'),
+                subtitle: loc('Futian CBD • 599m Tower', '福田 CBD • 599米摩天大楼'),
+                merchantCount: loc('4 nearby merchants', '4 家附近商户'),
+                sceneFit: loc('Skyline meetings, cocktails, and fast premium dining.', '适合高空会面、会后酒会和快速高端用餐。'),
+                routeIdea: loc('Observation deck → cocktail lounge → chauffeur pickup', '观景台 → 酒廊 → 商务接送'),
+                quickTags: [loc('Foreign cards', '外卡支付'), loc('English menu', '英文菜单'), loc('Business dining', '商务用餐')],
+                description: loc('A flagship skyline stop for delegates staying around Futian. Best used as a short business-break destination with premium food and photo options.', '这是福田代表团最适合插入商务空档的地标点，适合搭配高空观景、高端餐饮和快速拍照服务。'),
+                merchants: [
+                    { name: loc('Cloud Terrace Bar', '云际露台酒廊'), distance: loc('8 min by car', '车程 8 分钟'), reason: loc('Skyline cocktails, English-speaking hosts, and late-night business seating.', '适合外宾晚间会面，有英文接待与高空酒会氛围。'), tags: [loc('Foreign cards', '外卡支付'), loc('Business table', '商务会谈')] },
+                    { name: loc('Lian Pavilion Cantonese', '联阁粤宴'), distance: loc('6 min walk', '步行 6 分钟'), reason: loc('Private dining rooms and bilingual service for formal banquet moments.', '提供包厢和双语接待，适合正式商务宴请。'), tags: [loc('English menu', '英文菜单'), loc('Private room', '包厢可订')] }
+                ]
+            },
+            {
+                id: 'talentpark',
+                category: 'landmark',
+                rank: '#2',
+                checkinsKey: 'chk-4k',
+                image: 'images/top-spots/深圳人才公园.jpg',
+                borderClass: 'border-slate-700',
+                rankClass: 'bg-slate-600 text-white',
+                title: loc('Shenzhen Talent Park', '深圳人才公园'),
+                subtitle: loc('Nanshan • Drone Light Shows', '南山区 • 无人机灯光秀'),
+                merchantCount: loc('3 nearby merchants', '3 家附近商户'),
+                sceneFit: loc('Ideal for sunset walks, drone shows, and light outdoor networking.', '适合傍晚散步、无人机灯光秀和轻社交会面。'),
+                routeIdea: loc('Waterfront walk → coffee stop → portrait session', '滨水散步 → 咖啡补给 → 旅拍留念'),
+                quickTags: [loc('Sunset views', '日落景观'), loc('Photo service', '旅拍服务'), loc('Cards accepted', '可刷外卡')],
+                description: loc('Talent Park is a soft-landing landmark for overseas guests who want a scenic Shenzhen memory without leaving Nanshan.', '人才公园很适合作为外宾轻松进入深圳本地体验的第一站，不用远行就能获得高质量城市记忆。'),
+                merchants: [
+                    { name: loc('Bay Loop Cafe', '湾畔咖啡实验室'), distance: loc('4 min walk', '步行 4 分钟'), reason: loc('Quiet coffee meetings with English menu and outdoor seats.', '适合临时会谈，提供英文菜单和户外座位。'), tags: [loc('English menu', '英文菜单'), loc('Coffee meeting', '咖啡会面')] },
+                    { name: loc('Talent Park Portrait Crew', '人才公园旅拍组'), distance: loc('On-site', '现场服务'), reason: loc('Short-form skyline portrait service designed for delegates and couples.', '可提供外宾商务照与城市打卡快拍服务。'), tags: [loc('Photo service', '旅拍服务'), loc('Quick booking', '即时预约')] }
+                ]
+            },
+            {
+                id: 'bayglory',
+                category: 'landmark',
+                rank: '#3',
+                checkinsKey: 'chk-3k',
+                image: 'images/top-spots/欢乐港湾摩天轮.jpg',
+                borderClass: 'border-slate-700',
+                rankClass: 'bg-slate-600 text-white',
+                title: loc('Bay Glory Ferris Wheel', '欢乐港湾摩天轮'),
+                subtitle: loc('Baoan • Coastal Views', '宝安区 • 海岸线景观'),
+                merchantCount: loc('3 nearby merchants', '3 家附近商户'),
+                sceneFit: loc('Works well for evening coastal breaks and relaxed dinners.', '适合傍晚海岸漫步与轻松晚餐。'),
+                routeIdea: loc('Ferris wheel → seaside dinner → night photo stop', '摩天轮 → 海景晚餐 → 夜景拍照'),
+                quickTags: [loc('Night views', '夜景'), loc('Coastal dining', '海景餐饮'), loc('Pass offers', 'Pass 优惠')],
+                description: loc('This stop is strong for couples, family delegates, and evening entertainment around Baoan.', '这一站适合陪同家属、情侣和希望在宝安轻松夜游的访客。'),
+                merchants: [
+                    { name: loc('Harbor Seafood Table', '港湾海鲜餐桌'), distance: loc('5 min walk', '步行 5 分钟'), reason: loc('Seafood tasting menu with card-friendly checkout and ocean views.', '可刷外卡，主打海景海鲜套餐。'), tags: [loc('Foreign cards', '外卡支付'), loc('Sea view', '海景位')] },
+                    { name: loc('Coastal Tea Lounge', '海岸茶叙廊'), distance: loc('7 min walk', '步行 7 分钟'), reason: loc('Quiet tea and dessert stop for post-ride conversations.', '适合摩天轮之后小坐聊天，甜品和茶点友好。'), tags: [loc('Dessert', '甜品'), loc('Quiet meeting', '安静会面')] }
+                ]
+            },
+            {
+                id: 'dji',
+                category: 'tech',
+                rank: '#1',
+                checkinsKey: 'chk-6k',
+                image: 'images/top-spots/大疆天空之城.jpg',
+                borderClass: 'border-indigo-500/50',
+                rankClass: 'bg-indigo-500 text-white shadow-[0_0_10px_rgba(99,102,241,0.5)]',
+                title: loc('DJI Sky City', '大疆天空之城'),
+                subtitle: loc('Nanshan • Global Drone HQ', '南山区 • 全球无人机总部'),
+                merchantCount: loc('4 nearby merchants', '4 家附近商户'),
+                sceneFit: loc('Perfect for tech pilgrimage, gift shopping, and executive coffee.', '适合科技朝圣、伴手礼采购和商务咖啡会面。'),
+                routeIdea: loc('HQ visit → coffee lab → branded gift stop', '总部参观 → 咖啡实验室 → 品牌伴手礼'),
+                quickTags: [loc('Tech gifts', '科技礼品'), loc('Guide service', '导览服务'), loc('English support', '英文支持')],
+                description: loc('This is one of the strongest Shenzhen tech symbols and should anchor premium tech-themed micro itineraries.', '这是深圳科技感最强的标志性点位之一，适合作为高端科技微行程的锚点。'),
+                merchants: [
+                    { name: loc('Sky Lab Cafe', '天空实验室咖啡'), distance: loc('Inside district', '园区内'), reason: loc('Clean tech aesthetic, good for quick meetings, English ordering supported.', '科技感空间强，适合短会，支持英文点单。'), tags: [loc('English menu', '英文菜单'), loc('Coffee stop', '咖啡补给')] },
+                    { name: loc('DJI Gift Gallery', '大疆礼品廊'), distance: loc('3 min walk', '步行 3 分钟'), reason: loc('Curated branded merchandise and export-friendly packaging.', '有适合外宾带走的品牌礼物和便携包装。'), tags: [loc('Gift shop', '礼品店'), loc('Tax invoice', '可开发票')] }
+                ]
+            },
+            {
+                id: 'hqb',
+                category: 'tech',
+                rank: '#2',
+                checkinsKey: 'chk-5k-2',
+                image: 'images/top-spots/华强北电子第一街.jpg',
+                borderClass: 'border-slate-700',
+                rankClass: 'bg-slate-600 text-white',
+                title: loc('Huaqiangbei Electronics Hub', '华强北电子第一街'),
+                subtitle: loc('Futian • Hardware Silicon Valley', '福田区 • 硬件创客天堂'),
+                merchantCount: loc('5 nearby merchants', '5 家附近商户'),
+                sceneFit: loc('Best for gadget hunting with bilingual assistance and quick battery top-ups.', '适合电子采购、极客逛街和双语采购陪同。'),
+                routeIdea: loc('Electronics market → guide desk → coffee recharge', '电子市场 → 导购台 → 咖啡休整'),
+                quickTags: [loc('Bilingual buying help', '双语导购'), loc('SIM & accessories', '配件补给'), loc('Fast coffee', '快速咖啡')],
+                description: loc('Huaqiangbei should function as both a top spot and a commerce engine for tech-curious delegates.', '华强北不只是打卡地，更应成为科技客群高转化的消费引擎。'),
+                merchants: [
+                    { name: loc('Circuit Guide Desk', '电路导购台'), distance: loc('Inside SEG area', '赛格片区内'), reason: loc('Bilingual buyers help visitors source gifts, drones, and smart devices.', '提供双语采购陪同，帮助外宾快速找到目标商品。'), tags: [loc('Guide service', '导购服务'), loc('Tech sourcing', '采购陪同')] },
+                    { name: loc('Maker Brew', '创客咖啡'), distance: loc('5 min walk', '步行 5 分钟'), reason: loc('Quick drinks, charging stations, and English-speaking staff.', '适合短暂停留补电，有英文服务。'), tags: [loc('Charging', '充电位'), loc('English support', '英文支持')] }
+                ]
+            },
+            {
+                id: 'robotaxi-spot',
+                category: 'tech',
+                rank: '#3',
+                checkinsKey: 'chk-4k-2',
+                image: 'images/top-spots/南山自动驾驶体验区.jpg',
+                borderClass: 'border-slate-700',
+                rankClass: 'bg-slate-600 text-white',
+                title: loc('Nanshan Robotaxi Zones', '南山自动驾驶体验区'),
+                subtitle: loc('Nanshan • Driverless Experience', '南山区 • 全无人驾驶体验'),
+                merchantCount: loc('3 nearby merchants', '3 家附近商户'),
+                sceneFit: loc('Strong for futuristic transport demos between meetings.', '适合在会议间隙体验未来出行场景。'),
+                routeIdea: loc('Robotaxi ride → smart lunch → return to venue', '自动驾驶体验 → 智能午餐 → 返回会场'),
+                quickTags: [loc('Driverless ride', '无人驾驶'), loc('Quick lunch', '快速午餐'), loc('Translator ready', '翻译支持')],
+                description: loc('This stop turns transport into a memorable Shenzhen moment and can be paired with nearby dining.', '这一站可以把简单通勤变成深圳特色体验，并且与附近餐饮消费自然衔接。'),
+                merchants: [
+                    { name: loc('Apollo Pickup Lounge', '自动驾驶接驳休息区'), distance: loc('At pickup point', '上车点旁'), reason: loc('Waiting lounge with bilingual assistance and route guidance.', '候车时可获得双语协助和路线指引。'), tags: [loc('Bilingual desk', '双语服务'), loc('Transit hub', '接驳点')] },
+                    { name: loc('Smart Canton Bistro', '智享粤味餐吧'), distance: loc('6 min walk', '步行 6 分钟'), reason: loc('Fast Cantonese meal for guests returning to the summit soon.', '适合赶时间的会务客快速用餐。'), tags: [loc('Fast dining', '快速用餐'), loc('Cards accepted', '可刷外卡')] }
+                ]
+            },
+            {
+                id: 'nantou',
+                category: 'culture',
+                rank: '#1',
+                checkinsKey: 'chk-3k-2',
+                image: 'images/top-spots/南头古城.jpg',
+                borderClass: 'border-amber-500/50',
+                rankClass: 'bg-amber-500 text-white shadow-[0_0_10px_rgba(245,158,11,0.5)]',
+                title: loc('Nantou Ancient City', '南头古城'),
+                subtitle: loc('Nanshan • 1700yr Heritage & Cafes', '南山区 • 1700年历史与咖啡馆'),
+                merchantCount: loc('4 nearby merchants', '4 家附近商户'),
+                sceneFit: loc('Best for culture, tea, and short walking exploration.', '适合历史文化体验、茶叙和轻徒步。'),
+                routeIdea: loc('Ancient lane walk → tea house → local dinner', '古城漫游 → 茶馆小坐 → 本地晚餐'),
+                quickTags: [loc('Tea house', '茶馆'), loc('Photo alley', '拍照巷道'), loc('Guide available', '可约导游')],
+                description: loc('Nantou gives APEC guests a grounded cultural contrast to the high-tech image of Shenzhen.', '南头古城能让 APEC 外宾感受到深圳不止有科技，也有历史和生活肌理。'),
+                merchants: [
+                    { name: loc('South Gate Tea House', '南门茶叙馆'), distance: loc('3 min walk', '步行 3 分钟'), reason: loc('Quiet tasting sets and bilingual explanations of Chinese tea rituals.', '提供双语茶文化讲解，适合外宾体验。'), tags: [loc('Tea tasting', '品茶体验'), loc('English host', '英文接待')] },
+                    { name: loc('Courtyard Clay Pot', '庭院煲仔小馆'), distance: loc('5 min walk', '步行 5 分钟'), reason: loc('Warm local meal with simpler menu translation and easy group seating.', '菜品地道，菜单翻译友好，方便小团队用餐。'), tags: [loc('Local flavors', '本地风味'), loc('Group seating', '多人用餐')] }
+                ]
+            },
+            {
+                id: 'seaworld',
+                category: 'culture',
+                rank: '#2',
+                checkinsKey: 'chk-2k',
+                image: 'images/top-spots/海上世界文化艺术中心.jpg',
+                borderClass: 'border-slate-700',
+                rankClass: 'bg-slate-600 text-white',
+                title: loc('Sea World Culture & Arts Center', '海上世界文化艺术中心'),
+                subtitle: loc('Shekou • Modern Exhibitions', '蛇口 • 现代艺术展览'),
+                merchantCount: loc('3 nearby merchants', '3 家附近商户'),
+                sceneFit: loc('Good for design-minded guests and polished harbor meetings.', '适合偏好设计与艺术氛围的外宾。'),
+                routeIdea: loc('Exhibition stop → harbor brunch → design store', '看展 → 港口轻食 → 设计店'),
+                quickTags: [loc('Design shopping', '设计购物'), loc('Harbor brunch', '港口轻食'), loc('Cards accepted', '可刷外卡')],
+                description: loc('Sea World blends art, sea views, and lifestyle retail into a polished foreigner-friendly pocket.', '海上世界兼具艺术、海景和生活方式零售，是很适合国际访客的成熟片区。'),
+                merchants: [
+                    { name: loc('Harbor View Brasserie', '港景小酒馆'), distance: loc('4 min walk', '步行 4 分钟'), reason: loc('Reliable western brunch and business-friendly table spacing.', '西式轻食稳定，桌距舒适，适合会谈。'), tags: [loc('Western menu', '西式菜单'), loc('Business friendly', '商务友好')] },
+                    { name: loc('Design Store Shekou', '蛇口设计商店'), distance: loc('Inside center', '馆内'), reason: loc('Curated creative gifts for delegates bringing back Shenzhen souvenirs.', '适合买深圳设计伴手礼。'), tags: [loc('Gift shop', '礼品店'), loc('Creative goods', '设计商品')] }
+                ]
+            },
+            {
+                id: 'dafen',
+                category: 'culture',
+                rank: '#3',
+                checkinsKey: 'chk-1k',
+                image: 'images/top-spots/大芬油画村.jpg',
+                borderClass: 'border-slate-700',
+                rankClass: 'bg-slate-600 text-white',
+                title: loc('Dafen Oil Painting Village', '大芬油画村'),
+                subtitle: loc('Longgang • Art Production Hub', '龙岗区 • 艺术村落'),
+                merchantCount: loc('3 nearby merchants', '3 家附近商户'),
+                sceneFit: loc('Best for creative shopping and custom portrait moments.', '适合艺术采购和定制肖像体验。'),
+                routeIdea: loc('Studio stroll → portrait order → coffee break', '画室漫游 → 定制肖像 → 咖啡休息'),
+                quickTags: [loc('Custom portrait', '定制肖像'), loc('Creative gifts', '艺术礼品'), loc('Photo stop', '拍照打卡')],
+                description: loc('Dafen adds a softer artistic Shenzhen memory that can stand apart from the summit agenda.', '大芬能补足深圳艺术气质，让外宾带走更具记忆点的城市印象。'),
+                merchants: [
+                    { name: loc('Atelier Coffee', '画室咖啡'), distance: loc('2 min walk', '步行 2 分钟'), reason: loc('Small-batch coffee with artist conversations and calm seating.', '适合边喝咖啡边感受画室氛围。'), tags: [loc('Cafe', '咖啡馆'), loc('Art vibe', '艺术氛围')] },
+                    { name: loc('Canvas Portrait Studio', '画布肖像工坊'), distance: loc('4 min walk', '步行 4 分钟'), reason: loc('Quick portrait commissions and framed souvenir service.', '可快速定制肖像并打包带走。'), tags: [loc('Portrait service', '肖像服务'), loc('Gift ready', '礼物包装')] }
+                ]
+            },
+            {
+                id: 'wenheyou',
+                category: 'food',
+                rank: '#1',
+                checkinsKey: 'chk-6k-2',
+                image: 'images/top-spots/深圳文和友.jpg',
+                borderClass: 'border-rose-500/50',
+                rankClass: 'bg-rose-500 text-white shadow-[0_0_10px_rgba(244,63,94,0.5)]',
+                title: loc('Shenzhen Wenheyou', '深圳文和友'),
+                subtitle: loc('Luohu • Cyberpunk Retro Dining', '罗湖区 • 赛博朋克复古餐饮'),
+                merchantCount: loc('4 nearby merchants', '4 家附近商户'),
+                sceneFit: loc('Great for high-energy group dinners and social photos.', '适合多人聚餐和社交拍照。'),
+                routeIdea: loc('Retro hall → local snacks → neon photo booth', '复古街景 → 小吃体验 → 霓虹拍照'),
+                quickTags: [loc('Group dinner', '多人聚餐'), loc('Photo booth', '拍照点'), loc('Late open', '营业到晚')],
+                description: loc('Wenheyou is a destination-level dining scene and can convert well for groups seeking a vivid Shenzhen night.', '文和友本身就是场景型目的地，适合转化多人晚餐和夜生活消费。'),
+                merchants: [
+                    { name: loc('Retro Banquet Hall', '复古宴会厅'), distance: loc('Inside venue', '场内'), reason: loc('Private group tables and bold local dishes for host-led dinners.', '适合主办方带队聚餐，空间感强。'), tags: [loc('Group booking', '团体预订'), loc('Local dining', '本地菜')] },
+                    { name: loc('Neon Photo Booth', '霓虹旅拍点'), distance: loc('Inside venue', '场内'), reason: loc('Instant retro photos for delegates and social media content.', '适合外宾打卡和现场出片。'), tags: [loc('Photo service', '旅拍服务'), loc('Fast delivery', '快速出片')] }
+                ]
+            },
+            {
+                id: 'shuiwei',
+                category: 'food',
+                rank: '#2',
+                checkinsKey: 'chk-4k-3',
+                image: 'images/top-spots/水围1368文化街区.jpg',
+                borderClass: 'border-slate-700',
+                rankClass: 'bg-slate-600 text-white',
+                title: loc('Shuiwei 1368 Night Market', '水围1368文化街区'),
+                subtitle: loc('Futian • Vibrant Street Food', '福田区 • 活力市井夜市美食'),
+                merchantCount: loc('4 nearby merchants', '4 家附近商户'),
+                sceneFit: loc('Strong for late-night cravings near major hotels and venues.', '适合住在福田的外宾夜宵和会后小聚。'),
+                routeIdea: loc('Street food lane → craft kitchen → local guide walk', '夜市小吃 → 精选餐厅 → 夜游向导'),
+                quickTags: [loc('Late-night dining', '夜间用餐'), loc('Near venue', '近会场'), loc('Guide ready', '可约向导')],
+                description: loc('Shuiwei should be packaged as a low-friction, high-energy evening choice for delegates staying in Futian.', '水围应被设计成福田会务客低门槛、高活力的夜间消费入口。'),
+                merchants: [
+                    { name: loc('Shuiwei Craft Kitchen', '水围精选餐吧'), distance: loc('3 min walk', '步行 3 分钟'), reason: loc('International card support and curated local plates for cautious first-timers.', '支持外卡，菜品适合第一次尝试本地风味的外宾。'), tags: [loc('Foreign cards', '外卡支付'), loc('Local sampler', '本地拼盘')] },
+                    { name: loc('Night Bite Local Guide', '夜市向导服务'), distance: loc('On demand', '按需出发'), reason: loc('Bilingual food walk add-on for guests who want context, not just snacks.', '可搭配双语夜市漫游讲解服务。'), tags: [loc('Food walk', '夜市导览'), loc('Bilingual', '双语服务')] }
+                ]
+            },
+            {
+                id: 'fanlou',
+                category: 'food',
+                rank: '#3',
+                checkinsKey: 'chk-3k-3',
+                image: 'images/top-spots/蘩楼.jpg',
+                borderClass: 'border-slate-700',
+                rankClass: 'bg-slate-600 text-white',
+                title: loc('Fan Lou Dim Sum', '蘩楼'),
+                subtitle: loc('Futian • Classic Cantonese Brunch', '福田区 • 传统广式早茶'),
+                merchantCount: loc('3 nearby merchants', '3 家附近商户'),
+                sceneFit: loc('Reliable Cantonese brunch before morning sessions.', '适合上午议程前的稳妥广式早茶。'),
+                routeIdea: loc('Morning tea → gift tea stop → quick return', '广式早茶 → 茶礼采购 → 快速返程'),
+                quickTags: [loc('Morning meeting', '早间会面'), loc('Cantonese classics', '广式经典'), loc('English support', '英文支持')],
+                description: loc('Fan Lou is a low-risk, high-trust entry point for foreign guests trying Cantonese dining.', '蘩楼是外宾尝试广式餐饮的低风险、高信任入口。'),
+                merchants: [
+                    { name: loc('Fan Lou VIP Room', '蘩楼贵宾包厢'), distance: loc('Inside venue', '店内'), reason: loc('Private dining setup for discreet breakfast meetings.', '适合早餐会和小型闭门交流。'), tags: [loc('Private room', '包厢可订'), loc('Business breakfast', '商务早餐')] },
+                    { name: loc('Canton Tea Atelier', '粤茶伴手礼坊'), distance: loc('4 min walk', '步行 4 分钟'), reason: loc('Packaged tea gifts for delegates heading back to the venue.', '适合买会后带走的广东茶礼。'), tags: [loc('Gift shop', '礼品店'), loc('Tea gift', '茶礼')] }
+                ]
+            }
+        ];
+
+        function getLocaleText(value) {
+            if (!value) return '';
+            if (typeof value === 'string') return value;
+            return value[currentLang] || value.en || '';
+        }
+
+        function getSpotById(spotId) {
+            return spotFusionData.find(spot => spot.id === spotId);
+        }
+
+        const EVENT_REQUIRED_FIELDS = {
+            leaderboard_exposure: ['sessionId', 'category'],
+            leaderboard_category_click: ['sessionId', 'category'],
+            spot_card_click: ['sessionId', 'spotId', 'category'],
+            fusion_overlay_open: ['sessionId', 'spotId', 'openLatencyMs'],
+            merchant_click_from_spot: ['sessionId', 'spotId', 'merchantId'],
+            fusion_cta_click_pass: ['sessionId', 'spotId', 'merchantId', 'ctaType'],
+            fusion_cta_click_booking: ['sessionId', 'spotId', 'merchantId', 'ctaType'],
+            fusion_cta_click_translate: ['sessionId', 'spotId', 'merchantId', 'ctaType'],
+            fusion_cta_click_map: ['sessionId', 'spotId', 'merchantId', 'ctaType'],
+            order_create_success: ['sessionId', 'spotId', 'merchantId', 'orderId'],
+            order_create_fail: ['sessionId', 'spotId', 'merchantId'],
+            payment_initiated: ['sessionId', 'orderId', 'paymentIntentId'],
+            payment_success: ['sessionId', 'orderId', 'paymentIntentId'],
+            payment_fail: ['sessionId', 'orderId', 'paymentIntentId'],
+            pass_claim_success: ['sessionId', 'spotId', 'merchantId', 'passId'],
+            pass_claim_fail: ['sessionId', 'spotId', 'merchantId'],
+            redeem_success_by_spot: ['sessionId', 'spotId', 'merchantId', 'passId', 'redemptionId'],
+            redeem_fail: ['sessionId', 'spotId', 'merchantId', 'passId']
+        };
+
+        function logOperational(scope, payload = {}) {
+            const record = {
+                scope,
+                timestamp: new Date().toISOString(),
+                ...payload
+            };
+            console.info('[SNX][LOG]', record);
+        }
+
+        function generateId(prefix) {
+            return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2, 7)}`;
+        }
+
+        function safeJsonParse(raw, fallback) {
+            try {
+                return JSON.parse(raw);
+            } catch (error) {
+                return fallback;
+            }
+        }
+
+        function persistAppState() {
+            localStorage.setItem('snx_app_state_v1', JSON.stringify({
+                selectedMerchantBySpot: appState.selectedMerchantBySpot,
+                leaderboardPageByCategory: appState.leaderboardPageByCategory,
+                orders: appState.orders,
+                passes: appState.passes,
+                redemptions: appState.redemptions,
+                paymentCallbackLedger: appState.paymentCallbackLedger,
+                events: appState.events.slice(-500)
+            }));
+        }
+
+        function hydrateAppState() {
+            const cache = safeJsonParse(localStorage.getItem('snx_app_state_v1') || '{}', {});
+            appState.selectedMerchantBySpot = cache.selectedMerchantBySpot || {};
+            appState.leaderboardPageByCategory = {
+                ...appState.leaderboardPageByCategory,
+                ...(cache.leaderboardPageByCategory || {})
+            };
+            appState.orders = Array.isArray(cache.orders) ? cache.orders : [];
+            appState.passes = Array.isArray(cache.passes) ? cache.passes : [];
+            appState.redemptions = Array.isArray(cache.redemptions) ? cache.redemptions : [];
+            appState.paymentCallbackLedger = Array.isArray(cache.paymentCallbackLedger) ? cache.paymentCallbackLedger : [];
+            appState.events = Array.isArray(cache.events) ? cache.events : [];
+            appState.qaReport = cache.qaReport || null;
+        }
+
+        function validateEventPayload(eventName, eventPayload) {
+            const required = EVENT_REQUIRED_FIELDS[eventName] || [];
+            return required.filter(field => eventPayload[field] === undefined || eventPayload[field] === null || eventPayload[field] === '');
+        }
+
+        function trackEvent(eventName, payload = {}) {
+            const eventPayload = {
+                eventName,
+                eventVersion: '1.0.0',
+                sessionId: appState.sessionId,
+                lang: currentLang,
+                timestamp: new Date().toISOString(),
+                ...payload
+            };
+            const missingFields = validateEventPayload(eventName, eventPayload);
+            if (missingFields.length) {
+                eventPayload.missingFields = missingFields;
+                console.warn('[SNX][EVENT][MISSING_FIELDS]', eventName, missingFields);
+            }
+            appState.events.push(eventPayload);
+            appState.events = appState.events.slice(-500);
+            persistAppState();
+            logOperational('event', { eventName, requestId: generateId('req'), missingFields, payload: eventPayload });
+            return eventPayload;
+        }
+
+        function getMerchantStatus(spotId, merchantName) {
+            const overrides = {
+                talentpark: ['人才公园旅拍组', 'Talent Park Portrait Crew'],
+                shuiwei: ['Night Bite Local Guide', '夜市向导服务']
+            };
+            const blocked = overrides[spotId] || [];
+            return blocked.includes(merchantName) ? 'unavailable' : 'available';
+        }
+
+        function getSpotWithRuntimeMeta(spot) {
+            if (!spot) return null;
+            return {
+                ...spot,
+                merchants: (spot.merchants || []).map((merchant, idx) => ({
+                    ...merchant,
+                    merchantId: `${spot.id}-merchant-${idx + 1}`,
+                    status: getMerchantStatus(spot.id, getLocaleText(merchant.name))
+                }))
+            };
+        }
+
+        function getPreferredMerchant(spot) {
+            const runtimeSpot = getSpotWithRuntimeMeta(spot);
+            if (!runtimeSpot) return null;
+            const selected = runtimeSpot.merchants.find(m => m.merchantId === appState.selectedMerchantBySpot[runtimeSpot.id]);
+            if (selected && selected.status === 'available') return selected;
+            return runtimeSpot.merchants.find(m => m.status === 'available') || runtimeSpot.merchants[0] || null;
+        }
+
+        function getOrderById(orderId) {
+            return appState.orders.find(order => order.orderId === orderId);
+        }
+
+        function getPassById(passId) {
+            return appState.passes.find(passItem => passItem.passId === passId);
+        }
+
+        function computeSignature(payload) {
+            const signingRaw = `${payload.orderId || ''}|${payload.paymentIntentId || ''}|${payload.status || ''}|SNX_APEC_PAYMENT_SECRET`;
+            return btoa(unescape(encodeURIComponent(signingRaw))).slice(0, 24);
+        }
+
+        async function fetchLeaderboardPage(category, page = 1, pageSize = 3) {
+            if (!['all', 'landmark', 'tech', 'culture', 'food'].includes(category)) {
+                throw new Error('UNSUPPORTED_CATEGORY');
+            }
+
+            const sorted = [...spotFusionData]
+                .filter(spot => category === 'all' ? true : spot.category === category)
+                .sort((a, b) => Number(a.rank.replace('#', '')) - Number(b.rank.replace('#', '')));
+
+            const start = (page - 1) * pageSize;
+            const pageList = sorted.slice(start, start + pageSize);
+
+            await new Promise(resolve => setTimeout(resolve, 320));
+
+            return {
+                items: pageList,
+                total: sorted.length,
+                page,
+                pageSize,
+                hasMore: start + pageSize < sorted.length
+            };
+        }
+
+        async function fetchSpotFusionDetail(spotId) {
+            const runtimeSpot = getSpotWithRuntimeMeta(getSpotById(spotId));
+            if (!runtimeSpot) {
+                throw new Error('SPOT_NOT_FOUND');
+            }
+            await new Promise(resolve => setTimeout(resolve, 260));
+            return runtimeSpot;
+        }
+
+        function createCtaContext(spot, ctaType) {
+            const preferredMerchant = getPreferredMerchant(spot);
+            return {
+                sessionId: appState.sessionId,
+                spotId: spot.id,
+                spotTitle: getLocaleText(spot.title),
+                merchantId: preferredMerchant ? preferredMerchant.merchantId : null,
+                merchantName: preferredMerchant ? getLocaleText(preferredMerchant.name) : null,
+                source: 'fusion_overlay',
+                lang: currentLang,
+                ctaType
+            };
+        }
+
+        function getSpotCtaActions(spot) {
+            const preferredMerchant = getPreferredMerchant(spot);
+            const merchantName = preferredMerchant ? getLocaleText(preferredMerchant.name) : '';
+            const isZh = currentLang === 'zh';
+
+            const actions = [
+                {
+                    type: 'pass',
+                    className: 'bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 rounded-xl transition',
+                    label: merchantName
+                        ? (isZh ? `领取${merchantName}权益` : `Claim ${merchantName} Pass`)
+                        : (isZh ? '领取APEC通行权益' : 'Claim APEC Pass')
+                },
+                {
+                    type: 'booking',
+                    className: 'bg-fuchsia-500 hover:bg-fuchsia-400 text-white font-bold py-3 rounded-xl transition',
+                    label: merchantName
+                        ? (isZh ? `预约${merchantName}服务` : `Book ${merchantName} Service`)
+                        : (isZh ? '预约商务服务' : 'Book Business Service')
+                },
+                {
+                    type: 'translate',
+                    className: 'bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-3 rounded-xl transition',
+                    label: merchantName
+                        ? (isZh ? `${merchantName}沟通助手` : `${merchantName} Language Assist`)
+                        : (isZh ? '双语沟通助手' : 'Language Assist')
+                },
+                {
+                    type: 'map',
+                    className: 'bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-3 rounded-xl transition',
+                    label: merchantName
+                        ? (isZh ? `导航到${merchantName}` : `Route to ${merchantName}`)
+                        : (isZh ? '路线导航' : 'Get Directions')
+                }
+            ];
+
+            const labelSet = new Set();
+            return actions.filter(action => {
+                const normalized = String(action.label || '').trim();
+                if (!normalized || labelSet.has(normalized)) return false;
+                labelSet.add(normalized);
+                return true;
+            });
+        }
+
+        function renderSpotCard(spot) {
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            const quickTags = spot.quickTags.map(tag => `<span class="text-[10px] px-2 py-1 rounded-full bg-slate-900/80 border border-slate-700 text-slate-300">${getLocaleText(tag)}</span>`).join('');
+
+            return `
+                <button class="w-full text-left glass-panel rounded-2xl overflow-hidden ${spot.borderClass} border relative cursor-pointer group transition hover:-translate-y-1 hover:shadow-[0_0_20px_rgba(56,189,248,0.12)]" onclick="openSpotFusion('${spot.id}')">
+                    <img src="${spot.image}" class="w-full h-48 object-cover opacity-90 group-hover:opacity-100 transition duration-300" alt="${getLocaleText(spot.title)}">
+                    <div class="absolute top-3 right-3 bg-slate-900/80 backdrop-blur text-white text-[10px] px-2 py-1 rounded-full font-bold flex items-center gap-1 border border-slate-700">
+                        <i data-lucide="map-pin" class="w-3 h-3 text-sky-400"></i>
+                        <span>${dict[spot.checkinsKey] || spot.checkinsKey}</span>
+                    </div>
+                    <div class="absolute top-3 left-3 ${spot.rankClass} text-xs w-7 h-7 flex items-center justify-center rounded-full font-bold">${spot.rank.replace('#', '')}</div>
+                    <div class="p-4 space-y-3">
+                        <div>
+                            <h4 class="font-bold text-base text-white">${getLocaleText(spot.title)}</h4>
+                            <p class="text-xs text-slate-400 mt-1">${getLocaleText(spot.subtitle)}</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2">${quickTags}</div>
+                        <div class="rounded-2xl bg-slate-950/50 border border-slate-800 p-3 flex items-center justify-between gap-3">
+                            <div>
+                                <p class="text-[10px] uppercase tracking-[0.18em] text-emerald-400 font-bold">${dict['leader-scene-fit']}</p>
+                                <p class="text-xs text-white font-semibold mt-1 leading-relaxed">${getLocaleText(spot.sceneFit)}</p>
+                            </div>
+                            <span class="shrink-0 text-[10px] px-2 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-bold">${getLocaleText(spot.merchantCount)}</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-400">
+                            <span>${dict['leader-card-cta']}</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-sky-400"></i>
+                        </div>
+                    </div>
+                </button>
+            `;
+        }
+
+        function renderLeaderboardState(type, retryFn) {
+            const container = document.getElementById('leaderboard-spot-grid');
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            if (!container) return;
+
+            if (type === 'loading') {
+                container.innerHTML = `
+                    <div class="glass-panel rounded-2xl border border-slate-700 p-4 animate-pulse">
+                        <p class="text-sm text-slate-300">${dict['leader-loading']}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            if (type === 'empty') {
+                container.innerHTML = `
+                    <div class="glass-panel rounded-2xl border border-slate-700 p-5 text-center">
+                        <p class="text-sm text-slate-300 mb-3">${dict['leader-empty']}</p>
+                    </div>
+                `;
+                return;
+            }
+
+            if (type === 'error') {
+                container.innerHTML = `
+                    <div class="glass-panel rounded-2xl border border-rose-500/40 bg-rose-500/10 p-5 text-center">
+                        <p class="text-sm text-rose-200 mb-3">${dict['leader-error']}</p>
+                        <button class="px-4 py-2 rounded-lg bg-rose-500/20 border border-rose-500/50 text-rose-200 text-xs font-bold" onclick="(${retryFn})()">${dict['leader-retry']}</button>
+                    </div>
+                `;
+            }
+        }
+
+        async function renderLeaderboard(options = {}) {
+            const { resetPage = false } = options;
+            const container = document.getElementById('leaderboard-spot-grid');
+            if (!container) return;
+
+            if (resetPage) {
+                appState.leaderboardPageByCategory[activeSpotCategory] = 1;
+            }
+
+            const requestToken = ++leaderboardRequestToken;
+            renderLeaderboardState('loading');
+
+            try {
+                const page = appState.leaderboardPageByCategory[activeSpotCategory] || 1;
+                const response = await fetchLeaderboardPage(activeSpotCategory, page, 6);
+                if (requestToken !== leaderboardRequestToken) return;
+
+                const dict = i18nDict[currentLang] || i18nDict['en'];
+                const categoryOrder = activeSpotCategory === 'all' ? ['landmark', 'tech', 'culture', 'food'] : [activeSpotCategory];
+                const items = response.items || [];
+
+                if (!items.length) {
+                    renderLeaderboardState('empty');
+                    return;
+                }
+
+                container.innerHTML = categoryOrder.map((category, index) => {
+                    const spots = items.filter(spot => spot.category === category);
+                    if (!spots.length) return '';
+                    return `
+                        <section class="spot-category fade-in" data-category="${category}" style="animation-delay: ${index * 0.08}s;">
+                            <div class="flex items-center justify-between px-1 mb-3">
+                                <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider">${dict[`cat-${category}`] || category}</h3>
+                                <span class="text-[10px] px-2 py-1 rounded-full bg-slate-900 border border-slate-700 text-slate-400">${currentLang === 'zh' ? `${spots.length} 个目的地` : `${spots.length} Spots`}</span>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                ${spots.map(renderSpotCard).join('')}
+                            </div>
+                        </section>
+                    `;
+                }).join('');
+
+                if (response.hasMore && activeSpotCategory !== 'all') {
+                    container.innerHTML += `
+                        <div class="pt-1 text-center">
+                            <button class="px-4 py-2 rounded-xl text-xs font-bold bg-slate-800 border border-slate-700 hover:bg-slate-700" onclick="loadMoreLeaderboard()">${dict['leader-load-more']}</button>
+                        </div>
+                    `;
+                }
+
+                trackEvent('leaderboard_exposure', {
+                    category: activeSpotCategory,
+                    responseCount: items.length,
+                    page
+                });
+
+                logOperational('leaderboard_render', {
+                    category: activeSpotCategory,
+                    responseCount: items.length,
+                    requestId: generateId('req')
+                });
+
+                lucide.createIcons();
+            } catch (error) {
+                if (requestToken !== leaderboardRequestToken) return;
+                console.error(error);
+                renderLeaderboardState('error', 'renderLeaderboard');
+                logOperational('leaderboard_error', {
+                    category: activeSpotCategory,
+                    errorCode: error.message,
+                    requestId: generateId('req')
+                });
+            }
+        }
+
+        async function loadMoreLeaderboard() {
+            appState.leaderboardPageByCategory[activeSpotCategory] = (appState.leaderboardPageByCategory[activeSpotCategory] || 1) + 1;
+            persistAppState();
+            await renderLeaderboard();
+        }
+
+        function chooseMerchant(spotId, merchantId) {
+            const spot = getSpotWithRuntimeMeta(getSpotById(spotId));
+            if (!spot) return;
+            const merchant = (spot.merchants || []).find(item => item.merchantId === merchantId);
+            if (!merchant) return;
+
+            appState.selectedMerchantBySpot[spotId] = merchantId;
+            persistAppState();
+            if (merchant.status === 'available') {
+                trackEvent('merchant_click_from_spot', {
+                    spotId,
+                    merchantId,
+                    merchantName: getLocaleText(merchant.name)
+                });
+            }
+            openSpotFusion(spotId);
+        }
+
+        async function openSpotFusion(spotId) {
+            const baseSpot = getSpotById(spotId);
+            if (!baseSpot) return;
+
+            const startAt = performance.now();
+            const requestToken = ++overlayRequestToken;
+            currentSpotFusionId = spotId;
+            currentModuleId = null;
+            currentModulePayload = {};
+            moduleOriginSpotId = null;
+            document.getElementById('overlay-back-btn')?.classList.add('hidden');
+            trackEvent('spot_card_click', { spotId, category: baseSpot.category });
+
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            const flowTitle = dict['leader-flow-short'] || (currentLang === 'zh' ? 'APEC服务流' : 'APEC Flow');
+            overlayTitle.textContent = `${getLocaleText(baseSpot.title)} · ${flowTitle}`;
+            overlayContent.innerHTML = `<div class="glass-panel rounded-2xl border border-slate-700 p-4 animate-pulse text-sm text-slate-300">${dict['leader-loading']}</div>`;
+            overlay.classList.remove('translate-y-full');
+
+            try {
+                const spot = await fetchSpotFusionDetail(spotId);
+                if (requestToken !== overlayRequestToken) return;
+
+                const selectedMerchant = getPreferredMerchant(spot);
+                const merchantCards = (spot.merchants || []).map(merchant => {
+                    const tagsHtml = (merchant.tags || []).map(tag => `<span class="text-[10px] px-2 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300">${getLocaleText(tag)}</span>`).join('');
+                    const isSelected = selectedMerchant && selectedMerchant.merchantId === merchant.merchantId;
+                    const isAvailable = merchant.status === 'available';
+                    return `
+                        <div class="glass-panel p-4 rounded-2xl border ${isSelected ? 'border-sky-500/60' : 'border-slate-700'} space-y-3 ${isAvailable ? '' : 'opacity-75'}">
+                            <div class="flex items-start justify-between gap-3">
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">${getLocaleText(merchant.name)}</h4>
+                                    <p class="text-[10px] uppercase tracking-wider ${isAvailable ? 'text-sky-400' : 'text-amber-400'} mt-1">${getLocaleText(merchant.distance)}</p>
+                                </div>
+                                <span class="text-[10px] px-2 py-1 rounded-full ${isAvailable ? 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30' : 'bg-amber-500/15 text-amber-300 border-amber-500/30'} border font-bold">${isAvailable ? dict['merchant-available'] : dict['merchant-unavailable']}</span>
+                            </div>
+                            <p class="text-xs text-slate-400 leading-relaxed">${getLocaleText(merchant.reason)}</p>
+                            <div class="flex flex-wrap gap-2">${tagsHtml}</div>
+                            <button class="w-full rounded-lg py-2 text-xs font-bold ${isAvailable ? 'bg-sky-500/20 border border-sky-500/50 text-sky-300 hover:bg-sky-500/30' : 'bg-slate-800 border border-slate-700 text-slate-400'} transition" onclick="chooseMerchant('${spot.id}', '${merchant.merchantId}')" ${isAvailable ? '' : 'disabled'}>
+                                ${isAvailable ? (isSelected ? '✓ Selected' : dict['merchant-fallback']) : dict['merchant-unavailable-tip']}
+                            </button>
+                        </div>
+                    `;
+                }).join('');
+
+                const quickTags = (spot.quickTags || []).map(tag => `<span class="text-[10px] px-2 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-300">${getLocaleText(tag)}</span>`).join('');
+                const flowTitle = dict['leader-flow-short'] || (currentLang === 'zh' ? 'APEC服务流' : 'APEC Flow');
+                const ctaActions = getSpotCtaActions(spot);
+                const ctaButtonsHtml = ctaActions.map(action => `
+                    <button class="${action.className}" onclick="handleFusionCta('${action.type}')">${action.label}</button>
+                `).join('');
+
+                overlayTitle.textContent = `${getLocaleText(spot.title)} · ${flowTitle}`;
+                overlayContent.innerHTML = `
+                    <div class="space-y-5 pb-6">
+                        <img src="${spot.image}" class="w-full h-44 object-cover rounded-2xl border ${spot.borderClass}" alt="${getLocaleText(spot.title)}">
+                        <div class="space-y-2">
+                            <div class="flex flex-wrap items-center gap-2">
+                                <span class="text-[10px] px-2 py-1 rounded-full bg-sky-500/15 text-sky-300 border border-sky-500/30 font-bold">${getLocaleText(spot.merchantCount)}</span>
+                                <span class="text-[10px] px-2 py-1 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 font-bold">${dict['leader-scene-fit']}</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-white">${getLocaleText(spot.title)}</h3>
+                            <p class="text-sm text-slate-400">${getLocaleText(spot.subtitle)}</p>
+                            <p class="text-sm text-slate-300 leading-relaxed">${getLocaleText(spot.description)}</p>
+                        </div>
+
+                        <div class="glass-panel p-4 rounded-2xl border border-slate-700 bg-slate-950/40">
+                            <p class="text-[10px] uppercase tracking-[0.2em] text-sky-400 font-bold mb-2">${dict['leader-route-idea']}</p>
+                            <p class="text-sm text-white font-semibold">${getLocaleText(spot.routeIdea)}</p>
+                            <div class="flex flex-wrap gap-2 mt-3">${quickTags}</div>
+                        </div>
+
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <h3 class="font-bold text-white text-sm">${dict['leader-nearby-merchants']}</h3>
+                                <span class="text-[10px] text-slate-500">${getLocaleText(spot.merchantCount)}</span>
+                            </div>
+                            <div class="space-y-3">${merchantCards}</div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-3 pt-2">
+                            ${ctaButtonsHtml}
+                        </div>
+                    </div>
+                `;
+
+                const openLatencyMs = Math.round(performance.now() - startAt);
+                trackEvent('fusion_overlay_open', { spotId, openLatencyMs });
+                logOperational('overlay_open', {
+                    spotId,
+                    openLatencyMs,
+                    overlayState: 'open',
+                    merchantCount: (spot.merchants || []).length
+                });
+
+                lucide.createIcons();
+            } catch (error) {
+                if (requestToken !== overlayRequestToken) return;
+                console.error(error);
+                overlayContent.innerHTML = `
+                    <div class="glass-panel rounded-2xl border border-rose-500/40 bg-rose-500/10 p-5 text-center">
+                        <p class="text-sm text-rose-200 mb-3">${dict['leader-error']}</p>
+                        <button class="px-4 py-2 rounded-lg bg-rose-500/20 border border-rose-500/50 text-rose-200 text-xs font-bold" onclick="openSpotFusion('${spotId}')">${dict['leader-retry']}</button>
+                    </div>
+                `;
+                logOperational('overlay_error', {
+                    spotId,
+                    errorCode: error.message,
+                    overlayState: 'error'
+                });
+            }
+        }
+
+        function handleFusionCta(action) {
+            const spot = getSpotWithRuntimeMeta(getSpotById(currentSpotFusionId));
+            if (!spot) return;
+            const ctx = createCtaContext(spot, action);
+            const eventNameMap = {
+                pass: 'fusion_cta_click_pass',
+                booking: 'fusion_cta_click_booking',
+                translate: 'fusion_cta_click_translate',
+                map: 'fusion_cta_click_map'
+            };
+
+            trackEvent(eventNameMap[action], ctx);
+            logOperational('cta_click', {
+                ctaType: action,
+                spotId: ctx.spotId,
+                merchantId: ctx.merchantId,
+                routeTarget: action
+            });
+
+            if (action === 'pass') {
+                openModule('pass-claim', { ctx });
+                return;
+            }
+            if (action === 'booking') {
+                openModule('booking-service', { ctx });
+                return;
+            }
+            if (action === 'translate') {
+                openModule('ai-concierge', { ctx });
+                return;
+            }
+            if (action === 'map') {
+                openModule('route-directions', { ctx });
+            }
+        }
+
+        function notifySpotAction(action) {
+            const actionMessages = {
+                pass: loc('APEC Pass saved to wallet', 'APEC Pass 已加入钱包'),
+                booking: loc('Concierge request sent to local service team', '尊享服务请求已发送给本地服务团队'),
+                map: loc('Opening directions for this APEC route', '正在打开该 APEC 路线导航')
+            };
+            showNotification(getLocaleText(actionMessages[action]) || action);
+        }
+
+        function filterSpots(category, btnElement) {
+            activeSpotCategory = category;
+            appState.leaderboardPageByCategory[category] = 1;
+            document.querySelectorAll('.top-spot-tab').forEach(btn => {
+                btn.className = 'top-spot-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition bg-slate-800 text-slate-400 border border-slate-700 hover:bg-slate-700';
+            });
+            btnElement.className = 'top-spot-tab active-tab px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap transition bg-sky-500 text-white shadow-[0_0_10px_rgba(56,189,248,0.5)]';
+            trackEvent('leaderboard_category_click', { category });
+            persistAppState();
+            renderLeaderboard({ resetPage: true });
+        }
+
+
+
+        function toggleSwitch(element) {
+            const track = element.querySelector('.toggle-track');
+            const thumb = element.querySelector('.toggle-thumb');
+            const isZh = currentLang === 'zh';
+            
+            if (track.classList.contains('bg-sky-500')) {
+                track.classList.remove('bg-sky-500');
+                track.classList.add('bg-slate-600');
+                thumb.classList.remove('right-1');
+                thumb.classList.add('right-5');
+                showNotification(isZh ? '已移除离线地图' : 'Offline maps removed');
+            } else {
+                track.classList.remove('bg-slate-600');
+                track.classList.add('bg-sky-500');
+                thumb.classList.remove('right-5');
+                thumb.classList.add('right-1');
+                showNotification(isZh ? '正在下载离线地图 (450MB)' : 'Offline maps downloaded (450MB)');
+            }
+        }
+
+        // NEW: Select Gender Logic
+        window.selectGender = function(btn) {
+            const siblings = btn.parentElement.children;
+            for(let i=0; i<siblings.length; i++) {
+                siblings[i].className = "flex-1 bg-slate-800 text-slate-400 border border-slate-700 py-1.5 rounded-lg text-xs font-semibold hover:bg-slate-700 transition";
+            }
+            btn.className = "flex-1 bg-fuchsia-500/20 text-fuchsia-400 border border-fuchsia-500/50 py-1.5 rounded-lg text-xs font-semibold transition";
+        }
+
+        function renderItineraryResult(data) {
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            
+            // Map themes to dynamic placeholder images
+            const themeImages = {
+                'tech': 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&q=80&auto=format&fit=crop',
+                'food': 'https://images.unsplash.com/photo-1563245372-f21724e3856d?w=800&q=80&auto=format&fit=crop',
+                'culture': 'https://images.unsplash.com/photo-1542051812871-75f8502ce5fa?w=800&q=80&auto=format&fit=crop',
+                'city': 'https://images.unsplash.com/photo-1555848962-6e79363ec58f?w=800&q=80&auto=format&fit=crop',
+                'default': 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=800&q=80&auto=format&fit=crop'
+            };
+
+            let stopsHtml = '';
+            data.stops.forEach((stop, index) => {
+                const colors = ['bg-sky-500', 'bg-indigo-500', 'bg-amber-500', 'bg-rose-500'];
+                const borderColors = ['border-sky-500/50', 'border-indigo-500/50', 'border-amber-500/50', 'border-rose-500/50'];
+                const themeKey = stop.theme ? stop.theme.toLowerCase() : 'default';
+                const imgSrc = themeImages[themeKey] || themeImages['default'];
+
+                stopsHtml += `
+                    <div class="relative">
+                        <div class="absolute -left-[31px] top-1 w-4 h-4 ${colors[index % colors.length]} rounded-full border-4 border-slate-900 shadow-[0_0_10px_rgba(255,255,255,0.2)]"></div>
+                        <p class="text-xs text-slate-400 font-bold mb-2">${stop.time}</p>
+                        <div class="glass-panel p-0 rounded-xl border ${borderColors[index % borderColors.length]} overflow-hidden mb-6">
+                            <img src="${imgSrc}" class="w-full h-32 object-cover opacity-80 hover:opacity-100 transition duration-300" alt="${stop.title}">
+                            <div class="p-4">
+                                <h4 class="font-bold text-sm text-white">${stop.title}</h4>
+                                <p class="text-[10px] text-sky-400 mt-1 flex items-center gap-1 font-semibold">
+                                    <i data-lucide="map-pin" class="w-3 h-3"></i> ${stop.locationName || 'Shenzhen'}
+                                </p>
+                                <p class="text-xs text-slate-400 mt-2 leading-relaxed">${stop.description}</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            const headerLabel = currentLang === 'zh' ? 'Gemini 智能生成 ✨' : 'Generated by Gemini ✨';
+
+            document.getElementById('itinerary-content').innerHTML = `
+                <div class="bg-gradient-to-r from-sky-900/50 to-indigo-900/50 p-4 rounded-xl border border-sky-800/50 mb-6">
+                    <p class="text-xs text-sky-400 uppercase tracking-widest font-bold mb-1">${headerLabel}</p>
+                    <h3 class="font-bold text-lg text-white">${data.title}</h3>
+                    <p class="text-xs text-slate-300 mt-1 flex items-center gap-2">
+                        <i data-lucide="clock" class="w-3 h-3"></i> ${data.duration}
+                    </p>
+                </div>
+                <div class="relative pl-6 border-l border-slate-700 space-y-2">
+                    ${stopsHtml}
+                </div>
+                
+                <button class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 rounded-xl transition border border-slate-600 mt-2 mb-6" onclick="showNotification('${currentLang === 'zh' ? '已保存！' : 'Saved!'}')">
+                    <span data-i18n="save-route">${dict['save-route']}</span>
+                </button>
+
+                <div class="glass-panel p-5 rounded-2xl border border-fuchsia-500/30 relative overflow-hidden fade-in">
+                    <div class="absolute -right-4 -top-4 w-24 h-24 bg-fuchsia-500/10 blur-2xl rounded-full"></div>
+                    <h3 class="font-bold text-white text-lg mb-1 flex items-center gap-2">
+                        <i data-lucide="users" class="w-5 h-5 text-fuchsia-400"></i>
+                        <span data-i18n="hire-guide">${dict['hire-guide']}</span>
+                    </h3>
+                    <p class="text-xs text-slate-400 mb-4" data-i18n="hire-guide-desc">${dict['hire-guide-desc']}</p>
+                    
+                    <div class="space-y-3 relative z-10">
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1" data-i18n="guide-lang">${dict['guide-lang']}</label>
+                            <select class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-sm text-white focus:outline-none focus:border-fuchsia-500">
+                                <option value="en">English</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                                <option value="ja">日本語</option>
+                                <option value="ru">Русский</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-1" data-i18n="guide-gender">${dict['guide-gender']}</label>
+                            <div class="flex gap-2">
+                                <button class="flex-1 bg-fuchsia-500/20 text-fuchsia-400 border border-fuchsia-500/50 py-1.5 rounded-lg text-xs font-semibold transition" onclick="selectGender(this)" data-i18n="gender-any">${dict['gender-any']}</button>
+                                <button class="flex-1 bg-slate-800 text-slate-400 border border-slate-700 py-1.5 rounded-lg text-xs font-semibold hover:bg-slate-700 transition" onclick="selectGender(this)" data-i18n="gender-m">${dict['gender-m']}</button>
+                                <button class="flex-1 bg-slate-800 text-slate-400 border border-slate-700 py-1.5 rounded-lg text-xs font-semibold hover:bg-slate-700 transition" onclick="selectGender(this)" data-i18n="gender-f">${dict['gender-f']}</button>
+                            </div>
+                        </div>
+                        <button class="w-full mt-4 bg-fuchsia-500 hover:bg-fuchsia-400 text-white font-bold py-3 rounded-xl transition shadow-[0_0_15px_rgba(217,70,239,0.3)]" onclick="showNotification('${currentLang === 'zh' ? '预约请求已发送！' : 'Guide request sent!'}')">
+                            <span data-i18n="book-guide">${dict['book-guide']}</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        function triggerCamera() {
+            document.getElementById('camera-input').click();
+        }
+
+        async function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = async (e) => {
+                const base64Data = e.target.result.split(',')[1];
+                const mimeType = file.type;
+
+                document.getElementById('decoder-start').classList.add('hidden');
+                document.getElementById('decoder-loading').classList.remove('hidden');
+                document.getElementById('scan-result').classList.add('hidden');
+
+                try {
+                    const result = await callGeminiImage(base64Data, mimeType);
+                    renderDecoderResult(result);
+                } catch (err) {
+                    console.error(err);
+                    const errMsg = currentLang === 'zh' ? "AI 图像解码失败，请重试。" : "Failed to decode image with AI.";
+                    showNotification(errMsg);
+                    document.getElementById('decoder-start').classList.remove('hidden');
+                    document.getElementById('decoder-loading').classList.add('hidden');
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function renderDecoderResult(data) {
+            document.getElementById('decoder-loading').classList.add('hidden');
+            const resultBox = document.getElementById('scan-result');
+            
+            let tagsHtml = '';
+            if(data.tags && data.tags.length > 0) {
+                tagsHtml = `<div class="flex flex-wrap gap-2 mt-3">`;
+                data.tags.forEach(tag => {
+                    tagsHtml += `<span class="text-[10px] border border-sky-900/50 bg-sky-900/20 text-sky-400 px-2 py-0.5 rounded-full">${tag}</span>`;
+                });
+                tagsHtml += `</div>`;
+            }
+
+            const badgeText = currentLang === 'zh' ? 'AI 解析' : 'AI Decoded';
+            const btnText = currentLang === 'zh' ? '扫描下一张' : 'Scan Another';
+
+            resultBox.innerHTML = `
+                <div class="flex justify-between items-start mb-2">
+                    <h4 class="font-bold text-sky-400 text-lg">${data.term} <span class="text-sm text-slate-400 font-normal">(${data.pinyin})</span></h4>
+                    <span class="bg-slate-700 text-[10px] px-2 py-1 rounded flex items-center gap-1"><i data-lucide="sparkles" class="w-3 h-3 text-amber-400"></i> ${badgeText}</span>
+                </div>
+                <p class="text-white font-semibold mb-1">${data.translation}</p>
+                <p class="text-slate-400 text-xs leading-relaxed mb-3">${data.context}</p>
+                ${tagsHtml}
+                <button class="mt-4 w-full bg-slate-700 hover:bg-slate-600 text-white py-2 rounded-lg text-xs font-semibold transition" onclick="resetDecoder()">${btnText}</button>
+            `;
+            resultBox.classList.remove('hidden');
+            lucide.createIcons();
+        }
+
+        function resetDecoder() {
+            document.getElementById('scan-result').classList.add('hidden');
+            document.getElementById('decoder-start').classList.remove('hidden');
+            document.getElementById('camera-input').value = '';
+        }
+
+        // --- Language Settings Logic (Dynamic UI) ---
+        function getLanguageMenuHtml() {
+            const langs = [
+                { code: 'en', name: 'English', label: 'US' },
+                { code: 'zh', name: '中文', label: 'CN' },
+                { code: 'es', name: 'Español', label: 'ES' },
+                { code: 'fr', name: 'Français', label: 'FR' },
+                { code: 'ja', name: '日本語', label: 'JP' },
+                { code: 'ru', name: 'Русский', label: 'RU' }
+            ];
+
+            const promptText = i18nDict[currentLang]['lang-prompt'];
+            let html = `<div class="space-y-4">
+                <p class="text-xs text-slate-400 mb-4" data-i18n="lang-prompt">${promptText}</p>
+                <div class="space-y-3">`;
+
+            langs.forEach(lang => {
+                if (lang.code === currentLang) {
+                    html += `
+                    <button class="w-full glass-panel p-4 rounded-xl flex items-center justify-between border border-sky-500 bg-sky-900/20 transition cursor-default">
+                        <div class="flex items-center gap-3">
+                            <span class="font-bold text-slate-400 mr-2 w-6">${lang.label}</span>
+                            <span class="font-semibold text-white">${lang.name}</span>
+                        </div>
+                        <i data-lucide="check-circle-2" class="w-5 h-5 text-sky-400"></i>
+                    </button>`;
+                } else {
+                    html += `
+                    <button class="w-full glass-panel p-4 rounded-xl flex items-center justify-between border border-slate-700 hover:bg-slate-800 hover:border-slate-500 transition" onclick="changeLanguage('${lang.code}', '${lang.name}')">
+                        <div class="flex items-center gap-3">
+                            <span class="font-bold text-slate-400 mr-2 w-6">${lang.label}</span>
+                            <span class="font-semibold text-slate-300">${lang.name}</span>
+                        </div>
+                    </button>`;
+                }
+            });
+
+            html += `</div></div>`;
+            return html;
+        }
+
+        function openLanguageSettings() {
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            overlayTitle.textContent = dict['lang-setting'] || 'Language Settings';
+            overlayContent.innerHTML = getLanguageMenuHtml();
+            
+            applyTranslations(); // Key Fix
+            lucide.createIcons();
+            overlay.classList.remove('translate-y-full');
+        }
+
+        function changeLanguage(langCode, langName) {
+            currentLang = langCode;
+            document.getElementById('current-lang-display').textContent = langName;
+            
+            applyTranslations();
+            renderLeaderboard();
+
+            const notifyMsg = langCode === 'zh' ? '语言已切换至 ' + langName : 'Language changed to ' + langName;
+            showNotification(notifyMsg);
+            closeModule();
+        }
+
+
+        // --- AI Planner Logic ---
+        function toggleTag(element) {
+            element.classList.toggle('selected-tag');
+            if(element.classList.contains('selected-tag')) {
+                element.classList.add('bg-sky-500/20', 'border-sky-500', 'text-sky-400');
+                element.classList.remove('border-slate-600', 'text-slate-300');
+            } else {
+                element.classList.remove('bg-sky-500/20', 'border-sky-500', 'text-sky-400');
+                element.classList.add('border-slate-600', 'text-slate-300');
+            }
+        }
+
+        async function startRichItineraryGeneration() {
+            const selectedTags = Array.from(document.querySelectorAll('.selected-tag')).map(el => el.innerText);
+            const customText = document.getElementById('ai-planner-custom').value;
+            
+            if (selectedTags.length === 0 && !customText) {
+                const warnMsg = currentLang === 'zh' ? '请选择一个兴趣点或输入自定义需求。' : 'Please select an interest or enter a request.';
+                showNotification(warnMsg);
+                return;
+            }
+
+            const promptText = `Time limit/Interests: ${selectedTags.join(', ')}. Custom details: ${customText}`;
+            
+            const btn = document.getElementById('ai-generate-btn');
+            const generatingMsg = currentLang === 'zh' ? '<i class="fas fa-spinner fa-spin"></i> 正在生成行程...' : '<i class="fas fa-spinner fa-spin"></i> Curating...';
+            btn.innerHTML = generatingMsg;
+            showNotification('msg-loading');
+
+            try {
+                const prompt = `Create a short, practical tech/cultural tour in Shenzhen based on this request: "${promptText}". The stops must be realistic locations in Shenzhen (e.g., DJI Sky City, Huaqiangbei, Talent Park, specific local restaurants, etc.).`;
+                const schema = {
+                    type: "OBJECT",
+                    properties: {
+                        title: { type: "STRING" },
+                        duration: { type: "STRING", description: "e.g. 4.5 Hours" },
+                        stops: {
+                            type: "ARRAY",
+                            items: {
+                                type: "OBJECT",
+                                properties: {
+                                    time: { type: "STRING", description: "e.g. 14:00 PM" },
+                                    title: { type: "STRING" },
+                                    description: { type: "STRING" },
+                                    locationName: { type: "STRING", description: "Specific district or place name, e.g. 'Futian CBD' or 'Huaqiangbei'" },
+                                    theme: { type: "STRING", description: "Must be exactly one of: tech, food, culture, city" }
+                                }
+                            }
+                        }
+                    }
+                };
+                
+                const data = await callGeminiText(prompt, schema);
+                
+                openModule('ai-result'); 
+                renderItineraryResult(data);
+                
+            } catch (err) {
+                console.error(err);
+                showNotification('msg-failed');
+                const dict = i18nDict[currentLang] || i18nDict['en'];
+                btn.innerHTML = `<span data-i18n="ai-planner-btn">${dict['ai-planner-btn']}</span>`;
+            }
+        }
+
+        function getOrderStatusText(status) {
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            const map = {
+                pending_payment: dict['order-status-pending'],
+                paid: dict['order-status-paid'],
+                failed: dict['order-status-failed'],
+                cancelled: dict['order-status-cancelled']
+            };
+            return map[status] || status;
+        }
+
+        function getLatestOrderForContext(ctx) {
+            if (!ctx || !ctx.spotId) return null;
+            return appState.orders.find(order => order.spotId === ctx.spotId && order.userId === userProfile.userId) || null;
+        }
+
+        function renderBookingModule(payload = {}) {
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            const ctx = payload.ctx || {};
+            const order = getLatestOrderForContext(ctx);
+            const statusChipClass = !order ? 'bg-slate-700 text-slate-300 border-slate-600' : (order.status === 'paid' ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40' : order.status === 'failed' ? 'bg-rose-500/20 text-rose-200 border-rose-500/40' : order.status === 'cancelled' ? 'bg-amber-500/20 text-amber-200 border-amber-500/40' : 'bg-sky-500/20 text-sky-200 border-sky-500/40');
+
+            return `
+                <div class="space-y-4 pb-6">
+                    <div class="glass-panel p-4 rounded-2xl border border-fuchsia-500/30">
+                        <p class="text-[10px] uppercase tracking-[0.18em] text-fuchsia-300 font-bold">Context</p>
+                        <h3 class="text-white font-bold mt-2 text-base">${ctx.spotTitle || 'Spot not selected'}</h3>
+                        <p class="text-xs text-slate-400 mt-1">${ctx.merchantName || 'No merchant selected'}</p>
+                        <p class="text-[10px] text-slate-500 mt-1">sessionId: ${ctx.sessionId || appState.sessionId}</p>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <label class="text-xs text-slate-400">Service
+                            <select id="booking-service-type" class="mt-1 w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-sm text-white">
+                                <option value="concierge">Concierge</option>
+                                <option value="guide">Bilingual Guide</option>
+                                <option value="business-dining">Business Dining</option>
+                            </select>
+                        </label>
+                        <label class="text-xs text-slate-400">Time Slot
+                            <select id="booking-time-slot" class="mt-1 w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-sm text-white">
+                                <option value="18:00">18:00</option>
+                                <option value="19:00">19:00</option>
+                                <option value="20:00">20:00</option>
+                            </select>
+                        </label>
+                        <label class="text-xs text-slate-400">Party Size
+                            <input id="booking-party-size" type="number" min="1" max="12" value="2" class="mt-1 w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-sm text-white" />
+                        </label>
+                        <label class="text-xs text-slate-400">Language
+                            <select id="booking-lang-pref" class="mt-1 w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-sm text-white">
+                                <option value="en">English</option>
+                                <option value="zh">简体中文</option>
+                                <option value="ja">日本語</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <button class="w-full bg-fuchsia-500 hover:bg-fuchsia-400 text-white font-bold py-3 rounded-xl transition" onclick="submitBookingOrder()">${dict['order-create']}</button>
+
+                    <div class="glass-panel p-4 rounded-2xl border border-slate-700">
+                        <div class="flex items-center justify-between gap-3">
+                            <p class="text-sm text-white font-semibold">Order Snapshot</p>
+                            <span class="text-[10px] px-2 py-1 rounded-full border ${statusChipClass}">${order ? getOrderStatusText(order.status) : 'No order'}</span>
+                        </div>
+                        ${order ? `
+                            <div class="text-xs text-slate-400 mt-3 space-y-1">
+                                <p>orderId: ${order.orderId}</p>
+                                <p>service: ${order.serviceType} • ${order.timeSlot} • ${order.partySize} pax</p>
+                                <p>merchantId: ${order.merchantId || '-'}</p>
+                            </div>
+                            <div class="grid grid-cols-3 gap-2 mt-3">
+                                <button class="py-2 rounded-lg bg-slate-800 border border-slate-700 text-xs font-semibold hover:bg-slate-700" onclick="queryBookingStatus('${order.orderId}')">Refresh</button>
+                                <button class="py-2 rounded-lg bg-sky-500/20 border border-sky-500/40 text-xs font-semibold text-sky-200 hover:bg-sky-500/30" onclick="initiateOrderPayment('${order.orderId}')">${dict['order-pay']}</button>
+                                <button class="py-2 rounded-lg bg-amber-500/20 border border-amber-500/40 text-xs font-semibold text-amber-200 hover:bg-amber-500/30" onclick="cancelBookingOrder('${order.orderId}')">${dict['order-cancel']}</button>
+                            </div>
+                        ` : `<p class="text-xs text-slate-500 mt-2">Create an order to start payment.</p>`}
+                    </div>
+                </div>
+            `;
+        }
+
+        function submitBookingOrder() {
+            const ctx = currentModulePayload.ctx || {};
+            const serviceType = document.getElementById('booking-service-type')?.value || 'concierge';
+            const timeSlot = document.getElementById('booking-time-slot')?.value || '18:00';
+            const partySize = Number(document.getElementById('booking-party-size')?.value || 1);
+            const langPref = document.getElementById('booking-lang-pref')?.value || currentLang;
+
+            if (!ctx.spotId || !ctx.merchantId) {
+                showNotification(currentLang === 'zh' ? '请先在详情层选择可承接商户。' : 'Please choose an available merchant first.');
+                trackEvent('order_create_fail', {
+                    spotId: ctx.spotId || null,
+                    merchantId: ctx.merchantId || null,
+                    errorCode: 'MISSING_CONTEXT'
+                });
+                return;
+            }
+
+            const order = {
+                orderId: generateId('ord'),
+                userId: userProfile.userId,
+                spotId: ctx.spotId,
+                merchantId: ctx.merchantId,
+                serviceType,
+                timeSlot,
+                partySize,
+                langPref,
+                source: ctx.source || 'fusion_overlay',
+                status: 'pending_payment',
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString()
+            };
+
+            appState.orders.unshift(order);
+            trackEvent('order_create_success', {
+                spotId: ctx.spotId,
+                merchantId: ctx.merchantId,
+                orderId: order.orderId,
+                serviceType,
+                timeSlot
+            });
+            persistAppState();
+            showNotification(currentLang === 'zh' ? '订单创建成功，进入支付环节。' : 'Order created. Continue to payment.');
+            openModule('booking-service', currentModulePayload);
+        }
+
+        function queryBookingStatus(orderId) {
+            const order = getOrderById(orderId);
+            if (!order) return;
+            order.updatedAt = new Date().toISOString();
+            persistAppState();
+            showNotification(`${currentLang === 'zh' ? '当前状态' : 'Current status'}: ${getOrderStatusText(order.status)}`);
+            openModule('booking-service', currentModulePayload);
+        }
+
+        function cancelBookingOrder(orderId) {
+            const order = getOrderById(orderId);
+            if (!order || order.status === 'paid' || order.status === 'cancelled') return;
+            order.status = 'cancelled';
+            order.updatedAt = new Date().toISOString();
+            persistAppState();
+            openModule('booking-service', currentModulePayload);
+        }
+
+        function initiateOrderPayment(orderId) {
+            const order = getOrderById(orderId);
+            if (!order || order.status === 'paid' || order.status === 'cancelled') return;
+
+            const paymentIntentId = generateId('pi');
+            order.paymentIntentId = paymentIntentId;
+            order.updatedAt = new Date().toISOString();
+
+            trackEvent('payment_initiated', {
+                orderId,
+                paymentIntentId,
+                spotId: order.spotId,
+                merchantId: order.merchantId
+            });
+            persistAppState();
+            openModule('booking-service', currentModulePayload);
+
+            setTimeout(() => {
+                const callbackPayload = {
+                    orderId,
+                    paymentIntentId,
+                    status: 'success'
+                };
+                callbackPayload.signature = computeSignature(callbackPayload);
+                handlePaymentCallback(callbackPayload);
+            }, 900);
+        }
+
+        function handlePaymentCallback(callbackPayload) {
+            const order = getOrderById(callbackPayload.orderId);
+            if (!order) return;
+
+            const dedupeKey = `${callbackPayload.orderId}-${callbackPayload.paymentIntentId}-${callbackPayload.status}`;
+            if (appState.paymentCallbackLedger.includes(dedupeKey)) {
+                logOperational('payment_callback_duplicate', { orderId: callbackPayload.orderId, paymentIntentId: callbackPayload.paymentIntentId });
+                return;
+            }
+
+            appState.paymentCallbackLedger.push(dedupeKey);
+            const signatureValid = computeSignature(callbackPayload) === callbackPayload.signature;
+            if (!signatureValid) {
+                order.status = 'failed';
+                trackEvent('payment_fail', {
+                    orderId: order.orderId,
+                    paymentIntentId: callbackPayload.paymentIntentId,
+                    errorCode: 'INVALID_SIGNATURE'
+                });
+                persistAppState();
+                openModule('booking-service', currentModulePayload);
+                return;
+            }
+
+            if (callbackPayload.status === 'success') {
+                order.status = 'paid';
+                trackEvent('payment_success', {
+                    orderId: order.orderId,
+                    paymentIntentId: callbackPayload.paymentIntentId,
+                    spotId: order.spotId,
+                    merchantId: order.merchantId,
+                    signatureValid: true,
+                    callbackRetries: 0
+                });
+            } else {
+                order.status = 'failed';
+                trackEvent('payment_fail', {
+                    orderId: order.orderId,
+                    paymentIntentId: callbackPayload.paymentIntentId,
+                    spotId: order.spotId,
+                    merchantId: order.merchantId,
+                    signatureValid: true
+                });
+            }
+
+            order.updatedAt = new Date().toISOString();
+            persistAppState();
+            showNotification(order.status === 'paid' ? (currentLang === 'zh' ? '支付成功' : 'Payment success') : (currentLang === 'zh' ? '支付失败' : 'Payment failed'));
+            openModule('booking-service', currentModulePayload);
+        }
+
+        function getPassForContext(ctx) {
+            if (!ctx || !ctx.spotId) return null;
+            return appState.passes.find(passItem => passItem.userId === userProfile.userId && passItem.spotId === ctx.spotId) || null;
+        }
+
+        function renderPassModule(payload = {}) {
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            const ctx = payload.ctx || {};
+            const passItem = getPassForContext(ctx);
+
+            return `
+                <div class="space-y-4 pb-6">
+                    <div class="glass-panel p-4 rounded-2xl border border-sky-500/30">
+                        <p class="text-[10px] uppercase tracking-[0.18em] text-sky-300 font-bold">Source</p>
+                        <h3 class="text-white font-bold mt-2 text-base">${ctx.spotTitle || 'Spot not selected'}</h3>
+                        <p class="text-xs text-slate-400 mt-1">${ctx.merchantName || '-'}</p>
+                    </div>
+
+                    ${passItem ? `
+                        <div class="glass-panel p-4 rounded-2xl border border-emerald-500/40 space-y-3">
+                            <p class="text-xs text-emerald-300 font-bold">${dict['pass-claimed']}</p>
+                            <p class="text-xs text-slate-300">passId: ${passItem.passId}</p>
+                            <p class="text-xs text-slate-300">code: ${passItem.passCode}</p>
+                            <img src="${passItem.qrUrl}" class="w-36 h-36 bg-white rounded-xl p-2" alt="pass qr" />
+                            <p class="text-[10px] text-slate-500">expireAt: ${new Date(passItem.expireAt).toLocaleString()}</p>
+                            <button class="w-full py-2 rounded-lg bg-slate-800 border border-slate-700 text-xs font-semibold hover:bg-slate-700" onclick="openPassRedeem('${passItem.passId}')">${dict['redeem-module-title']}</button>
+                        </div>
+                    ` : `
+                        <button class="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 rounded-xl transition" onclick="claimApecPass()">${dict['pass-claim']}</button>
+                    `}
+                </div>
+            `;
+        }
+
+        function claimApecPass() {
+            const ctx = currentModulePayload.ctx || {};
+            const existing = getPassForContext(ctx);
+            if (existing) {
+                showNotification((i18nDict[currentLang] || i18nDict['en'])['pass-duplicate']);
+                trackEvent('pass_claim_fail', {
+                    spotId: ctx.spotId || null,
+                    merchantId: ctx.merchantId || null,
+                    errorCode: 'DUPLICATE_PASS'
+                });
+                return;
+            }
+
+            const passId = generateId('pass');
+            const passCode = `SNX-${Math.random().toString(36).slice(2, 8).toUpperCase()}-${Date.now().toString(36).toUpperCase()}`;
+            const expireAt = Date.now() + 72 * 60 * 60 * 1000;
+            const qrData = encodeURIComponent(JSON.stringify({ passId, passCode, spotId: ctx.spotId, merchantId: ctx.merchantId, exp: expireAt }));
+            const passItem = {
+                passId,
+                passCode,
+                qrUrl: `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${qrData}`,
+                userId: userProfile.userId,
+                status: 'active',
+                spotId: ctx.spotId,
+                merchantId: ctx.merchantId,
+                source: ctx.source,
+                claimedAt: new Date().toISOString(),
+                expireAt
+            };
+
+            appState.passes.unshift(passItem);
+            trackEvent('pass_claim_success', {
+                spotId: ctx.spotId,
+                merchantId: ctx.merchantId,
+                passId
+            });
+            persistAppState();
+            showNotification((i18nDict[currentLang] || i18nDict['en'])['pass-claimed']);
+            openModule('pass-claim', currentModulePayload);
+        }
+
+        function openPassRedeem(passId) {
+            openModule('pass-redeem', {
+                ctx: currentModulePayload.ctx || {},
+                passId
+            });
+        }
+
+        function renderRedeemModule(payload = {}) {
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            const ctx = payload.ctx || {};
+            const defaultPass = payload.passId || '';
+            const recent = appState.redemptions.slice(0, 3);
+
+            return `
+                <div class="space-y-4 pb-6">
+                    <div class="grid grid-cols-1 gap-3">
+                        <label class="text-xs text-slate-400">Pass ID / Pass Code
+                            <input id="redeem-pass-input" value="${defaultPass}" class="mt-1 w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-sm text-white" />
+                        </label>
+                        <label class="text-xs text-slate-400">Merchant ID
+                            <input id="redeem-merchant-input" value="${ctx.merchantId || ''}" class="mt-1 w-full bg-slate-800 border border-slate-700 rounded-xl p-2 text-sm text-white" />
+                        </label>
+                    </div>
+                    <button class="w-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold py-3 rounded-xl transition" onclick="executeRedeemPass()">${dict['redeem-now']}</button>
+                    <div class="glass-panel p-4 rounded-2xl border border-slate-700">
+                        <p class="text-xs text-slate-400 mb-2">Recent redemptions</p>
+                        ${recent.length ? recent.map(item => `<p class="text-[11px] text-slate-300">${item.redemptionId} • ${item.passId}</p>`).join('') : `<p class="text-xs text-slate-500">No redemption yet</p>`}
+                    </div>
+                </div>
+            `;
+        }
+
+        function executeRedeemPass() {
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            const passInput = (document.getElementById('redeem-pass-input')?.value || '').trim();
+            const merchantInput = (document.getElementById('redeem-merchant-input')?.value || '').trim();
+
+            const passItem = appState.passes.find(item => item.passId === passInput || item.passCode === passInput);
+            if (!passItem) {
+                trackEvent('redeem_fail', {
+                    spotId: currentModulePayload.ctx?.spotId || null,
+                    merchantId: merchantInput || null,
+                    passId: passInput || null,
+                    errorCode: 'PASS_NOT_FOUND'
+                });
+                showNotification(dict['redeem-failed']);
+                return;
+            }
+
+            if (Date.now() > Number(passItem.expireAt)) {
+                trackEvent('redeem_fail', {
+                    spotId: passItem.spotId,
+                    merchantId: merchantInput || passItem.merchantId,
+                    passId: passItem.passId,
+                    errorCode: 'PASS_EXPIRED'
+                });
+                showNotification(dict['redeem-failed']);
+                return;
+            }
+
+            if (passItem.status === 'redeemed') {
+                trackEvent('redeem_fail', {
+                    spotId: passItem.spotId,
+                    merchantId: merchantInput || passItem.merchantId,
+                    passId: passItem.passId,
+                    errorCode: 'DUPLICATE_REDEEM'
+                });
+                showNotification(dict['redeem-duplicate']);
+                return;
+            }
+
+            if (merchantInput && passItem.merchantId && merchantInput !== passItem.merchantId) {
+                trackEvent('redeem_fail', {
+                    spotId: passItem.spotId,
+                    merchantId: merchantInput,
+                    passId: passItem.passId,
+                    errorCode: 'NO_PERMISSION'
+                });
+                showNotification(dict['redeem-failed']);
+                return;
+            }
+
+            passItem.status = 'redeemed';
+            passItem.redeemedAt = new Date().toISOString();
+            const redemption = {
+                redemptionId: generateId('rdm'),
+                passId: passItem.passId,
+                spotId: passItem.spotId,
+                merchantId: merchantInput || passItem.merchantId,
+                redeemedAt: new Date().toISOString(),
+                dedupeKey: `${passItem.passId}-${merchantInput || passItem.merchantId}`
+            };
+            appState.redemptions.unshift(redemption);
+
+            trackEvent('redeem_success_by_spot', {
+                spotId: redemption.spotId,
+                merchantId: redemption.merchantId,
+                passId: redemption.passId,
+                redemptionId: redemption.redemptionId
+            });
+
+            persistAppState();
+            showNotification(dict['redeem-success']);
+            openModule('pass-redeem', {
+                ctx: { spotId: passItem.spotId, merchantId: redemption.merchantId, spotTitle: getLocaleText(getSpotById(passItem.spotId)?.title) },
+                passId: passItem.passId
+            });
+        }
+
+        function renderDirectionsModule(payload = {}) {
+            const ctx = payload.ctx || {};
+            return `
+                <div class="space-y-4 pb-6">
+                    <div class="glass-panel p-4 rounded-2xl border border-slate-700">
+                        <h3 class="text-white font-bold">${ctx.spotTitle || 'Navigation'}</h3>
+                        <p class="text-xs text-slate-400 mt-2">merchant: ${ctx.merchantName || '-'}</p>
+                        <p class="text-xs text-slate-400">source: ${ctx.source || '-'}</p>
+                    </div>
+                    <button class="w-full bg-slate-800 hover:bg-slate-700 border border-slate-600 text-white font-bold py-3 rounded-xl transition" onclick="showNotification('msg-map')">Open map</button>
+                </div>
+            `;
+        }
+
+        function getFunnelMetrics() {
+            const counter = {};
+            appState.events.forEach(eventItem => {
+                counter[eventItem.eventName] = (counter[eventItem.eventName] || 0) + 1;
+            });
+            return {
+                exposure: counter['leaderboard_exposure'] || 0,
+                click: counter['spot_card_click'] || 0,
+                cta: (counter['fusion_cta_click_pass'] || 0) + (counter['fusion_cta_click_booking'] || 0) + (counter['fusion_cta_click_translate'] || 0) + (counter['fusion_cta_click_map'] || 0),
+                payment: counter['payment_success'] || 0,
+                redeem: counter['redeem_success_by_spot'] || 0
+            };
+        }
+
+        function renderAnalyticsModule() {
+            const metrics = getFunnelMetrics();
+            return `
+                <div class="space-y-4 pb-6">
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="glass-panel p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400">Exposure</p><p class="text-xl font-bold">${metrics.exposure}</p></div>
+                        <div class="glass-panel p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400">Spot Click</p><p class="text-xl font-bold">${metrics.click}</p></div>
+                        <div class="glass-panel p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400">CTA</p><p class="text-xl font-bold">${metrics.cta}</p></div>
+                        <div class="glass-panel p-3 rounded-xl border border-slate-700"><p class="text-[10px] text-slate-400">Payment</p><p class="text-xl font-bold">${metrics.payment}</p></div>
+                        <div class="glass-panel p-3 rounded-xl border border-slate-700 col-span-2"><p class="text-[10px] text-slate-400">Redeem</p><p class="text-xl font-bold text-emerald-300">${metrics.redeem}</p></div>
+                    </div>
+                    <div class="glass-panel p-4 rounded-2xl border border-slate-700">
+                        <p class="text-xs text-slate-400 mb-2">Recent events</p>
+                        ${(appState.events.slice(-8).reverse().map(item => `<p class="text-[11px] text-slate-300">${item.eventName} • ${new Date(item.timestamp).toLocaleTimeString()}</p>`).join('')) || '<p class="text-xs text-slate-500">No event</p>'}
+                    </div>
+                </div>
+            `;
+        }
+
+        function runP0ReleaseGate() {
+            const requiredEvents = [
+                'leaderboard_exposure',
+                'spot_card_click',
+                'fusion_overlay_open',
+                'fusion_cta_click_booking',
+                'order_create_success',
+                'payment_success',
+                'pass_claim_success',
+                'redeem_success_by_spot'
+            ];
+            const checks = requiredEvents.map(eventName => ({
+                name: eventName,
+                pass: appState.events.some(eventItem => eventItem.eventName === eventName)
+            }));
+
+            checks.push({
+                name: 'at_least_one_paid_order',
+                pass: appState.orders.some(order => order.status === 'paid')
+            });
+            checks.push({
+                name: 'at_least_one_redeemed_pass',
+                pass: appState.redemptions.length > 0
+            });
+
+            const passed = checks.every(item => item.pass);
+            appState.qaReport = {
+                passed,
+                runAt: new Date().toISOString(),
+                checks
+            };
+            persistAppState();
+            showNotification((i18nDict[currentLang] || i18nDict['en'])[passed ? 'qa-pass' : 'qa-fail']);
+            openModule('release-gate', {});
+        }
+
+        function renderReleaseGateModule() {
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            const report = appState.qaReport;
+            return `
+                <div class="space-y-4 pb-6">
+                    <button class="w-full bg-indigo-500 hover:bg-indigo-400 text-white font-bold py-3 rounded-xl transition" onclick="runP0ReleaseGate()">${dict['qa-run']}</button>
+                    <div class="glass-panel p-4 rounded-2xl border ${report && report.passed ? 'border-emerald-500/40' : 'border-slate-700'}">
+                        <p class="text-xs text-slate-400 mb-2">Latest report</p>
+                        ${report ? `
+                            <p class="text-sm font-bold ${report.passed ? 'text-emerald-300' : 'text-amber-300'}">${report.passed ? dict['qa-pass'] : dict['qa-fail']}</p>
+                            <p class="text-[10px] text-slate-500 mt-1">${new Date(report.runAt).toLocaleString()}</p>
+                            <div class="mt-3 space-y-2">
+                                ${report.checks.map(check => `<p class="text-[11px] ${check.pass ? 'text-emerald-300' : 'text-rose-300'}">${check.pass ? '✓' : '✕'} ${check.name}</p>`).join('')}
+                            </div>
+                        ` : `<p class="text-xs text-slate-500">No report yet.</p>`}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Module Management
+        const overlay = document.getElementById('module-overlay');
+        const overlayTitle = document.getElementById('overlay-title');
+        const overlayContent = document.getElementById('overlay-content');
+
+        const moduleData = {
+            'ai-concierge': {
+                titleKey: 'ai-concierge-mod-title',
+                html: `
+                    <div class="flex flex-col h-[calc(100vh-140px)] sm:h-full space-y-4 pt-2">
+                        <div class="bg-fuchsia-500/10 border border-fuchsia-500/30 rounded-xl p-4 text-center">
+                            <i data-lucide="bot" class="w-8 h-8 text-fuchsia-400 mx-auto mb-2"></i>
+                            <h3 class="font-bold text-white text-sm mb-1" data-i18n="ai-concierge-guide">Your Personal Guide</h3>
+                            <p class="text-xs text-slate-300" data-i18n="ai-concierge-prompt">Ask me about Shenzhen weather, business etiquette, transportation, or APEC schedules.</p>
+                        </div>
+                        
+                        <div class="flex flex-col flex-1 pb-4">
+                            <div id="concierge-result" class="flex-1 overflow-y-auto mb-4 min-h-[100px] no-scrollbar">
+                                </div>
+                            
+                            <div class="relative mt-auto border-t border-slate-800 pt-4">
+                                <textarea id="concierge-input" rows="2" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 pr-12 text-sm text-white focus:outline-none focus:border-fuchsia-500 placeholder-slate-500 transition resize-none" placeholder="e.g., How do I exchange business cards in China?" data-i18n="ai-concierge-placeholder"></textarea>
+                                <button id="concierge-btn" class="absolute right-2 bottom-6 w-8 h-8 rounded-lg bg-fuchsia-500 flex items-center justify-center hover:bg-fuchsia-400 transition shadow-[0_0_10px_rgba(217,70,239,0.5)]" onclick="askConcierge()">
+                                    <i data-lucide="send" class="w-4 h-4 text-white"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'ai-planner': {
+                titleKey: 'ai-planner-mod-title',
+                html: `
+                    <div class="space-y-6 flex flex-col min-h-[calc(100vh-120px)] sm:min-h-0 sm:h-full">
+                        <div>
+                            <h3 class="text-white font-bold mb-3 text-sm" data-i18n="ai-planner-time">How much time do you have?</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <button class="border border-slate-600 rounded-full px-4 py-2 text-xs font-semibold text-slate-300 transition" onclick="toggleTag(this)" data-i18n="ai-planner-t1">⏱️ 2-3 Hours</button>
+                                <button class="border border-slate-600 rounded-full px-4 py-2 text-xs font-semibold text-slate-300 transition" onclick="toggleTag(this)" data-i18n="ai-planner-t2">⏱️ Half Day</button>
+                                <button class="border border-slate-600 rounded-full px-4 py-2 text-xs font-semibold text-slate-300 transition" onclick="toggleTag(this)" data-i18n="ai-planner-t3">⏱️ Full Day</button>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-white font-bold mb-3 text-sm" data-i18n="ai-planner-interest">What do you want to see?</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <button class="border border-slate-600 rounded-full px-4 py-2 text-xs font-semibold text-slate-300 transition" onclick="toggleTag(this)" data-i18n="ai-planner-i1">🚁 Drone Tech</button>
+                                <button class="border border-slate-600 rounded-full px-4 py-2 text-xs font-semibold text-slate-300 transition" onclick="toggleTag(this)" data-i18n="ai-planner-i2">🔋 EVs & Auto</button>
+                                <button class="border border-slate-600 rounded-full px-4 py-2 text-xs font-semibold text-slate-300 transition" onclick="toggleTag(this)" data-i18n="ai-planner-i3">🤖 Robotics</button>
+                                <button class="border border-slate-600 rounded-full px-4 py-2 text-xs font-semibold text-slate-300 transition" onclick="toggleTag(this)" data-i18n="ai-planner-i4">🥟 Local Dim Sum</button>
+                                <button class="border border-slate-600 rounded-full px-4 py-2 text-xs font-semibold text-slate-300 transition" onclick="toggleTag(this)" data-i18n="ai-planner-i5">🍺 Nightlife</button>
+                                <button class="border border-slate-600 rounded-full px-4 py-2 text-xs font-semibold text-slate-300 transition" onclick="toggleTag(this)" data-i18n="ai-planner-i6">🏛️ Culture & History</button>
+                                <button class="border border-slate-600 rounded-full px-4 py-2 text-xs font-semibold text-slate-300 transition" onclick="toggleTag(this)" data-i18n="ai-planner-i7">🛍️ Tech Markets</button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="text-white font-bold mb-3 text-sm"><span data-i18n="ai-planner-req">Any specific requests?</span> <span class="text-slate-500 font-normal" data-i18n="ai-planner-req-opt">(Optional)</span></h3>
+                            <textarea id="ai-planner-custom" rows="3" class="w-full bg-slate-800 border border-slate-700 rounded-xl p-3 text-sm text-white focus:outline-none focus:border-sky-500 placeholder-slate-500 transition" placeholder="e.g., I want to visit DJI Sky City and eat spicy hotpot for dinner..." data-i18n="ai-planner-placeholder"></textarea>
+                        </div>
+
+                        <div class="mt-auto pt-6 pb-2">
+                            <button id="ai-generate-btn" class="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold py-4 rounded-xl shadow-[0_0_20px_rgba(56,189,248,0.4)] transition flex justify-center items-center gap-2 text-sm uppercase tracking-wider" onclick="startRichItineraryGeneration()">
+                                <span data-i18n="ai-planner-btn">✨ Generate My Tour</span>
+                            </button>
+                        </div>
+                    </div>
+                `
+            },
+            'payment-setup': {
+                titleKey: 'pay-mod-title',
+                html: `
+                    <div class="space-y-6 pb-6">
+                        <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4">
+                            <h3 class="font-bold text-emerald-400 mb-2 flex items-center gap-2">
+                                <i data-lucide="check-circle-2" class="w-4 h-4"></i> <span data-i18n="pay-tip">Crucial Pro Tip</span>
+                            </h3>
+                            <p class="text-sm text-slate-300" data-i18n-html="true" data-i18n="pay-tip-desc">Set this up <strong>before arriving in China</strong> to ensure you can receive SMS verification codes from your overseas bank.</p>
+                        </div>
+
+                        <div class="glass-panel p-5 rounded-xl border border-blue-500/30 relative overflow-hidden">
+                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-blue-500/10 rounded-full blur-xl"></div>
+                            <div class="flex items-center gap-3 mb-5 relative z-10">
+                                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg">支</div>
+                                <div>
+                                    <h3 class="font-bold text-white text-lg leading-tight">Alipay <span class="text-xs font-normal text-slate-400 ml-1" data-i18n="pay-alipay-rec">(Recommended)</span></h3>
+                                    <p class="text-[10px] text-blue-400 uppercase tracking-wider font-semibold" data-i18n="pay-alipay-tour">TourCard Supported</p>
+                                </div>
+                            </div>
+                            
+                            <ol class="relative border-l border-slate-700 ml-3 space-y-5">
+                                <li class="pl-5 relative">
+                                    <div class="absolute w-3 h-3 bg-blue-500 rounded-full -left-[6.5px] top-1 border-[3px] border-slate-800"></div>
+                                    <p class="text-sm text-white font-bold" data-i18n="pay-step1">1. Download & Register</p>
+                                    <p class="text-xs text-slate-400 mt-1" data-i18n="pay-step1-desc">Use your home country phone number.</p>
+                                </li>
+                                <li class="pl-5 relative">
+                                    <div class="absolute w-3 h-3 bg-slate-600 rounded-full -left-[6.5px] top-1 border-[3px] border-slate-800"></div>
+                                    <p class="text-sm text-white font-bold" data-i18n="pay-step2">2. Identity Verification</p>
+                                    <p class="text-xs text-slate-400 mt-1" data-i18n="pay-step2-desc">Go to Account > Settings > Real-name Verification. Scan your passport.</p>
+                                </li>
+                                <li class="pl-5 relative">
+                                    <div class="absolute w-3 h-3 bg-slate-600 rounded-full -left-[6.5px] top-1 border-[3px] border-slate-800"></div>
+                                    <p class="text-sm text-white font-bold" data-i18n="pay-step3">3. Add Bank Card</p>
+                                    <p class="text-xs text-slate-400 mt-1" data-i18n="pay-step3-desc">Go to Me > Bank Cards. Add your Visa, Mastercard, or JCB.</p>
+                                </li>
+                            </ol>
+                            <button class="w-full mt-5 bg-blue-600/20 hover:bg-blue-600/40 text-blue-400 border border-blue-500/50 py-2 rounded-lg text-xs font-semibold transition" onclick="showNotification('msg-appstore')"><span data-i18n="pay-btn-alipay">Download Alipay</span></button>
+                        </div>
+
+                        <div class="glass-panel p-5 rounded-xl border border-green-500/30 relative overflow-hidden">
+                            <div class="absolute -right-4 -top-4 w-20 h-20 bg-green-500/10 rounded-full blur-xl"></div>
+                            <div class="flex items-center gap-3 mb-5 relative z-10">
+                                <div class="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center text-white font-bold text-2xl shadow-lg"><i class="fab fa-weixin"></i></div>
+                                <div>
+                                    <h3 class="font-bold text-white text-lg leading-tight">WeChat Pay</h3>
+                                    <p class="text-[10px] text-green-400 uppercase tracking-wider font-semibold" data-i18n="pay-wechat-ess">Essential for mini-programs</p>
+                                </div>
+                            </div>
+                            
+                            <ol class="relative border-l border-slate-700 ml-3 space-y-5">
+                                <li class="pl-5 relative">
+                                    <div class="absolute w-3 h-3 bg-green-500 rounded-full -left-[6.5px] top-1 border-[3px] border-slate-800"></div>
+                                    <p class="text-sm text-white font-bold" data-i18n="pay-w-step1">1. Setup WeChat</p>
+                                    <p class="text-xs text-slate-400 mt-1" data-i18n="pay-w-step1-desc">Register for WeChat first. You may need a friend to verify your account.</p>
+                                </li>
+                                <li class="pl-5 relative">
+                                    <div class="absolute w-3 h-3 bg-slate-600 rounded-full -left-[6.5px] top-1 border-[3px] border-slate-800"></div>
+                                    <p class="text-sm text-white font-bold" data-i18n="pay-w-step2">2. Enable WeChat Pay</p>
+                                    <p class="text-xs text-slate-400 mt-1" data-i18n="pay-w-step2-desc">Go to Me > Services > Wallet > Cards to add your foreign credit card.</p>
+                                </li>
+                            </ol>
+                            <button class="w-full mt-5 bg-green-500/20 hover:bg-green-500/40 text-green-400 border border-green-500/50 py-2 rounded-lg text-xs font-semibold transition" onclick="showNotification('msg-appstore')"><span data-i18n="pay-btn-wechat">Download WeChat</span></button>
+                        </div>
+                    </div>
+                `
+            },
+            'mobility': {
+                titleKey: 'mob-mod-title',
+                html: `
+                    <div class="space-y-6">
+                        <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-4">
+                            <h3 class="font-bold text-amber-400 mb-2 flex items-center gap-2">
+                                <i data-lucide="alert-triangle" class="w-4 h-4"></i> <span data-i18n="mob-map-adv">Map Advice</span>
+                            </h3>
+                            <p class="text-sm text-slate-300" data-i18n-html="true" data-i18n="mob-map-desc">Google Maps data is inaccurate in mainland China. <strong>Use Apple Maps</strong> for accurate walking and public transit directions in English.</p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-sm mb-3 text-slate-400 uppercase tracking-wider" data-i18n="mob-ride">Ride Hailing</h3>
+                            <div class="glass-panel p-4 rounded-xl flex items-center justify-between border border-slate-700">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-orange-500 rounded-lg flex items-center justify-center text-white font-bold text-xl">D</div>
+                                    <div>
+                                        <p class="font-bold text-sm" data-i18n="mob-didi">DiDi (English)</p>
+                                        <p class="text-xs text-slate-400" data-i18n="mob-didi-open">Open in Alipay/WeChat</p>
+                                    </div>
+                                </div>
+                                <button class="bg-slate-700 px-3 py-1.5 rounded-lg text-xs font-semibold hover:bg-slate-600 transition" onclick="showNotification('msg-miniprogram')"><span data-i18n="mob-open-btn">Open</span></button>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-sm mb-3 text-slate-400 uppercase tracking-wider flex justify-between items-center">
+                                <span data-i18n="mob-emer-phrases">Emergency Phrases</span>
+                                <span class="text-[10px] bg-sky-500/20 text-sky-400 px-2 py-0.5 rounded flex items-center gap-1 border border-sky-500/30"><i data-lucide="sparkles" class="w-3 h-3"></i> <span data-i18n="mob-ai-audio">AI Audio</span></span>
+                            </h3>
+                            <p class="text-xs text-slate-500 mb-3" data-i18n="mob-emer-desc">Play these AI-generated native phrases to your driver if you can't find the pickup point.</p>
+                            
+                            <div class="space-y-3">
+                                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 relative group">
+                                    <div class="pr-12">
+                                        <p class="text-xs text-slate-400 mb-1" data-i18n="mob-p1-en">I am waiting at the ride-hailing pickup area.</p>
+                                        <p class="text-lg font-bold text-white">我在网约车上车点等候。</p>
+                                    </div>
+                                    <button class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center hover:bg-slate-600 hover:text-white transition text-sky-400 shadow-lg border border-slate-600" onclick="speakText('我在网约车上车点等候。', this)">
+                                        <i data-lucide="volume-2" class="w-5 h-5"></i>
+                                    </button>
+                                </div>
+                                <div class="bg-slate-800 p-4 rounded-xl border border-slate-700 relative group">
+                                    <div class="pr-12">
+                                        <p class="text-xs text-slate-400 mb-1" data-i18n="mob-p2-en">Please come to the underground parking (B1).</p>
+                                        <p class="text-lg font-bold text-white">请到地下停车场B1层。</p>
+                                    </div>
+                                    <button class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center hover:bg-slate-600 hover:text-white transition text-sky-400 shadow-lg border border-slate-600" onclick="speakText('请到地下停车场B1层。', this)">
+                                        <i data-lucide="volume-2" class="w-5 h-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'connectivity': {
+                titleKey: 'conn-mod-title',
+                html: `
+                    <div class="space-y-6 pb-6">
+                        <div class="bg-purple-500/10 border border-purple-500/30 rounded-xl p-4 text-center">
+                            <i data-lucide="shield-alert" class="w-8 h-8 text-purple-400 mx-auto mb-2"></i>
+                            <h3 class="font-bold text-white text-sm mb-1" data-i18n="conn-restrict">Internet Restrictions</h3>
+                            <p class="text-xs text-slate-300" data-i18n="conn-restrict-desc">Google, WhatsApp, Instagram, and X are blocked in mainland China without a VPN or roaming data.</p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-xs mb-3 text-slate-400 uppercase tracking-wider" data-i18n="conn-s1">Solution 1: Travel eSIM (Best)</h3>
+                            <div class="glass-panel p-5 rounded-xl border border-slate-700 relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 blur-2xl rounded-full"></div>
+                                <p class="text-sm text-white font-semibold mb-2 relative z-10" data-i18n="conn-s1-sub">Bypass the firewall automatically.</p>
+                                <p class="text-xs text-slate-400 leading-relaxed mb-4 relative z-10" data-i18n="conn-s1-desc">Buying a travel eSIM before you arrive means you instantly have unfiltered internet upon landing. No VPN required.</p>
+                                
+                                <div class="grid grid-cols-2 gap-2 relative z-10">
+                                    <button class="bg-slate-800 hover:bg-slate-700 border border-slate-600 py-2 rounded-lg text-xs font-bold text-white transition flex items-center justify-center gap-1" onclick="showNotification('msg-airalo')">
+                                        Airalo <i data-lucide="external-link" class="w-3 h-3 text-slate-400"></i>
+                                    </button>
+                                    <button class="bg-slate-800 hover:bg-slate-700 border border-slate-600 py-2 rounded-lg text-xs font-bold text-white transition flex items-center justify-center gap-1" onclick="showNotification('msg-holafly')">
+                                        Holafly <i data-lucide="external-link" class="w-3 h-3 text-slate-400"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold text-xs mb-3 text-slate-400 uppercase tracking-wider" data-i18n="conn-s2">Solution 2: Public Wi-Fi</h3>
+                            <div class="glass-panel p-5 rounded-xl border border-slate-700">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-10 h-10 rounded-full bg-slate-800 border border-slate-600 flex items-center justify-center shrink-0">
+                                        <i data-lucide="wifi" class="w-5 h-5 text-slate-300"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="text-sm font-bold text-white mb-1" data-i18n="conn-s2-sub">Airport Wi-Fi via Kiosk</h4>
+                                        <p class="text-xs text-slate-400 leading-relaxed mb-3" data-i18n="conn-s2-desc">Most public Wi-Fi in China requires a Chinese phone number to receive a verification SMS. To get online at Shenzhen Airport:</p>
+                                        <ul class="text-xs text-slate-300 space-y-2 list-disc pl-4">
+                                            <li data-i18n="conn-s2-l1">Find a "Wi-Fi Password Kiosk" near information desks.</li>
+                                            <li data-i18n="conn-s2-l2">Scan the photo page of your passport on the machine.</li>
+                                            <li data-i18n="conn-s2-l3">It will print a ticket with a PIN code to connect.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+            'ar-decoder': {
+                titleKey: 'ar-mod-title',
+                html: `
+                    <div class="flex flex-col items-center justify-start pt-8 h-full space-y-6 relative">
+                        <input type="file" accept="image/*" capture="environment" id="camera-input" class="hidden" onchange="handleImageUpload(event)">
+                        
+                        <div id="decoder-start" class="w-full flex flex-col items-center">
+                            <div class="relative w-full aspect-[4/3] bg-slate-800 rounded-2xl border border-slate-700 overflow-hidden flex flex-col items-center justify-center mb-6 shadow-inner">
+                                <i data-lucide="camera" class="w-12 h-12 text-slate-600 mb-4"></i>
+                                <p class="text-slate-400 text-sm max-w-[200px] text-center" data-i18n="ar-upload-desc">Upload or take a photo of Chinese menus, signs, or text.</p>
+                            </div>
+                            <button class="w-full bg-sky-500 hover:bg-sky-400 text-white px-6 py-4 rounded-2xl text-sm font-semibold shadow-[0_0_15px_rgba(56,189,248,0.4)] transition flex items-center justify-center gap-2" onclick="triggerCamera()">
+                                <span data-i18n="ar-btn-decode">✨ Take Photo to Decode</span>
+                            </button>
+                        </div>
+
+                        <div id="decoder-loading" class="w-full hidden flex-col items-center justify-center py-16">
+                            <i class="fas fa-spinner fa-spin text-4xl text-sky-400 mb-4"></i>
+                            <p class="text-slate-400 text-sm font-medium" data-i18n="ar-analyzing">✨ Gemini is analyzing the image...</p>
+                        </div>
+                        
+                        <div id="scan-result" class="w-full glass-panel p-5 rounded-xl text-left hidden fade-in border border-sky-900/50">
+                            </div>
+                    </div>
+                `
+            },
+            'robotaxi': {
+                titleKey: 'robo-mod-title',
+                html: `
+                    <div class="space-y-5 pb-6">
+                        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=800&q=80&auto=format&fit=crop" class="w-full h-40 object-cover rounded-xl border border-slate-700" alt="Robotaxi Concept">
+                        
+                        <div>
+                            <h3 class="font-bold text-lg mb-1" data-i18n="robo-title">Apollo Go Autonomous Ride</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed" data-i18n="robo-desc">Experience a fully driverless taxi ride. Shenzhen has extensive autonomous driving zones, especially in Nanshan and Pingshan districts.</p>
+                        </div>
+
+                        <div class="bg-slate-800 rounded-xl p-4 border border-slate-700">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3" data-i18n="robo-area">Service Area</h4>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="bg-green-500/20 text-green-400 text-[10px] px-2 py-0.5 rounded border border-green-500/30" data-i18n="robo-active">Active</span>
+                                <span class="text-sm font-semibold text-white" data-i18n="robo-nanshan">Nanshan District (Tech Park)</span>
+                            </div>
+                            <p class="text-xs text-slate-400" data-i18n="robo-time">Available from 07:00 to 23:00.</p>
+                        </div>
+                        
+                        <button class="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 rounded-xl transition shadow-[0_0_15px_rgba(56,189,248,0.3)]" onclick="showNotification('msg-miniprogram')"><span data-i18n="robo-btn">Open Booking App</span></button>
+                    </div>
+                `
+            },
+            'drone-delivery': {
+                titleKey: 'drone-mod-title',
+                html: `
+                    <div class="space-y-5 pb-6">
+                        <img src="https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=800&q=80&auto=format&fit=crop" class="w-full h-40 object-cover rounded-xl border border-slate-700" alt="Drone Delivery Concept">
+                        
+                        <div>
+                            <h3 class="font-bold text-lg mb-1" data-i18n="drone-title">Meituan Sky-Drop</h3>
+                            <p class="text-sm text-slate-400 leading-relaxed" data-i18n="drone-desc">Experience the future of logistics. Order coffee or snacks and a drone will drop it at a designated kiosk in Shenzhen Talent Park within 15 mins.</p>
+                        </div>
+
+                        <div class="bg-slate-800 rounded-xl p-4 border border-slate-700">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3" data-i18n="drone-s1">Step 1: Go to Drop Zone</h4>
+                            <div class="flex items-center justify-between mb-2">
+                                <div>
+                                    <p class="font-semibold text-sm" data-i18n="drone-s1-sub">Talent Park Kiosk A</p>
+                                    <p class="text-xs text-slate-400" data-i18n="drone-s1-desc">Near the main gate</p>
+                                </div>
+                                <button class="text-sky-400 text-xs flex items-center gap-1" onclick="showNotification('msg-map')">
+                                    <i data-lucide="map-pin" class="w-3 h-3"></i> <span data-i18n="drone-get-dir">Get Dir</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 opacity-50 pointer-events-none">
+                            <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3" data-i18n="drone-s2">Step 2: Select Item</h4>
+                            <p class="text-xs text-slate-400" data-i18n="drone-s2-desc">Arrive at the kiosk first to unlock menu options.</p>
+                        </div>
+                        
+                        <button class="w-full bg-sky-500 hover:bg-sky-400 text-white font-bold py-3 rounded-xl transition shadow-[0_0_15px_rgba(56,189,248,0.3)]" onclick="showNotification('msg-kiosk')"><span data-i18n="drone-btn">I am at the Kiosk</span></button>
+                    </div>
+                `
+            },
+            'booking-service': {
+                titleKey: 'order-module-title',
+                render: renderBookingModule
+            },
+            'pass-claim': {
+                titleKey: 'pass-module-title',
+                render: renderPassModule
+            },
+            'pass-redeem': {
+                titleKey: 'redeem-module-title',
+                render: renderRedeemModule
+            },
+            'route-directions': {
+                title: 'Directions',
+                render: renderDirectionsModule
+            },
+            'analytics-funnel': {
+                titleKey: 'analytics-module-title',
+                render: renderAnalyticsModule
+            },
+            'release-gate': {
+                titleKey: 'qa-module-title',
+                render: renderReleaseGateModule
+            },
+            'ai-result': {
+                titleKey: 'ai-res-mod-title',
+                html: `
+                    <div class="space-y-5">
+                        <div id="itinerary-content">
+                            </div>
+                    </div>
+                `
+            }
+        };
+
+        function openModule(moduleId, payload = {}) {
+            const data = moduleData[moduleId];
+            if (!data) {
+                showNotification('Module coming soon');
+                return;
+            }
+
+            currentModuleId = moduleId;
+            currentModulePayload = payload || {};
+
+            if (currentSpotFusionId && !moduleOriginSpotId) {
+                moduleOriginSpotId = currentSpotFusionId;
+            }
+            const backBtn = document.getElementById('overlay-back-btn');
+            if (backBtn) {
+                backBtn.classList.toggle('hidden', !moduleOriginSpotId);
+            }
+
+            const dict = i18nDict[currentLang] || i18nDict['en'];
+            overlayTitle.textContent = dict[data.titleKey] || data.title || moduleId;
+            overlayContent.innerHTML = typeof data.render === 'function' ? data.render(currentModulePayload) : data.html;
+
+            // KEY FIX: Apply translations AFTER injecting the dynamic HTML into the overlay
+            applyTranslations();
+
+            if (moduleId === 'ai-concierge' && currentModulePayload.ctx) {
+                const contextHint = currentModulePayload.ctx;
+                const inputEl = document.getElementById('concierge-input');
+                const resultEl = document.getElementById('concierge-result');
+                if (resultEl) {
+                    resultEl.innerHTML = `
+                        <div class="glass-panel p-3 rounded-xl border border-slate-700 text-xs text-slate-300 mb-3">
+                            ${currentLang === 'zh' ? `来自 ${contextHint.spotTitle || 'Spot'} 的 CTA，上下文已透传。` : `Context carried from ${contextHint.spotTitle || 'spot'} CTA.`}
+                        </div>
+                    `;
+                }
+                if (inputEl && !inputEl.value) {
+                    inputEl.value = currentLang === 'zh'
+                        ? `请给我在${contextHint.spotTitle || '该地点'}附近与商户沟通的常用中英双语短句。`
+                        : `Give me short bilingual phrases to communicate with merchants near ${contextHint.spotTitle || 'this spot'}.`;
+                }
+            }
+
+            lucide.createIcons();
+            overlay.classList.remove('translate-y-full');
+        }
+
+        function closeModule() {
+            overlay.classList.add('translate-y-full');
+            setTimeout(() => {
+                overlayContent.innerHTML = '';
+                currentModuleId = null;
+                currentModulePayload = {};
+                moduleOriginSpotId = null;
+                currentSpotFusionId = null;
+                const backBtn = document.getElementById('overlay-back-btn');
+                if (backBtn) backBtn.classList.add('hidden');
+            }, 300);
+        }
+
+        function goBackToSpot() {
+            if (moduleOriginSpotId) {
+                const spotId = moduleOriginSpotId;
+                moduleOriginSpotId = null;
+                currentModuleId = null;
+                currentModulePayload = {};
+                openSpotFusion(spotId);
+            } else {
+                closeModule();
+            }
+        }
+
+        hydrateAppState();
+        applyTranslations();
+        renderLeaderboard({ resetPage: true });
+
+    </script>
+</body>
+</html>
