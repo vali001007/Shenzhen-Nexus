@@ -46,40 +46,25 @@ Interests: ${interests || 'General'}
 Special requests: ${customReq || 'None'}
 The stops must be realistic locations in Shenzhen (e.g., DJI Sky City, Huaqiangbei, Talent Park, specific local restaurants, etc.).
 Include 2-4 stops with time, location name, district, and a one-line description for each.
-IMPORTANT: For title, description, and locationName fields, provide BOTH English and Chinese (Simplified) versions as {"en": "...", "zh": "..."} objects.
-The duration field should be a simple string like "4.5 Hours".`
 
-      const localeTextSchema = {
-        type: 'OBJECT',
-        properties: {
-          en: { type: 'STRING' },
-          zh: { type: 'STRING' },
-        },
-      }
+You MUST respond with ONLY valid JSON (no markdown, no explanation) in exactly this structure:
+{
+  "title": {"en": "...", "zh": "..."},
+  "duration": "4.5 Hours",
+  "stops": [
+    {
+      "time": "10:00",
+      "title": {"en": "...", "zh": "..."},
+      "description": {"en": "...", "zh": "..."},
+      "locationName": {"en": "Nanshan District", "zh": "南山区"},
+      "theme": "tech"
+    }
+  ]
+}
+The theme field must be exactly one of: tech, food, culture, city.`
 
-      const schema = {
-        type: 'OBJECT',
-        properties: {
-          title: localeTextSchema,
-          duration: { type: 'STRING', description: 'e.g. 4.5 Hours' },
-          stops: {
-            type: 'ARRAY',
-            items: {
-              type: 'OBJECT',
-              properties: {
-                time: { type: 'STRING', description: 'e.g. 14:00' },
-                title: localeTextSchema,
-                description: localeTextSchema,
-                locationName: { ...localeTextSchema, description: 'District or place, e.g. Futian CBD' },
-                theme: { type: 'STRING', description: 'Must be exactly one of: tech, food, culture, city' },
-              },
-            },
-          },
-        },
-      }
-
-      const data = await callGeminiText(prompt, schema)
-      openModule('ai-result', { result: data })
+      const raw = await callGeminiText(prompt, true)
+      openModule('ai-result', { result: raw })
     } catch (err) {
       console.error(err)
       setError(t('ai-planner-error'))

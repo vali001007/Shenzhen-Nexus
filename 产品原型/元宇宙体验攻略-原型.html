@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title id="page-title">深圳VR/AR/MR体验攻略</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00D4FF',
+                        secondary: '#FF7D00',
+                        purple: '#A855F7',
+                        dark: {
+                            100: '#1E3A5F',
+                            200: '#112240',
+                            300: '#0A192F',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            }
+            .glass-card {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                box-shadow: 0 8px 32px 0 rgba(0, 212, 255, 0.08);
+            }
+            .glow {
+                box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            }
+            .icon-glow {
+                text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+            }
+            .icon-glow-purple {
+                text-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+            }
+        }
+    </style>
+    <style>
+        body {
+            scroll-behavior: smooth;
+            background: linear-gradient(135deg, #0A192F 0%, #112240 50%, #1E3A5F 100%);
+            min-height: 100vh;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 212, 255, 0.2);
+        }
+        .lang-btn {
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+        .step-number {
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+        }
+        .step-number-purple {
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+        }
+        .nav-btn {
+            transition: all 0.2s ease;
+        }
+        .nav-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-100">
+    <!-- 顶部导航 -->
+    <nav class="fixed top-0 left-0 right-0 bg-dark-300/80 backdrop-blur-md z-50 border-b border-white/5">
+        <div class="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="font-bold text-primary text-lg icon-glow" data-zh="VR/AR攻略" data-en="VR/AR Guide">VR/AR攻略</h1>
+            <div class="flex gap-4 text-sm items-center">
+                <a href="#stations" class="text-gray-300 hover:text-primary" data-zh="站点" data-en="Stations">站点</a>
+                <a href="#guide" class="text-gray-300 hover:text-primary" data-zh="教程" data-en="Guide">教程</a>
+                <a href="#faq" class="text-gray-300 hover:text-primary" data-zh="FAQ" data-en="FAQ">FAQ</a>
+                <button id="langToggle" class="lang-btn flex items-center gap-1 px-2 py-1 rounded-md border border-white/10 text-xs">
+                    <i class="fa fa-language text-primary"></i>
+                    <span id="langText">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <header class="pt-14">
+        <div class="relative h-80 overflow-hidden rounded-b-2xl">
+            <img src="https://aka.doubaocdn.com/s/oVbt1wGv3b" alt="深圳VR/AR体验" data-alt-zh="深圳VR/AR体验" data-alt-en="Shenzhen VR/AR Experience" class="w-full h-full object-cover brightness-75">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-300/90 to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+                <h1 class="text-3xl font-bold text-shadow mb-2" data-zh="深圳VR/AR/MR体验" data-en="Shenzhen VR/AR/MR Experience">深圳VR/AR/MR体验</h1>
+                <p class="text-lg opacity-90 text-shadow" data-zh="沉浸式元宇宙，穿越虚拟与现实的边界" data-en="Immersive metaverse, cross the boundary of virtual and reality">沉浸式元宇宙，穿越虚拟与现实的边界</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto px-4 pb-16">
+        <!-- 核心亮点 -->
+        <section class="py-6 fade-in">
+            <div class="grid grid-cols-3 gap-4">
+                <div class="glass-card rounded-xl p-4 text-center card-hover">
+                    <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fa fa-vr-cardboard text-primary text-lg icon-glow"></i>
+                    </div>
+                    <p class="font-semibold text-sm" data-zh="VR沉浸体验" data-en="VR Immersive">VR沉浸体验</p>
+                    <p class="text-xs text-gray-400 mt-1" data-zh="全感官虚拟世界" data-en="Full-sense virtual world">全感官虚拟世界</p>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center card-hover">
+                    <div class="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fa fa-camera text-secondary text-lg"></i>
+                    </div>
+                    <p class="font-semibold text-sm" data-zh="AR互动增强" data-en="AR Augmented">AR互动增强</p>
+                    <p class="text-xs text-gray-400 mt-1" data-zh="虚实结合互动" data-en="Virtual+Real interaction">虚实结合互动</p>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center card-hover">
+                    <div class="w-10 h-10 bg-purple/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fa fa-globe text-purple text-lg"></i>
+                    </div>
+                    <p class="font-semibold text-sm" data-zh="XR大空间" data-en="XR Big Space">XR大空间</p>
+                    <p class="text-xs text-gray-400 mt-1" data-zh="多人协同探索" data-en="Multi-player explore">多人协同探索</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 体验站点 -->
+        <section id="stations" class="py-6 fade-in">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fa fa-map-o text-primary mr-2 icon-glow"></i>
+                <span data-zh="体验站点一览" data-en="Available Stations">体验站点一览</span>
+            </h2>
+            
+            <!-- 公共场馆类站点 -->
+            <div class="glass-card rounded-2xl p-5 mb-4">
+                <h3 class="font-semibold text-lg mb-3 flex items-center">
+                    <span class="w-6 h-6 bg-primary/10 text-primary rounded-full text-xs flex items-center justify-center mr-2">
+                        <i class="fa fa-building"></i>
+                    </span>
+                    <span data-zh="公共场馆体验" data-en="Public Venues">公共场馆体验</span>
+                </h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="深圳科技馆新馆" data-en="Shenzhen Science Museum">深圳科技馆新馆</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市光明区深圳科技馆新馆">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="太空奥德赛XR大空间" data-en="Space Odyssey XR">太空奥德赛XR大空间</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="深圳图书馆" data-en="Shenzhen Library">深圳图书馆</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市福田区深圳图书馆">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="免费VR阅读体验" data-en="Free VR Reading">免费VR阅读体验</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="南山安全教育馆" data-en="Nanshan Safety Museum">南山安全教育馆</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市南山区南山安全教育体验馆">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="VR交通安全体验" data-en="VR Traffic Safety">VR交通安全体验</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="龙岗文博展览馆" data-en="Longgang Museum">龙岗文博展览馆</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市龙岗区龙城广场地铁站">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="海洋VR科普展" data-en="Ocean VR Exhibition">海洋VR科普展</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="岗厦北站" data-en="Gangxia North Station">岗厦北站</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市福田区岗厦北站">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="AR虚拟动物互动" data-en="AR Virtual Animal">AR虚拟动物互动</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 门店类站点 -->
+            <div class="glass-card rounded-2xl p-5 mb-4">
+                <h3 class="font-semibold text-lg mb-3 flex items-center">
+                    <span class="w-6 h-6 bg-purple/10 text-purple rounded-full text-xs flex items-center justify-center mr-2">
+                        <i class="fa fa-store"></i>
+                    </span>
+                    <span data-zh="VR/AR门店体验" data-en="VR/AR Store Experience">VR/AR门店体验</span>
+                </h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="亦真宇宙XR体验" data-en="Yizhen Universe XR">亦真宇宙XR体验</p>
+                            <button class="nav-btn text-xs text-purple flex items-center gap-1" data-address="深圳市南山区深圳湾睿印RAIL IN">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="三星堆觉醒XR探索" data-en="Sanxingdui XR Explore">三星堆觉醒XR探索</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="树莓VR未来影院" data-en="Shumei VR Cinema">树莓VR未来影院</p>
+                            <button class="nav-btn text-xs text-purple flex items-center gap-1" data-address="深圳市龙华区红山6979商业中心">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="沉浸式VR观影" data-en="Immersive VR Movie">沉浸式VR观影</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="X-META VR世界" data-en="X-META VR World">X-META VR世界</p>
+                            <button class="nav-btn text-xs text-purple flex items-center gap-1" data-address="深圳市南山区欢乐海岸">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="全感官VR游戏" data-en="Full-sense VR Game">全感官VR游戏</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 预约教程 -->
+        <section id="guide" class="py-6 fade-in">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fa fa-list-ol text-primary mr-2 icon-glow"></i>
+                <span data-zh="预约&体验教程" data-en="Booking & Experience Guide">预约&体验教程</span>
+            </h2>
+
+            <!-- 公共场馆预约教程 -->
+            <div class="glass-card rounded-2xl p-5 mb-4">
+                <h3 class="font-semibold text-lg mb-4 text-primary" data-zh="公共场馆体验预约" data-en="Public Venue Booking">公共场馆体验预约</h3>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number">1</div>
+                        <div>
+                            <p class="font-medium" data-zh="预约场馆门票" data-en="Book venue ticket">预约场馆门票</p>
+                            <p class="text-sm text-gray-400" data-zh="微信搜索对应场馆小程序，完成实名认证预约" data-en="WeChat search venue applet, complete real-name verification">微信搜索对应场馆小程序，完成实名认证预约</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number">2</div>
+                        <div>
+                            <p class="font-medium" data-zh="选择体验日期" data-en="Select date">选择体验日期</p>
+                            <p class="text-sm text-gray-400" data-zh="科技馆每晚20:00放票，提前抢票避免没名额" data-en="Museum tickets released at 20:00, book in advance">科技馆每晚20:00放票，提前抢票避免没名额</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                        <div>
+                            <p class="font-medium" data-zh="到馆核验入场" data-en="Check in at venue">到馆核验入场</p>
+                            <p class="text-sm text-gray-400" data-zh="携带身份证，核验预约信息后入场" data-en="Bring ID, check in with your booking">携带身份证，核验预约信息后入场</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">4</div>
+                        <div>
+                            <p class="font-medium" data-zh="体验VR/AR项目" data-en="Experience VR/AR projects">体验VR/AR项目</p>
+                            <p class="text-sm text-gray-400" data-zh="到对应区域领取设备，体验沉浸式项目" data-en="Get device at area, experience immersive projects">到对应区域领取设备，体验沉浸式项目</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 门店类预约教程 -->
+            <div class="glass-card rounded-2xl p-5">
+                <h3 class="font-semibold text-lg mb-4 text-purple" data-zh="门店类体验预约" data-en="Store Experience Booking">门店类体验预约</h3>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-purple text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number-purple">1</div>
+                        <div>
+                            <p class="font-medium" data-zh="公众号预约" data-en="Official account booking">公众号预约</p>
+                            <p class="text-sm text-gray-400" data-zh="关注门店公众号，预约体验时间" data-en="Follow store account, book your time">关注门店公众号，预约体验时间</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-purple text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number-purple">2</div>
+                        <div>
+                            <p class="font-medium" data-zh="到店签到" data-en="Check in at store">到店签到</p>
+                            <p class="text-sm text-gray-400" data-zh="周末人多，建议提前10分钟到店等候" data-en="Weekend is busy, arrive 10 mins early">周末人多，建议提前10分钟到店等候</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-purple text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number-purple">3</div>
+                        <div>
+                            <p class="font-medium" data-zh="体验沉浸式项目" data-en="Experience immersive projects">体验沉浸式项目</p>
+                            <p class="text-sm text-gray-400" data-zh="工作人员会帮你佩戴设备，带你进入虚拟世界" data-en="Staff will help you wear device, enter virtual world">工作人员会帮你佩戴设备，带你进入虚拟世界</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 开放时间提示 -->
+        <section class="py-4 fade-in">
+            <div class="glass-card rounded-2xl p-5 glow border-primary/20">
+                <h3 class="font-bold text-lg mb-2 flex items-center">
+                    <i class="fa fa-clock-o text-primary mr-2 icon-glow"></i>
+                    <span data-zh="开放时间说明" data-en="Opening Hours">开放时间说明</span>
+                </h3>
+                <p class="text-sm opacity-90 mb-3" data-zh="大部分VR/AR体验项目都有固定开放时间，提前安排好行程哦！" data-en="Most VR/AR projects have fixed hours, plan your trip in advance!">大部分VR/AR体验项目都有固定开放时间，提前安排好行程哦！</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-primary/20 px-3 py-1 rounded-full text-xs">科技馆 10:00-18:00</span>
+                    <span class="bg-primary/20 px-3 py-1 rounded-full text-xs">图书馆 09:00-17:00</span>
+                    <span class="bg-primary/20 px-3 py-1 rounded-full text-xs">门店 10:00-22:00</span>
+                </div>
+                <p class="text-xs opacity-80 mt-3" data-zh="周一多数场馆闭馆，出行前记得确认哦！" data-en="Most venues are closed on Monday, confirm before you go!">周一多数场馆闭馆，出行前记得确认哦！</p>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="py-6 fade-in">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fa fa-question-circle text-primary mr-2 icon-glow"></i>
+                <span data-zh="常见问题" data-en="FAQ">常见问题</span>
+            </h2>
+
+            <div class="glass-card rounded-2xl p-5 space-y-4">
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="VR体验收费吗？" data-en="Is VR experience charged?">VR体验收费吗？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="公共场馆的基础体验免费，部分深度XR项目需要单独付费，门店的体验一般需要购票，价格在几十到一百多不等。" data-en="Basic public venue experience is free, some XR projects need extra pay, store experience needs ticket, 50-150 RMB.">公共场馆的基础体验免费，部分深度XR项目需要单独付费，门店的体验一般需要购票，价格在几十到一百多不等。</p>
+                </div>
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="小朋友可以体验吗？" data-en="Can kids experience?">小朋友可以体验吗？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="大部分项目12岁以上可以体验，部分项目6岁以上就可以，但是需要家长陪同，太小的小朋友不建议体验哦。" data-en="Most projects for 12+, some for 6+, need parent accompany, too young kids not recommended.">大部分项目12岁以上可以体验，部分项目6岁以上就可以，但是需要家长陪同，太小的小朋友不建议体验哦。</p>
+                </div>
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="体验会晕吗？" data-en="Will I feel dizzy?">体验会晕吗？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="少数人会有轻微的晕动症，一般体验完休息几分钟就好了，如果你容易晕车，建议选择比较平缓的项目。" data-en="Few people feel slight motion sickness, rest a few mins will be ok, if you get carsick, choose gentle projects.">少数人会有轻微的晕动症，一般体验完休息几分钟就好了，如果你容易晕车，建议选择比较平缓的项目。</p>
+                </div>
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="需要带眼镜吗？" data-en="Do I need glasses?">需要带眼镜吗？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="近视的朋友可以直接戴眼镜体验，VR设备的头显可以容纳普通眼镜，不需要特意配隐形眼镜。" data-en="Myopia friends can wear glasses, VR device can fit normal glasses, no need contact lens.">近视的朋友可以直接戴眼镜体验，VR设备的头显可以容纳普通眼镜，不需要特意配隐形眼镜。</p>
+                </div>
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="可以拍照吗？" data-en="Can I take photos?">可以拍照吗？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="体验前可以拍照，体验过程中不要摘设备拍照，避免影响体验，也不要用闪光灯哦。" data-en="You can take photos before experience, don't take off device during experience, no flash.">体验前可以拍照，体验过程中不要摘设备拍照，避免影响体验，也不要用闪光灯哦。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 体验小贴士 -->
+        <section class="py-6 fade-in">
+            <div class="glass-card rounded-2xl p-5 border-yellow-500/20">
+                <h3 class="font-bold text-lg mb-3 flex items-center text-yellow-400">
+                    <i class="fa fa-lightbulb-o mr-2"></i>
+                    <span data-zh="体验小贴士" data-en="Tips">体验小贴士</span>
+                </h3>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle mt-1 mr-2 text-yellow-400"></i>
+                        <span data-zh="科技馆的票要提前抢，每晚20点放票，手慢无" data-en="Museum tickets need to book in advance, released at 20:00">科技馆的票要提前抢，每晚20点放票，手慢无</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle mt-1 mr-2 text-yellow-400"></i>
+                        <span data-zh="体验前不要吃太饱，避免晕动症，体验完可以喝点水休息" data-en="Don't eat too much before experience, avoid motion sickness, drink water after">体验前不要吃太饱，避免晕动症，体验完可以喝点水休息</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle mt-1 mr-2 text-yellow-400"></i>
+                        <span data-zh="长发的朋友可以把头发扎起来，方便佩戴头显" data-en="Long hair friends can tie hair, easier to wear device">长发的朋友可以把头发扎起来，方便佩戴头显</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle mt-1 mr-2 text-yellow-400"></i>
+                        <span data-zh="体验过程中如果不舒服，随时喊工作人员停止" data-en="If you feel uncomfortable during experience, call staff to stop anytime">体验过程中如果不舒服，随时喊工作人员停止</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部 -->
+    <footer class="py-6 text-center text-gray-500 text-xs">
+        <p data-zh="数据更新于2026年4月，服务可能调整，以官方实际显示为准" data-en="Data updated Apr 2026, service may change, subject to official display">数据更新于2026年4月，服务可能调整，以官方实际显示为准</p>
+        <p class="mt-1" data-zh="深圳智能科技 · 未来触手可及" data-en="Shenzhen Smart Tech · Future is here">深圳智能科技 · 未来触手可及</p>
+    </footer>
+
+    <script>
+        // 语言切换逻辑
+        let currentLang = localStorage.getItem('vrArExperienceGuideLang') || 'zh';
+
+        function switchLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('vrArExperienceGuideLang', lang);
+            
+            // 更新页面语言
+            document.querySelectorAll('[data-zh]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${lang}`);
+            });
+
+            // 更新图片alt
+            document.querySelectorAll('[data-alt-zh]').forEach(el => {
+                el.alt = el.getAttribute(`data-alt-${lang}`);
+            });
+
+            // 更新页面标题
+            document.getElementById('page-title').textContent = lang === 'zh' 
+                ? '深圳VR/AR/MR体验攻略' 
+                : 'Shenzhen VR/AR/MR Experience Guide';
+            
+            // 更新html的lang属性
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+            // 更新切换按钮文字
+            document.getElementById('langText').textContent = lang === 'zh' ? 'EN' : '中';
+        }
+
+        // 初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化语言
+            switchLang(currentLang);
+
+            // 绑定切换按钮
+            document.getElementById('langToggle').addEventListener('click', function() {
+                const newLang = currentLang === 'zh' ? 'en' : 'zh';
+                switchLang(newLang);
+            });
+
+            // 绑定导航按钮
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const address = this.dataset.address;
+                    // 调用高德地图导航，手机端会自动打开APP
+                    const navUrl = `https://uri.amap.com/navigation?to=${encodeURIComponent(address)}&mode=car&src=vr_ar_experience_guide`;
+                    window.open(navUrl, '_blank');
+                });
+            });
+
+            // 滚动渐入动画
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // 处理点击导航后的关闭导航栏效果
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 60,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

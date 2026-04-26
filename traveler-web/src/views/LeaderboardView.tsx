@@ -75,9 +75,11 @@ export function LeaderboardView() {
         ))}
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-4" data-testid="leaderboard-list">
         {spots.map((spot) => (
-          <SpotCard key={spot.id} spot={spot} onClick={() => openSpotDetail(spot.id)} />
+          <div key={spot.id} data-testid="spot-card" onClick={() => openSpotDetail(spot.id)}>
+            <SpotCard spot={spot} onClick={() => openSpotDetail(spot.id)} />
+          </div>
         ))}
 
         {loading && (

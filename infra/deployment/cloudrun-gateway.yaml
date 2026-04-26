@@ -1,0 +1,45 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: shenzhen-nexus-gateway
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "1"
+        autoscaling.knative.dev/maxScale: "10"
+    spec:
+      containerConcurrency: 80
+      containers:
+        - image: gcr.io/PROJECT_ID/shenzhen-nexus-gateway:latest
+          ports:
+            - containerPort: 3001
+          env:
+            - name: NODE_ENV
+              value: "production"
+            - name: PORT
+              value: "3001"
+            - name: STRIPE_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: STRIPE_SECRET_KEY
+                  key: latest
+            - name: STRIPE_WEBHOOK_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: STRIPE_WEBHOOK_SECRET
+                  key: latest
+            - name: PASS_HMAC_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: PASS_HMAC_SECRET
+                  key: latest
+            - name: AI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: AI_API_KEY
+                  key: latest
+            - name: AI_BASE_URL
+              value: "https://api.with7.cn"
+            - name: AI_MODEL
+              value: "claude-haiku-4-5-20251001"

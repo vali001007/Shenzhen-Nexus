@@ -2,7 +2,6 @@ import { useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Camera } from 'lucide-react'
 import { callGeminiImage } from '../services/gemini'
-import { useLangStore } from '../stores/useLangStore'
 
 interface DecodeResult {
   term: string
@@ -14,7 +13,6 @@ interface DecodeResult {
 
 export function ArDecoder() {
   const { t } = useTranslation()
-  const currentLang = useLangStore((s) => s.currentLang)
   const fileRef = useRef<HTMLInputElement>(null)
 
   const [loading, setLoading] = useState(false)
@@ -45,17 +43,17 @@ export function ArDecoder() {
             tags: Array.isArray(data.tags) ? data.tags : [],
           })
         } else {
-          setError(currentLang === 'zh' ? '分析结果为空，请换一张图片重试。' : 'Empty result. Please try another image.')
+          setError(t('ar-error-empty'))
         }
       } catch (e) {
         console.error('ArDecoder error:', e)
-        setError(currentLang === 'zh' ? '图片分析失败，请重试。' : 'Image analysis failed. Please try again.')
+        setError(t('ar-error-analyze'))
       } finally {
         setLoading(false)
       }
     }
     reader.onerror = () => {
-      setError(currentLang === 'zh' ? '图片读取失败，请重试。' : 'Failed to read image. Please try again.')
+      setError(t('ar-error-read'))
       setLoading(false)
     }
     reader.readAsDataURL(file)

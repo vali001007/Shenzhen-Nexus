@@ -34,9 +34,14 @@ export function PaymentSetup() {
             <p className="text-xs text-slate-400 mt-1">{t('pay-step3-desc')}</p>
           </div>
         </div>
-        <button className="w-full py-2.5 rounded-xl bg-sky-500 text-white font-semibold text-sm hover:bg-sky-400 transition">
+        <a
+          href="https://render.alipay.com/p/yuyan/180020040001212700/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block w-full py-2.5 rounded-xl bg-sky-500 text-white font-semibold text-sm hover:bg-sky-400 transition text-center"
+        >
           {t('pay-btn-alipay')}
-        </button>
+        </a>
       </div>
 
       <div className="glass-panel rounded-2xl border border-emerald-500/30 p-5 space-y-4">
@@ -57,9 +62,14 @@ export function PaymentSetup() {
             <p className="text-xs text-slate-400 mt-1">{t('pay-w-step2-desc')}</p>
           </div>
         </div>
-        <button className="w-full py-2.5 rounded-xl bg-emerald-500 text-white font-semibold text-sm hover:bg-emerald-400 transition">
+        <a
+          href="https://weixin.qq.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block w-full py-2.5 rounded-xl bg-emerald-500 text-white font-semibold text-sm hover:bg-emerald-400 transition text-center"
+        >
           {t('pay-btn-wechat')}
-        </button>
+        </a>
       </div>
     </div>
   )

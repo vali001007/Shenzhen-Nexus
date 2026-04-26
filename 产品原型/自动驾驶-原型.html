@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title id="page-title">深圳自动驾驶体验攻略</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00D4FF',
+                        secondary: '#FF7D00',
+                        purple: '#A855F7',
+                        dark: {
+                            100: '#1E3A5F',
+                            200: '#112240',
+                            300: '#0A192F',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            }
+            .glass-card {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                box-shadow: 0 8px 32px 0 rgba(0, 212, 255, 0.08);
+            }
+            .glow {
+                box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            }
+            .icon-glow {
+                text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+            }
+            .icon-glow-purple {
+                text-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+            }
+        }
+    </style>
+    <style>
+        body {
+            scroll-behavior: smooth;
+            background: linear-gradient(135deg, #0A192F 0%, #112240 50%, #1E3A5F 100%);
+            min-height: 100vh;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 212, 255, 0.2);
+        }
+        .lang-btn {
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+        .step-number {
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+        }
+        .step-number-purple {
+            box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+        }
+        .nav-btn {
+            transition: all 0.2s ease;
+        }
+        .nav-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-100">
+    <!-- 顶部导航 -->
+    <nav class="fixed top-0 left-0 right-0 bg-dark-300/80 backdrop-blur-md z-50 border-b border-white/5">
+        <div class="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="font-bold text-primary text-lg icon-glow" data-zh="自动驾驶攻略" data-en="Auto Drive Guide">自动驾驶攻略</h1>
+            <div class="flex gap-4 text-sm items-center">
+                <a href="#stations" class="text-gray-300 hover:text-primary" data-zh="站点" data-en="Stations">站点</a>
+                <a href="#guide" class="text-gray-300 hover:text-primary" data-zh="教程" data-en="Guide">教程</a>
+                <a href="#faq" class="text-gray-300 hover:text-primary" data-zh="FAQ" data-en="FAQ">FAQ</a>
+                <button id="langToggle" class="lang-btn flex items-center gap-1 px-2 py-1 rounded-md border border-white/10 text-xs">
+                    <i class="fa fa-language text-primary"></i>
+                    <span id="langText">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <header class="pt-14">
+        <div class="relative h-80 overflow-hidden rounded-b-2xl">
+            <img src="https://img1.baidu.com/it/u=2876543210,123456789&fm=253&fmt=auto&app=120&f=JPEG?w=800&h=500" alt="深圳自动驾驶体验" data-alt-zh="深圳自动驾驶体验" data-alt-en="Shenzhen Autonomous Driving" class="w-full h-full object-cover brightness-75">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-300/90 to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+                <h1 class="text-3xl font-bold text-shadow mb-2" data-zh="深圳自动驾驶" data-en="Shenzhen Autonomous Driving">深圳自动驾驶</h1>
+                <p class="text-lg opacity-90 text-shadow" data-zh="体验未来出行，L4级无人车免费坐" data-en="Experience future travel, free L4 autonomous car">体验未来出行，L4级无人车免费坐</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto px-4 pb-16">
+        <!-- 核心亮点 -->
+        <section class="py-6 fade-in">
+            <div class="grid grid-cols-3 gap-4">
+                <div class="glass-card rounded-xl p-4 text-center card-hover">
+                    <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fa fa-car text-primary text-lg icon-glow"></i>
+                    </div>
+                    <p class="font-semibold text-sm" data-zh="L4级自动驾驶" data-en="L4 Auto Drive">L4级自动驾驶</p>
+                    <p class="text-xs text-gray-400 mt-1" data-zh="全程无需驾驶员" data-en="No driver needed">全程无需驾驶员</p>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center card-hover">
+                    <div class="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fa fa-gift text-secondary text-lg"></i>
+                    </div>
+                    <p class="font-semibold text-sm" data-zh="免费体验" data-en="Free Trial">免费体验</p>
+                    <p class="text-xs text-gray-400 mt-1" data-zh="目前体验不收费" data-en="No charge for trial">目前体验不收费</p>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center card-hover">
+                    <div class="w-10 h-10 bg-green-400/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fa fa-map-marker text-green-400 text-lg"></i>
+                    </div>
+                    <p class="font-semibold text-sm" data-zh="双平台覆盖" data-en="Dual Platform">双平台覆盖</p>
+                    <p class="text-xs text-gray-400 mt-1" data-zh="萝卜快跑+小马智行" data-en="Apollo + Pony.ai">萝卜快跑+小马智行</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 试点站点 -->
+        <section id="stations" class="py-6 fade-in">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fa fa-map-o text-primary mr-2 icon-glow"></i>
+                <span data-zh="体验站点一览" data-en="Available Stations">体验站点一览</span>
+            </h2>
+            
+            <!-- 百度萝卜快跑站点 -->
+            <div class="glass-card rounded-2xl p-5 mb-4">
+                <h3 class="font-semibold text-lg mb-3 flex items-center">
+                    <span class="w-6 h-6 bg-primary/10 text-primary rounded-full text-xs flex items-center justify-center mr-2">
+                        <i class="fa fa-car"></i>
+                    </span>
+                    <span data-zh="百度萝卜快跑" data-en="Baidu Apollo Go">百度萝卜快跑</span>
+                </h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="坪山高铁站" data-en="Pingshan High Speed Rail">坪山高铁站</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市坪山区坪山高铁站">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="RoboTaxi核心站点" data-en="RoboTaxi Core Station">RoboTaxi核心站点</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="燕子湖会展中心" data-en="Yanzi Lake Center">燕子湖会展中心</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市坪山区燕子湖会展中心">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="无人巴士接驳点" data-en="Shuttle Bus Stop">无人巴士接驳点</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="坪山文化聚落" data-en="Pingshan Culture Center">坪山文化聚落</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市坪山区坪山文化聚落">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="商圈体验站点" data-en="Mall Experience Station">商圈体验站点</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="宝安国际机场" data-en="Bao'an Airport">宝安国际机场</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市宝安区宝安国际机场">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="机场接驳站点" data-en="Airport Station">机场接驳站点</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="龙岗大运中心" data-en="Longgang Universiade">龙岗大运中心</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市龙岗区大运中心">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="体育中心体验点" data-en="Sports Center Station">体育中心体验点</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="坪山行政服务中心" data-en="Pingshan Admin Center">坪山行政服务中心</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市坪山区行政服务中心">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="政务区体验点" data-en="Gov Zone Station">政务区体验点</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 小马智行站点 -->
+            <div class="glass-card rounded-2xl p-5 mb-4">
+                <h3 class="font-semibold text-lg mb-3 flex items-center">
+                    <span class="w-6 h-6 bg-purple/10 text-purple rounded-full text-xs flex items-center justify-center mr-2">
+                        <i class="fa fa-car"></i>
+                    </span>
+                    <span data-zh="小马智行 Pony.ai" data-en="Pony.ai">小马智行 Pony.ai</span>
+                </h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="深圳湾体育中心" data-en="Shenzhen Bay Sports Center">深圳湾体育中心</p>
+                            <button class="nav-btn text-xs text-purple flex items-center gap-1" data-address="深圳市南山区深圳湾体育中心">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="核心体验站点" data-en="Core Station">核心体验站点</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="后海地铁站" data-en="Houhai Metro Station">后海地铁站</p>
+                            <button class="nav-btn text-xs text-purple flex items-center gap-1" data-address="深圳市南山区后海地铁站">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="地铁接驳站点" data-en="Metro Connection">地铁接驳站点</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="海岸城购物中心" data-en="Coastal City Mall">海岸城购物中心</p>
+                            <button class="nav-btn text-xs text-purple flex items-center gap-1" data-address="深圳市南山区海岸城购物中心">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="商圈体验站点" data-en="Mall Station">商圈体验站点</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="科技园南区" data-en="Tech Park South">科技园南区</p>
+                            <button class="nav-btn text-xs text-purple flex items-center gap-1" data-address="深圳市南山区科技园南区">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="科技园核心区" data-en="Tech Core Zone">科技园核心区</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="福田高铁站" data-en="Futian High Speed Rail">福田高铁站</p>
+                            <button class="nav-btn text-xs text-purple flex items-center gap-1" data-address="深圳市福田区福田高铁站">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="高铁站接驳点" data-en="Railway Station">高铁站接驳点</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="车公庙地铁站" data-en="Chegongmiao Metro">车公庙地铁站</p>
+                            <button class="nav-btn text-xs text-purple flex items-center gap-1" data-address="深圳市福田区车公庙地铁站">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="CBD核心站点" data-en="CBD Core Station">CBD核心站点</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 预约教程 -->
+        <section id="guide" class="py-6 fade-in">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fa fa-list-ol text-primary mr-2 icon-glow"></i>
+                <span data-zh="预约&体验教程" data-en="Booking & Experience Guide">预约&体验教程</span>
+            </h2>
+
+            <!-- 萝卜快跑教程 -->
+            <div class="glass-card rounded-2xl p-5 mb-4">
+                <h3 class="font-semibold text-lg mb-4 text-primary" data-zh="百度萝卜快跑" data-en="Baidu Apollo Go">百度萝卜快跑</h3>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number">1</div>
+                        <div>
+                            <p class="font-medium" data-zh="下载萝卜快跑APP" data-en="Download Apollo Go App">下载萝卜快跑APP</p>
+                            <p class="text-sm text-gray-400" data-zh="完成实名认证，绑定手机号" data-en="Complete real-name verification">完成实名认证，绑定手机号</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number">2</div>
+                        <div>
+                            <p class="font-medium" data-zh="选择上下车点" data-en="Select Pickup & Dropoff">选择上下车点</p>
+                            <p class="text-sm text-gray-400" data-zh="在地图上选择你附近的试点站点" data-en="Select nearby station on map">在地图上选择你附近的试点站点</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                        <div>
+                            <p class="font-medium" data-zh="预约出行时间" data-en="Book your time">预约出行时间</p>
+                            <p class="text-sm text-gray-400" data-zh="选择你想要的体验时间，确认预约" data-en="Select time and confirm booking">选择你想要的体验时间，确认预约</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">4</div>
+                        <div>
+                            <p class="font-medium" data-zh="到站点上车体验" data-en="Go to station for ride">到站点上车体验</p>
+                            <p class="text-sm text-gray-400" data-zh="车辆到达后扫码开门，全程体验自动驾驶" data-en="Scan code to open door, enjoy the ride">车辆到达后扫码开门，全程体验自动驾驶</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 小马智行教程 -->
+            <div class="glass-card rounded-2xl p-5">
+                <h3 class="font-semibold text-lg mb-4 text-purple" data-zh="小马智行 Pony.ai" data-en="Pony.ai">小马智行 Pony.ai</h3>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-purple text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number-purple">1</div>
+                        <div>
+                            <p class="font-medium" data-zh="下载小马智行APP" data-en="Download Pony.ai App">下载小马智行APP</p>
+                            <p class="text-sm text-gray-400" data-zh="完成实名认证，人脸核验" data-en="Complete real-name & face verification">完成实名认证，人脸核验</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-purple text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number-purple">2</div>
+                        <div>
+                            <p class="font-medium" data-zh="选择上下车点" data-en="Select Pickup & Dropoff">选择上下车点</p>
+                            <p class="text-sm text-gray-400" data-zh="在南山/福田的试点区域内选择站点" data-en="Select station in Nanshan/Futian pilot area">在南山/福田的试点区域内选择站点</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-purple text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number-purple">3</div>
+                        <div>
+                            <p class="font-medium" data-zh="确认预约订单" data-en="Confirm your booking">确认预约订单</p>
+                            <p class="text-sm text-gray-400" data-zh="选择乘车人数，确认预约即可" data-en="Select passenger count, confirm booking">选择乘车人数，确认预约即可</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-purple text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number-purple">4</div>
+                        <div>
+                            <p class="font-medium" data-zh="到站点上车体验" data-en="Go to station for ride">到站点上车体验</p>
+                            <p class="text-sm text-gray-400" data-zh="车辆到达后自动开门，体验全程无人驾驶" data-en="Car auto open door, enjoy full autonomous ride">车辆到达后自动开门，体验全程无人驾驶</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 夜间运营提示 -->
+        <section class="py-4 fade-in">
+            <div class="glass-card rounded-2xl p-5 glow border-primary/20">
+                <h3 class="font-bold text-lg mb-2 flex items-center">
+                    <i class="fa fa-moon-o text-primary mr-2 icon-glow"></i>
+                    <span data-zh="夜间运营服务" data-en="Night Operation Service">夜间运营服务</span>
+                </h3>
+                <p class="text-sm opacity-90 mb-3" data-zh="两个平台都支持自动驾驶夜间运营，深夜也能体验！" data-en="Both platforms support night operation, experience even late night!">两个平台都支持自动驾驶夜间运营，深夜也能体验！</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-primary/20 px-3 py-1 rounded-full text-xs">Pingshan</span>
+                    <span class="bg-primary/20 px-3 py-1 rounded-full text-xs">Nanshan</span>
+                    <span class="bg-primary/20 px-3 py-1 rounded-full text-xs">Futian</span>
+                </div>
+                <p class="text-xs opacity-80 mt-3" data-zh="运营时间：每日 09:00 - 22:00，覆盖早晚高峰！" data-en="Hours: 09:00-22:00, covers morning/evening rush!">运营时间：每日 09:00 - 22:00，覆盖早晚高峰！</p>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="py-6 fade-in">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fa fa-question-circle text-primary mr-2 icon-glow"></i>
+                <span data-zh="常见问题" data-en="FAQ">常见问题</span>
+            </h2>
+
+            <div class="glass-card rounded-2xl p-5 space-y-4">
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="自动驾驶安全吗？" data-en="Is autonomous driving safe?">自动驾驶安全吗？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="非常安全！L4级自动驾驶已经经过百万公里测试，配备多重传感器，遇到障碍物会自动避让，两个平台都有完善的安全保障。" data-en="Very safe! L4 AD has passed millions km test, with multi sensors, auto avoid obstacles, both platforms have full safety system.">非常安全！L4级自动驾驶已经经过百万公里测试，配备多重传感器，遇到障碍物会自动避让，两个平台都有完善的安全保障。</p>
+                </div>
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="体验需要驾照吗？" data-en="Do I need driver license?">体验需要驾照吗？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="不需要！你只是乘客，不需要任何驾照，只要完成实名认证就可以预约，两个平台都一样。" data-en="No need! You are just passenger, no license needed, just real-name verification, same for both platforms.">不需要！你只是乘客，不需要任何驾照，只要完成实名认证就可以预约，两个平台都一样。</p>
+                </div>
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="可以带朋友一起吗？" data-en="Can I bring friends?">可以带朋友一起吗？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="可以！一辆车最多可以坐3位乘客，都需要完成实名认证，一起预约即可。" data-en="Yes! Max 3 passengers, all need real-name verification, book together.">可以！一辆车最多可以坐3位乘客，都需要完成实名认证，一起预约即可。</p>
+                </div>
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="什么天气会停运？" data-en="What weather stops service?">什么天气会停运？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="遇到暴雨、台风、大雾等极端天气，为了安全会临时停运，预约前可以留意APP提示。" data-en="Extreme weather like storm, typhoon, fog will pause service, check App notice before booking.">遇到暴雨、台风、大雾等极端天气，为了安全会临时停运，预约前可以留意APP提示。</p>
+                </div>
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="体验收费吗？" data-en="Is the trial charged?">体验收费吗？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="目前试点期间两个平台都完全免费！后续可能会逐步调整收费，以APP实际显示为准。" data-en="Free during pilot period for both platforms! May adjust later, subject to App display.">目前试点期间两个平台都完全免费！后续可能会逐步调整收费，以APP实际显示为准。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 体验小贴士 -->
+        <section class="py-6 fade-in">
+            <div class="glass-card rounded-2xl p-5 border-yellow-500/20">
+                <h3 class="font-bold text-lg mb-3 flex items-center text-yellow-400">
+                    <i class="fa fa-lightbulb-o mr-2"></i>
+                    <span data-zh="体验小贴士" data-en="Tips">体验小贴士</span>
+                </h3>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle mt-1 mr-2 text-yellow-400"></i>
+                        <span data-zh="周末人多的时候，提前1-2天预约，避免没名额，两个平台都可以试试" data-en="Book 1-2 days early on weekends, you can try both platforms">周末人多的时候，提前1-2天预约，避免没名额，两个平台都可以试试</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle mt-1 mr-2 text-yellow-400"></i>
+                        <span data-zh="上车前记得检查行李，不要遗落物品在车里" data-en="Check your luggage before getting off, don't leave items">上车前记得检查行李，不要遗落物品在车里</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle mt-1 mr-2 text-yellow-400"></i>
+                        <span data-zh="行程中不要随意触碰车内的按钮，有问题可以呼叫车内客服" data-en="Don't touch buttons in car, call customer service if you have problem">行程中不要随意触碰车内的按钮，有问题可以呼叫车内客服</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle mt-1 mr-2 text-yellow-400"></i>
+                        <span data-zh="不要在车内饮食，保持车内整洁哦" data-en="Don't eat/drink in car, keep it clean">不要在车内饮食，保持车内整洁哦</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部 -->
+    <footer class="py-6 text-center text-gray-500 text-xs">
+        <p data-zh="数据更新于2025年12月，服务可能调整，以APP实际显示为准" data-en="Data updated Dec 2025, service may change, subject to App display">数据更新于2025年12月，服务可能调整，以APP实际显示为准</p>
+        <p class="mt-1" data-zh="深圳智能交通 · 未来触手可及" data-en="Shenzhen Smart Transport · Future is here">深圳智能交通 · 未来触手可及</p>
+    </footer>
+
+    <script>
+        // 语言切换逻辑
+        let currentLang = localStorage.getItem('autoDriveGuideLang') || 'zh';
+
+        function switchLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('autoDriveGuideLang', lang);
+            
+            // 更新页面语言
+            document.querySelectorAll('[data-zh]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${lang}`);
+            });
+
+            // 更新图片alt
+            document.querySelectorAll('[data-alt-zh]').forEach(el => {
+                el.alt = el.getAttribute(`data-alt-${lang}`);
+            });
+
+            // 更新页面标题
+            document.getElementById('page-title').textContent = lang === 'zh' 
+                ? '深圳自动驾驶体验攻略' 
+                : 'Shenzhen Autonomous Driving Guide';
+            
+            // 更新html的lang属性
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+            // 更新切换按钮文字
+            document.getElementById('langText').textContent = lang === 'zh' ? 'EN' : '中';
+        }
+
+        // 初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化语言
+            switchLang(currentLang);
+
+            // 绑定切换按钮
+            document.getElementById('langToggle').addEventListener('click', function() {
+                const newLang = currentLang === 'zh' ? 'en' : 'zh';
+                switchLang(newLang);
+            });
+
+            // 绑定导航按钮
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const address = this.dataset.address;
+                    // 调用高德地图导航，手机端会自动打开APP
+                    const navUrl = `https://uri.amap.com/navigation?to=${encodeURIComponent(address)}&mode=car&src=auto_drive_guide`;
+                    window.open(navUrl, '_blank');
+                });
+            });
+
+            // 滚动渐入动画
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // 处理点击导航后的关闭导航栏效果
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 60,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

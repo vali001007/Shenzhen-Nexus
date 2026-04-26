@@ -60,10 +60,12 @@ export function ExploreView() {
               className={`glass-panel p-4 rounded-2xl cursor-pointer hover:bg-slate-800 transition group ${item.neon ? 'neon-border' : ''}`}
               onClick={() => openModule(item.id)}
             >
-              <div className={`w-10 h-10 rounded-xl ${item.colorClass} flex items-center justify-center mb-3 transition`}>
-                <span className="text-lg">{item.icon}</span>
+              <div className="flex items-center gap-3 mb-2">
+                <div className={`w-10 h-10 rounded-xl ${item.colorClass} flex items-center justify-center shrink-0 transition`}>
+                  <span className="text-lg">{item.icon}</span>
+                </div>
+                <h3 className="font-semibold text-sm text-white">{t(item.titleKey)}</h3>
               </div>
-              <h3 className="font-semibold text-sm mb-1">{t(item.titleKey)}</h3>
               <p className="text-xs text-slate-400 line-clamp-2">{t(item.descKey)}</p>
             </div>
           ))}
@@ -72,23 +74,25 @@ export function ExploreView() {
 
       <section className="fade-in" style={{ animationDelay: '0.2s' }}>
         <h2 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3 px-2">{t('tech-safari')}</h2>
-        <div className="space-y-3">
+        <div className="grid grid-cols-2 gap-3">
           {[
             { id: 'drone-delivery', icon: '🚁', titleKey: 'drone', descKey: 'drone-desc', colorClass: 'bg-sky-500/20' },
             { id: 'robotaxi', icon: '🚗', titleKey: 'robotaxi', descKey: 'robotaxi-desc', colorClass: 'bg-fuchsia-500/20' },
+            { id: 'robot-experience', icon: '🤖', titleKey: 'robot', descKey: 'robot-desc', colorClass: 'bg-emerald-500/20' },
+            { id: 'metaverse', icon: '🥽', titleKey: 'meta', descKey: 'meta-desc', colorClass: 'bg-fuchsia-500/20' },
           ].map((item) => (
             <div
               key={item.id}
-              className="glass-panel p-4 rounded-2xl flex items-center gap-4 cursor-pointer hover:bg-slate-800 transition"
+              className="glass-panel p-4 rounded-2xl cursor-pointer hover:bg-slate-800 transition group"
               onClick={() => openModule(item.id)}
             >
-              <div className={`w-12 h-12 rounded-xl ${item.colorClass} flex items-center justify-center shrink-0`}>
-                <span className="text-2xl">{item.icon}</span>
-              </div>
-              <div>
+              <div className="flex items-center gap-3 mb-2">
+                <div className={`w-10 h-10 rounded-xl ${item.colorClass} flex items-center justify-center shrink-0 transition`}>
+                  <span className="text-lg">{item.icon}</span>
+                </div>
                 <h3 className="font-semibold text-sm text-white">{t(item.titleKey)}</h3>
-                <p className="text-xs text-slate-400 mt-0.5">{t(item.descKey)}</p>
               </div>
+              <p className="text-xs text-slate-400 line-clamp-2">{t(item.descKey)}</p>
             </div>
           ))}
         </div>

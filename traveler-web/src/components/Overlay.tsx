@@ -17,6 +17,10 @@ import { RouteDirections } from '../modules/RouteDirections'
 import { LanguageSettings } from '../modules/LanguageSettings'
 import { AnalyticsFunnel } from '../modules/AnalyticsFunnel'
 import { ReleaseGate } from '../modules/ReleaseGate'
+import { PaymentResult } from '../modules/PaymentResult'
+import { RobotExperience } from '../modules/RobotExperience'
+import { MetaverseExperience } from '../modules/MetaverseExperience'
+import { MyOrders } from '../modules/MyOrders'
 import { SpotDetail } from './SpotDetail'
 import { getSpotById } from '../hooks/useSpot'
 import { getLocaleText } from '../utils/locale'
@@ -38,6 +42,10 @@ const moduleMap: Record<string, { titleKey: string; component: React.FC }> = {
   'language-settings': { titleKey: 'lang-setting', component: LanguageSettings },
   'analytics-funnel': { titleKey: 'analytics-module-title', component: AnalyticsFunnel },
   'release-gate': { titleKey: 'qa-module-title', component: ReleaseGate },
+  'payment-result': { titleKey: 'payment-result-module-title', component: PaymentResult },
+  'robot-experience': { titleKey: 'robot-mod-title', component: RobotExperience },
+  'metaverse': { titleKey: 'meta-mod-title', component: MetaverseExperience },
+  'my-orders': { titleKey: 'my-orders-module-title', component: MyOrders },
 }
 
 export function Overlay() {
@@ -88,7 +96,10 @@ export function Overlay() {
           </button>
         )}
       </div>
-      <div className="flex-1 overflow-y-auto p-4 no-scrollbar">
+      <div
+        className="flex-1 overflow-y-auto p-4 no-scrollbar"
+        data-testid={currentSpotId ? 'spot-detail' : currentModule ? `module-${currentModule}` : 'overlay-content'}
+      >
         {ModuleComponent ? (
           <ModuleComponent />
         ) : currentSpotId ? (

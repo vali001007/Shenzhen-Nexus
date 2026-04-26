@@ -1,0 +1,18 @@
+{
+  "name": "shenzhen-nexus",
+  "private": true,
+  "pnpm": {
+    "onlyBuiltDependencies": ["better-sqlite3", "esbuild"]
+  },
+  "scripts": {
+    "dev:web": "pnpm --filter traveler-web dev",
+    "dev:api": "pnpm --filter gateway dev",
+    "dev:merchant": "pnpm --filter merchant-console dev",
+    "dev:ops": "pnpm --filter ops-console dev",
+    "build": "pnpm -r build",
+    "test": "pnpm --filter traveler-web test --run",
+    "test:e2e": "pnpm --filter e2e test",
+    "deploy:frontend": "bash infra/scripts/deploy_frontend.sh",
+    "rollback:frontend": "bash infra/scripts/rollback_frontend.sh"
+  }
+}

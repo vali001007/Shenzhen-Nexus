@@ -14,13 +14,13 @@ export function ReleaseGate() {
   const [ran, setRan] = useState(false)
 
   const checks: CheckItem[] = [
-    { id: 'spots', label: 'Spot data loaded (14 spots)', check: () => true },
-    { id: 'i18n', label: 'i18n en/zh loaded', check: () => true },
-    { id: 'order', label: 'At least 1 order created', check: () => orders.length > 0 },
-    { id: 'paid', label: 'At least 1 order paid', check: () => orders.some((o) => o.status === 'paid') },
-    { id: 'pass', label: 'At least 1 pass claimed', check: () => passes.length > 0 },
-    { id: 'redeem', label: 'At least 1 pass redeemed', check: () => redemptions.length > 0 },
-    { id: 'events', label: 'Events tracked (>0)', check: () => events.length > 0 },
+    { id: 'spots', label: t('qa-check-spots'), check: () => true },
+    { id: 'i18n', label: t('qa-check-i18n'), check: () => true },
+    { id: 'order', label: t('qa-check-order'), check: () => orders.length > 0 },
+    { id: 'paid', label: t('qa-check-paid'), check: () => orders.some((o) => o.status === 'paid') },
+    { id: 'pass', label: t('qa-check-pass'), check: () => passes.length > 0 },
+    { id: 'redeem', label: t('qa-check-redeem'), check: () => redemptions.length > 0 },
+    { id: 'events', label: t('qa-check-events'), check: () => events.length > 0 },
   ]
 
   const results = checks.map((c) => ({ ...c, passed: c.check() }))
@@ -53,7 +53,7 @@ export function ReleaseGate() {
               {allPassed ? t('qa-pass') : t('qa-fail')}
             </p>
             <p className="text-xs text-slate-500 mt-1">
-              {results.filter((r) => r.passed).length}/{results.length} checks passed
+              {results.filter((r) => r.passed).length}/{results.length} {t('qa-checks-passed')}
             </p>
           </div>
         </>

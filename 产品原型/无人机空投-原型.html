@@ -1,0 +1,521 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title id="page-title">深圳无人机外卖体验攻略</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#00D4FF',
+                        secondary: '#FF7D00',
+                        dark: {
+                            100: '#1E3A5F',
+                            200: '#112240',
+                            300: '#0A192F',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            }
+            .glass-card {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                box-shadow: 0 8px 32px 0 rgba(0, 212, 255, 0.08);
+            }
+            .glow {
+                box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+            }
+            .icon-glow {
+                text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+            }
+        }
+    </style>
+    <style>
+        body {
+            scroll-behavior: smooth;
+            background: linear-gradient(135deg, #0A192F 0%, #112240 50%, #1E3A5F 100%);
+            min-height: 100vh;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 212, 255, 0.2);
+        }
+        .lang-btn {
+            transition: all 0.2s ease;
+        }
+        .lang-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+        .step-number {
+            box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+        }
+        .nav-btn {
+            transition: all 0.2s ease;
+        }
+        .nav-btn:hover {
+            background: rgba(0, 212, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-100">
+    <!-- 顶部导航 -->
+    <nav class="fixed top-0 left-0 right-0 bg-dark-300/80 backdrop-blur-md z-50 border-b border-white/5">
+        <div class="max-w-md mx-auto px-4 py-3 flex justify-between items-center">
+            <h1 class="font-bold text-primary text-lg icon-glow" data-zh="无人机外卖攻略" data-en="Drone Delivery Guide">无人机外卖攻略</h1>
+            <div class="flex gap-4 text-sm items-center">
+                <a href="#stations" class="text-gray-300 hover:text-primary" data-zh="站点" data-en="Stations">站点</a>
+                <a href="#guide" class="text-gray-300 hover:text-primary" data-zh="教程" data-en="Guide">教程</a>
+                <a href="#faq" class="text-gray-300 hover:text-primary" data-zh="FAQ" data-en="FAQ">FAQ</a>
+                <button id="langToggle" class="lang-btn flex items-center gap-1 px-2 py-1 rounded-md border border-white/10 text-xs">
+                    <i class="fa fa-language text-primary"></i>
+                    <span id="langText">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <header class="pt-14">
+        <div class="relative h-80 overflow-hidden rounded-b-2xl">
+            <img src="https://aka.doubaocdn.com/s/iyJ81wGtEd" alt="深圳无人机外卖配送" data-alt-zh="深圳无人机外卖配送" data-alt-en="Shenzhen Drone Food Delivery" class="w-full h-full object-cover brightness-75">
+            <div class="absolute inset-0 bg-gradient-to-t from-dark-300/90 to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6">
+                <h1 class="text-3xl font-bold text-shadow mb-2" data-zh="深圳无人机外卖" data-en="Shenzhen Drone Delivery">深圳无人机外卖</h1>
+                <p class="text-lg opacity-90 text-shadow" data-zh="解锁空中美食，15分钟从天而降" data-en="Unlock air-delivered food, arrives in 15 mins">解锁空中美食，15分钟从天而降</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto px-4 pb-16">
+        <!-- 核心亮点 -->
+        <section class="py-6 fade-in">
+            <div class="grid grid-cols-3 gap-4">
+                <div class="glass-card rounded-xl p-4 text-center card-hover">
+                    <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fa fa-bolt text-primary text-lg icon-glow"></i>
+                    </div>
+                    <p class="font-semibold text-sm" data-zh="极速配送" data-en="Ultra Fast">极速配送</p>
+                    <p class="text-xs text-gray-400 mt-1" data-zh="最快15分钟送达" data-en="15 mins delivery">最快15分钟送达</p>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center card-hover">
+                    <div class="w-10 h-10 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fa fa-money text-secondary text-lg"></i>
+                    </div>
+                    <p class="font-semibold text-sm" data-zh="平价体验" data-en="Affordable">平价体验</p>
+                    <p class="text-xs text-gray-400 mt-1" data-zh="配送费不加价" data-en="No extra fee">配送费不加价</p>
+                </div>
+                <div class="glass-card rounded-xl p-4 text-center card-hover">
+                    <div class="w-10 h-10 bg-green-400/10 rounded-full flex items-center justify-center mx-auto mb-2">
+                        <i class="fa fa-map-marker text-green-400 text-lg"></i>
+                    </div>
+                    <p class="font-semibold text-sm" data-zh="多区覆盖" data-en="Wide Coverage">多区覆盖</p>
+                    <p class="text-xs text-gray-400 mt-1" data-zh="10+公园站点" data-en="10+ Park Stations">10+公园站点</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 试点站点 -->
+        <section id="stations" class="py-6 fade-in">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fa fa-map-o text-primary mr-2 icon-glow"></i>
+                <span data-zh="试点站点一览" data-en="Available Stations">试点站点一览</span>
+            </h2>
+            
+            <!-- 公园站点 -->
+            <div class="glass-card rounded-2xl p-5 mb-4">
+                <h3 class="font-semibold text-lg mb-3 flex items-center">
+                    <span class="w-6 h-6 bg-green-400/10 text-green-400 rounded-full text-xs flex items-center justify-center mr-2">
+                        <i class="fa fa-tree"></i>
+                    </span>
+                    <span data-zh="公园站点（美团服务）" data-en="Park Stations (Meituan)">公园站点（美团服务）</span>
+                </h3>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="深圳湾公园" data-en="Shenzhen Bay Park">深圳湾公园</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市南山区深圳湾公园">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="北湾鹭港/海风运动/海滨生态" data-en="Beiwan/Lufeng/Haibin">北湾鹭港/海风运动/海滨生态</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="人才公园" data-en="Talent Park">人才公园</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市南山区人才公园">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="支持夜间配送至20:00" data-en="Night delivery till 20:00">支持夜间配送至20:00</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="中心公园" data-en="Central Park">中心公园</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市福田区中心公园C2区">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="C2区空投柜" data-en="C2 Airdrop Cabinet">C2区空投柜</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="笔架山体育公园" data-en="Bijiaoshan Park">笔架山体育公园</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市福田区笔架山体育公园">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="支持夜间配送" data-en="Supports night delivery">支持夜间配送</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="白石龙音乐公园" data-en="Baishilong Park">白石龙音乐公园</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市龙华区白石龙音乐公园">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="支持夜间配送" data-en="Supports night delivery">支持夜间配送</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="莲花山公园" data-en="Lianhuashan Park">莲花山公园</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市福田区莲花山公园">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="常规配送" data-en="Regular delivery">常规配送</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="北站中心公园" data-en="North Station Park">北站中心公园</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市龙华区北站中心公园">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="常规配送" data-en="Regular delivery">常规配送</p>
+                    </div>
+                    <div class="border border-white/10 rounded-lg p-4 bg-white/3">
+                        <div class="flex justify-between items-center">
+                            <p class="font-medium text-sm" data-zh="龙城公园" data-en="Longcheng Park">龙城公园</p>
+                            <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市龙岗区龙城公园">
+                                <i class="fa fa-location-arrow"></i>
+                                <span data-zh="导航" data-en="Navi">导航</span>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-1" data-zh="常规配送" data-en="Regular delivery">常规配送</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 商圈站点 -->
+            <div class="glass-card rounded-2xl p-5">
+                <h3 class="font-semibold text-lg mb-3 flex items-center">
+                    <span class="w-6 h-6 bg-orange-400/10 text-orange-400 rounded-full text-xs flex items-center justify-center mr-2">
+                        <i class="fa fa-shopping-bag"></i>
+                    </span>
+                    <span data-zh="商圈&景区站点" data-en="Mall & Scenic Spots">商圈&景区站点</span>
+                </h3>
+                <div class="space-y-3 text-sm">
+                    <div class="flex items-center justify-between py-1">
+                        <p class="text-gray-300 m-0"><i class="fa fa-check-circle text-primary mr-1 icon-glow"></i> <span data-zh="龙岗星河WORLD商圈（6个空投柜）" data-en="Longgang Xinghe WORLD (6 cabinets)">龙岗星河WORLD商圈（6个空投柜）</span></p>
+                        <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市龙岗区星河WORLD">
+                            <i class="fa fa-location-arrow"></i>
+                            <span data-zh="导航" data-en="Navi">导航</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between py-1">
+                        <p class="text-gray-300 m-0"><i class="fa fa-check-circle text-primary mr-1 icon-glow"></i> <span data-zh="民治天虹商圈（3个空投柜）" data-en="Minzhi Tianhong Mall (3 cabinets)">民治天虹商圈（3个空投柜）</span></p>
+                        <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市龙华区民治天虹商场">
+                            <i class="fa fa-location-arrow"></i>
+                            <span data-zh="导航" data-en="Navi">导航</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between py-1">
+                        <p class="text-gray-300 m-0"><i class="fa fa-check-circle text-primary mr-1 icon-glow"></i> <span data-zh="世界之窗、锦绣中华、欢乐谷" data-en="Window of the World, Splendid China, Happy Valley">世界之窗、锦绣中华、欢乐谷</span></p>
+                        <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市南山区世界之窗">
+                            <i class="fa fa-location-arrow"></i>
+                            <span data-zh="导航" data-en="Navi">导航</span>
+                        </button>
+                    </div>
+                    <div class="flex items-center justify-between py-1">
+                        <p class="text-gray-300 m-0"><i class="fa fa-check-circle text-primary mr-1 icon-glow"></i> <span data-zh="深圳图书馆北馆" data-en="Shenzhen Library North Hall">深圳图书馆北馆</span></p>
+                        <button class="nav-btn text-xs text-primary flex items-center gap-1" data-address="深圳市龙岗区深圳图书馆北馆">
+                            <i class="fa fa-location-arrow"></i>
+                            <span data-zh="导航" data-en="Navi">导航</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 下单教程 -->
+        <section id="guide" class="py-6 fade-in">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fa fa-list-ol text-primary mr-2 icon-glow"></i>
+                <span data-zh="下单&取餐教程" data-en="Order & Pickup Guide">下单&取餐教程</span>
+            </h2>
+
+            <!-- 美团教程 -->
+            <div class="glass-card rounded-2xl p-5">
+                <h3 class="font-semibold text-lg mb-4 text-primary" data-zh="美团无人机配送" data-en="Meituan Drone Delivery">美团无人机配送</h3>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number">1</div>
+                        <div>
+                            <p class="font-medium" data-zh="打开美团外卖APP" data-en="Open Meituan Waimai App">打开美团外卖APP</p>
+                            <p class="text-sm text-gray-400" data-zh="在搜索框输入关键词「无人机」" data-en="Search 'Drone' in the search bar">在搜索框输入关键词「无人机」</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold step-number">2</div>
+                        <div>
+                            <p class="font-medium" data-zh="选择对应商圈/站点" data-en="Select nearby station">选择对应商圈/站点</p>
+                            <p class="text-sm text-gray-400" data-zh="确认你当前位置附近的空投柜" data-en="Confirm the airdrop cabinet near you">确认你当前位置附近的空投柜</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">3</div>
+                        <div>
+                            <p class="font-medium" data-zh="选择餐品下单" data-en="Select food and order">选择餐品下单</p>
+                            <p class="text-sm text-gray-400" data-zh="收货地址自动匹配空投柜，正常支付即可" data-en="Address auto matches cabinet, pay normally">收货地址自动匹配空投柜，正常支付即可</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="w-8 h-8 bg-primary text-white rounded-full flex items-center justify-center flex-shrink-0 font-bold">4</div>
+                        <div>
+                            <p class="font-medium" data-zh="前往空投柜取餐" data-en="Go to cabinet for pickup">前往空投柜取餐</p>
+                            <p class="text-sm text-gray-400" data-zh="送达后在屏幕输入手机尾号，取餐并回收餐箱" data-en="Enter phone tail number, pickup and recycle box">送达后在屏幕输入手机尾号，取餐并回收餐箱</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-5">
+                    <img src="https://aka.doubaocdn.com/s/vWOB1wGtFK" alt="美团无人机空投柜" data-alt-zh="美团无人机空投柜" data-alt-en="Meituan Drone Airdrop Cabinet" class="w-full rounded-xl brightness-90">
+                    <p class="text-xs text-gray-500 text-center mt-2" data-zh="公园内的美团无人机空投柜，游客正在等待取餐" data-en="Meituan drone cabinet in park, visitors waiting for pickup">公园内的美团无人机空投柜，游客正在等待取餐</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 夜间配送提示 -->
+        <section class="py-4 fade-in">
+            <div class="glass-card rounded-2xl p-5 glow border-primary/20">
+                <h3 class="font-bold text-lg mb-2 flex items-center">
+                    <i class="fa fa-moon-o text-primary mr-2 icon-glow"></i>
+                    <span data-zh="夜间配送服务" data-en="Night Delivery Service">夜间配送服务</span>
+                </h3>
+                <p class="text-sm opacity-90 mb-3" data-zh="国内首个无人机夜间配送已落地深圳！" data-en="China's first drone night delivery is here!">国内首个无人机夜间配送已落地深圳！</p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-primary/20 px-3 py-1 rounded-full text-xs">Talent Park</span>
+                    <span class="bg-primary/20 px-3 py-1 rounded-full text-xs">Haifeng Park</span>
+                    <span class="bg-primary/20 px-3 py-1 rounded-full text-xs">Bijiaoshan Park</span>
+                    <span class="bg-primary/20 px-3 py-1 rounded-full text-xs">Baishilong Park</span>
+                </div>
+                <p class="text-xs opacity-80 mt-3" data-zh="运营时间：每日 10:00 - 20:00，晚上逛公园也能点空投美食！" data-en="Hours: 10:00-20:00, order food even at night!">运营时间：每日 10:00 - 20:00，晚上逛公园也能点空投美食！</p>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="py-6 fade-in">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fa fa-question-circle text-primary mr-2 icon-glow"></i>
+                <span data-zh="常见问题" data-en="FAQ">常见问题</span>
+            </h2>
+
+            <div class="glass-card rounded-2xl p-5 space-y-4">
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="无人机配送会额外收费吗？" data-en="Is there extra fee for drone delivery?">无人机配送会额外收费吗？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="不会！美团无人机配送费和普通外卖完全一致，不额外加价。" data-en="No! Same delivery fee as regular food delivery, no extra charge.">不会！美团无人机配送费和普通外卖完全一致，不额外加价。</p>
+                </div>
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="配送速度有多快？" data-en="How fast is the delivery?">配送速度有多快？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="空中飞行仅需4-6分钟，加上备餐和取餐，整体从下单到取餐最快15分钟，比传统配送快40%以上。" data-en="Flight only takes 4-6 mins, total 15 mins from order to pickup, 40% faster than regular delivery.">空中飞行仅需4-6分钟，加上备餐和取餐，整体从下单到取餐最快15分钟，比传统配送快40%以上。</p>
+                </div>
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="什么天气会停飞？" data-en="What weather stops service?">什么天气会停飞？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="遇到大雨、大风（风速>10m/s）、大雾等恶劣天气，为了安全会临时暂停服务，下单前可以留意APP提示。" data-en="Heavy rain, strong wind, fog will pause service for safety, check App notice before order.">遇到大雨、大风（风速>10m/s）、大雾等恶劣天气，为了安全会临时暂停服务，下单前可以留意APP提示。</p>
+                </div>
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="可以送哪些东西？" data-en="What items can be delivered?">可以送哪些东西？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="支持2.3kg以内的物品，包括奶茶、咖啡、汉堡、简餐，还有日用品、小玩具等，禁运品和普通外卖一致。" data-en="Items under 2.3kg: drinks, food, daily supplies, same restricted items as regular delivery.">支持2.3kg以内的物品，包括奶茶、咖啡、汉堡、简餐，还有日用品、小玩具等，禁运品和普通外卖一致。</p>
+                </div>
+                <div>
+                    <h4 class="font-medium flex items-center">
+                        <i class="fa fa-question-circle text-primary mr-2 text-sm icon-glow"></i>
+                        <span data-zh="噪音大吗？会扰民吗？" data-en="Is it noisy? Will it disturb residents?">噪音大吗？会扰民吗？</span>
+                    </h4>
+                    <p class="text-sm text-gray-400 ml-6 mt-1" data-zh="新型无人机采用低噪螺旋桨，飞行噪音控制在60分贝以下，和正常交谈的声音差不多，不会扰民。" data-en="New low-noise propellers, noise under 60dB, same as normal talking, no disturbance.">新型无人机采用低噪螺旋桨，飞行噪音控制在60分贝以下，和正常交谈的声音差不多，不会扰民。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 体验小贴士 -->
+        <section class="py-6 fade-in">
+            <div class="glass-card rounded-2xl p-5 border-yellow-500/20">
+                <h3 class="font-bold text-lg mb-3 flex items-center text-yellow-400">
+                    <i class="fa fa-lightbulb-o mr-2"></i>
+                    <span data-zh="体验小贴士" data-en="Tips">体验小贴士</span>
+                </h3>
+                <ul class="space-y-2 text-sm text-gray-300">
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle mt-1 mr-2 text-yellow-400"></i>
+                        <span data-zh="周末人多的时候，提前下单，刚好逛到空投柜附近就能取餐" data-en="Order early on weekends, pickup when you walk by the cabinet">周末人多的时候，提前下单，刚好逛到空投柜附近就能取餐</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle mt-1 mr-2 text-yellow-400"></i>
+                        <span data-zh="想看无人机降落的话，可以提前5分钟到空投柜旁边等候，超有科技感" data-en="Arrive 5 mins early to watch drone landing, super futuristic!">想看无人机降落的话，可以提前5分钟到空投柜旁边等候，超有科技感</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle mt-1 mr-2 text-yellow-400"></i>
+                        <span data-zh="取餐之后记得把餐箱投进回收处，环保又方便下一位用户使用" data-en="Recycle the food box after pickup, eco-friendly for next user">取餐之后记得把餐箱投进回收处，环保又方便下一位用户使用</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fa fa-check-circle mt-1 mr-2 text-yellow-400"></i>
+                        <span data-zh="不要在空投柜附近放风筝或者玩玩具无人机，避免干扰正常配送" data-en="Don't fly kites/toy drones nearby, avoid disturbing delivery">不要在空投柜附近放风筝或者玩玩具无人机，避免干扰正常配送</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- 底部 -->
+    <footer class="py-6 text-center text-gray-500 text-xs">
+        <p data-zh="数据更新于2025年12月，服务可能调整，以APP实际显示为准" data-en="Data updated Dec 2025, service may change, subject to App display">数据更新于2025年12月，服务可能调整，以APP实际显示为准</p>
+        <p class="mt-1" data-zh="深圳低空经济 · 科技改变生活" data-en="Shenzhen Low-altitude Economy · Tech Changes Life">深圳低空经济 · 科技改变生活</p>
+    </footer>
+
+    <script>
+        // 语言切换逻辑
+        let currentLang = localStorage.getItem('droneGuideLang') || 'zh';
+
+        function switchLang(lang) {
+            currentLang = lang;
+            localStorage.setItem('droneGuideLang', lang);
+            
+            // 更新页面语言
+            document.querySelectorAll('[data-zh]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${lang}`);
+            });
+
+            // 更新图片alt
+            document.querySelectorAll('[data-alt-zh]').forEach(el => {
+                el.alt = el.getAttribute(`data-alt-${lang}`);
+            });
+
+            // 更新页面标题
+            document.getElementById('page-title').textContent = lang === 'zh' 
+                ? '深圳无人机外卖体验攻略' 
+                : 'Shenzhen Drone Delivery Guide';
+            
+            // 更新html的lang属性
+            document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
+
+            // 更新切换按钮文字
+            document.getElementById('langText').textContent = lang === 'zh' ? 'EN' : '中';
+        }
+
+        // 初始化语言
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化语言
+            switchLang(currentLang);
+
+            // 绑定切换按钮
+            document.getElementById('langToggle').addEventListener('click', function() {
+                const newLang = currentLang === 'zh' ? 'en' : 'zh';
+                switchLang(newLang);
+            });
+
+            // 绑定导航按钮
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const address = this.dataset.address;
+                    // 调用高德地图导航，手机端会自动打开APP
+                    const navUrl = `https://uri.amap.com/navigation?to=${encodeURIComponent(address)}&mode=car&src=drone_delivery_guide`;
+                    window.open(navUrl, '_blank');
+                });
+            });
+
+            // 滚动渐入动画
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(el => {
+                observer.observe(el);
+            });
+
+            // 处理点击导航后的关闭导航栏效果
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 60,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

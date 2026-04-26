@@ -1,7 +1,7 @@
 import { Ticket, CalendarCheck, MessageCircle, Navigation } from 'lucide-react'
 import type { Merchant } from '../data/types'
 import { getLocaleText } from '../utils/locale'
-import { useLangStore } from '../stores/useLangStore'
+import { useTranslation } from 'react-i18next'
 
 interface MerchantCardProps {
   merchant: Merchant
@@ -9,14 +9,14 @@ interface MerchantCardProps {
 }
 
 const ctaButtons = [
-  { type: 'pass', icon: Ticket, labelZh: '权益', labelEn: 'Pass', color: 'bg-sky-500/20 text-sky-400 border-sky-500/40 hover:bg-sky-500/30' },
-  { type: 'booking', icon: CalendarCheck, labelZh: '预约', labelEn: 'Book', color: 'bg-fuchsia-500/20 text-fuchsia-400 border-fuchsia-500/40 hover:bg-fuchsia-500/30' },
-  { type: 'translate', icon: MessageCircle, labelZh: '沟通', labelEn: 'Chat', color: 'bg-slate-700/60 text-slate-300 border-slate-600 hover:bg-slate-700' },
-  { type: 'map', icon: Navigation, labelZh: '导航', labelEn: 'Nav', color: 'bg-slate-700/60 text-slate-300 border-slate-600 hover:bg-slate-700' },
+  { type: 'pass', icon: Ticket, labelKey: 'merchant-cta-pass', color: 'bg-sky-500/20 text-sky-400 border-sky-500/40 hover:bg-sky-500/30' },
+  { type: 'booking', icon: CalendarCheck, labelKey: 'merchant-cta-book', color: 'bg-fuchsia-500/20 text-fuchsia-400 border-fuchsia-500/40 hover:bg-fuchsia-500/30' },
+  { type: 'translate', icon: MessageCircle, labelKey: 'merchant-cta-chat', color: 'bg-slate-700/60 text-slate-300 border-slate-600 hover:bg-slate-700' },
+  { type: 'map', icon: Navigation, labelKey: 'merchant-cta-nav', color: 'bg-slate-700/60 text-slate-300 border-slate-600 hover:bg-slate-700' },
 ]
 
 export function MerchantCard({ merchant, onCta }: MerchantCardProps) {
-  const isZh = useLangStore((s) => s.currentLang) === 'zh'
+  const { t } = useTranslation()
 
   return (
     <div className="glass-panel p-4 rounded-2xl border border-slate-700 space-y-3">
@@ -28,7 +28,7 @@ export function MerchantCard({ merchant, onCta }: MerchantCardProps) {
           </p>
         </div>
         <span className="text-[10px] px-2 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border-emerald-500/30 border font-bold">
-          {isZh ? '可承接' : 'Available'}
+          {t('merchant-available')}
         </span>
       </div>
       <p className="text-xs text-slate-400 leading-relaxed">{getLocaleText(merchant.reason)}</p>
@@ -49,7 +49,7 @@ export function MerchantCard({ merchant, onCta }: MerchantCardProps) {
               onClick={() => onCta(btn.type, merchant.merchantId)}
             >
               <Icon className="w-4 h-4" />
-              {isZh ? btn.labelZh : btn.labelEn}
+              {t(btn.labelKey)}
             </button>
           )
         })}

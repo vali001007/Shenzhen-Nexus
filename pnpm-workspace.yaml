@@ -1,0 +1,7 @@
+packages:
+  - 'traveler-web'
+  - 'apps/*'
+  - 'services/*'
+  - 'packages/*'
+  - 'tests/*'
+approveBuilds: better-sqlite3

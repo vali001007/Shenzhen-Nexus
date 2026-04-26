@@ -3,6 +3,7 @@ import { useUIStore } from '../stores/useUIStore'
 import { useAppStore } from '../stores/useAppStore'
 import { getLocaleText } from '../utils/locale'
 import type { ItineraryStop, LocaleText } from '../data/types'
+import { useState } from 'react'
 
 interface ItineraryResult {
   title?: LocaleText | string
@@ -28,11 +29,12 @@ export function AiResult() {
   const saveItinerary = useAppStore((s) => s.saveItinerary)
 
   const result = modulePayload?.result as ItineraryResult | undefined
+  const [savedItineraryId, setSavedItineraryId] = useState<string | null>(null)
 
   if (!result) {
     return (
       <div className="glass-panel rounded-2xl border border-slate-700 p-5 text-center">
-        <p className="text-sm text-slate-400">No itinerary data</p>
+        <p className="text-sm text-slate-400">{t('ai-result-empty')}</p>
       </div>
     )
   }
@@ -40,11 +42,12 @@ export function AiResult() {
   const handleSave = () => {
     if (!result.title || !result.stops?.length) return
     const title = typeof result.title === 'string' ? { en: result.title, zh: result.title } : result.title
-    saveItinerary({
+    const id = saveItinerary({
       title,
       duration: result.duration,
       stops: result.stops,
     })
+    setSavedItineraryId(id)
     showToast(t('route-saved'))
     closeModule()
     switchTab('route')
@@ -91,7 +94,7 @@ export function AiResult() {
         </button>
         <button
           className="w-full py-3 rounded-xl bg-fuchsia-500 hover:bg-fuchsia-400 text-white font-bold text-sm transition"
-          onClick={() => openModule('booking-service', { ctx: { source: 'ai-result', ctaType: 'guide' } })}
+          onClick={() => openModule('booking-service', { ctx: { source: 'ai-result', ctaType: 'guide', ...(savedItineraryId ? { itineraryId: savedItineraryId } : {}) } })}
         >
           {t('hire-guide')}
         </button>

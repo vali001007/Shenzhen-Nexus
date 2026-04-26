@@ -53,7 +53,7 @@ export interface SpotRuntime extends Omit<Spot, 'merchants'> {
 }
 
 /** 订单状态 */
-export type OrderStatus = 'pending_payment' | 'paid' | 'failed' | 'cancelled'
+export type OrderStatus = 'pending_payment' | 'paid' | 'failed' | 'cancelled' | 'refunded'
 
 /** 订单 */
 export interface Order {
@@ -69,6 +69,7 @@ export interface Order {
   amount: number
   status: OrderStatus
   createdAt: string
+  itineraryId?: string
 }
 
 /** Pass */

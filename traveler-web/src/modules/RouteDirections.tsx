@@ -35,7 +35,7 @@ export function RouteDirections() {
       <div className="glass-panel p-4 rounded-2xl border border-amber-500/30">
         <h4 className="text-amber-400 font-bold text-sm mb-2">🗺️ {t('mob-map-adv')}</h4>
         <p className="text-xs text-slate-300 leading-relaxed">
-          Apple Maps is recommended for accurate walking and transit directions in Shenzhen.
+          {t('route-maps-tip')}
         </p>
       </div>
 
@@ -46,7 +46,7 @@ export function RouteDirections() {
           window.open(`https://maps.apple.com/?q=${query}`, '_blank')
         }}
       >
-        Open in Apple Maps
+        {t('route-open-maps')}
       </button>
     </div>
   )

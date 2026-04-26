@@ -60,7 +60,8 @@ shenzhen-nexus/
 
 ### 数据层
 
-- 关系型数据库：用户、商户、订单、核销、支付流水
+- 当前运行态（gateway MVP）：JSON 持久化（`services/gateway/src/db/client.ts` + `services/gateway/data.json`）
+- 关系型数据库（目标态）：用于用户、商户、订单、核销、支付流水（后续迁移至 PostgreSQL）
 - 对象存储：景点图片、商户图、AR 上传图片
 - 缓存：热点榜单、FAQ、Prompt 模板
 - 日志仓库：行为埋点、AI 请求、支付核销日志

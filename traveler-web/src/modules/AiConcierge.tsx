@@ -28,16 +28,10 @@ export function AiConcierge() {
     try {
       const langInstruction = currentLang === 'zh' ? 'Respond in Simplified Chinese.' : 'Respond in English.'
       const prompt = `As a helpful APEC 2026 Shenzhen Concierge, briefly answer this query: "${input}". Keep it under 3 sentences. Provide practical, culturally aware advice. ${langInstruction}${ctxHint}`
-      const schema = {
-        type: 'OBJECT',
-        properties: {
-          answer: { type: 'STRING', description: 'The concise answer to the user\'s question' },
-        },
-      }
-      const data = await callGeminiText(prompt, schema)
-      setAnswer(data.answer)
+      const text = await callGeminiText(prompt)
+      setAnswer(typeof text === 'string' ? text : text.answer ?? JSON.stringify(text))
     } catch {
-      setError(currentLang === 'zh' ? '获取回答失败，请重试。' : 'Failed to get an answer. Please try again.')
+      setError(t('ai-concierge-error'))
     } finally {
       setLoading(false)
     }
@@ -74,7 +68,7 @@ export function AiConcierge() {
 
       {loading && (
         <p className="text-slate-400 text-xs animate-pulse">
-          ✨ {currentLang === 'zh' ? 'AI 正在思考...' : 'AI is thinking...'}
+          ✨ {t('ai-concierge-thinking')}
         </p>
       )}
 

@@ -16,6 +16,14 @@ export function Connectivity() {
           <p className="text-[10px] text-slate-400 mt-0.5">{t('conn-s1-sub')}</p>
         </div>
         <p className="text-xs text-slate-300 leading-relaxed">{t('conn-s1-desc')}</p>
+        <a
+          href="https://www.klook.com/zh-CN/activity/117239-china-hong-kong-and-macau-4g-unlimited-data-sim-card-pick-up-at-ho/?spm=SearchResult.SearchResult_LIST&clickId=6b4b8b8f89"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block w-full py-2.5 rounded-xl bg-emerald-500 text-white font-semibold text-sm hover:bg-emerald-400 transition text-center"
+        >
+          {t('conn-s1-buy')}
+        </a>
       </div>
 
       <div className="glass-panel rounded-2xl border border-slate-700 p-5 space-y-3">

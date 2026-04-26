@@ -1,12 +1,15 @@
 import { useTranslation } from 'react-i18next'
 import { useUIStore } from '../stores/useUIStore'
 import { useLangStore } from '../stores/useLangStore'
+import { useAppStore } from '../stores/useAppStore'
 
 export function ProfileView() {
   const { t } = useTranslation()
   const openModule = useUIStore((s) => s.openModule)
   const showToast = useUIStore((s) => s.showToast)
   const currentLang = useLangStore((s) => s.currentLang)
+  const orders = useAppStore((s) => s.orders)
+  const passes = useAppStore((s) => s.passes)
 
   return (
     <div className="space-y-6">
@@ -26,6 +29,36 @@ export function ProfileView() {
               ✓ {t('delegate')}
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="fade-in" style={{ animationDelay: '0.08s' }}>
+        <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider px-2 mb-3">{t('profile-section-activity')}</h3>
+        <div className="glass-panel rounded-2xl border border-slate-700 overflow-hidden">
+          <button className="w-full p-4 flex items-center justify-between hover:bg-slate-800 transition border-b border-slate-700/50" onClick={() => openModule('my-orders')}>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-400 flex items-center justify-center">🧾</div>
+              <span className="text-sm font-semibold text-slate-200">{t('profile-my-orders')}</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-500">
+              {orders.length > 0 && (
+                <span className="text-xs bg-sky-500/20 text-sky-300 px-2 py-0.5 rounded-full font-bold">{orders.length}</span>
+              )}
+              <span>›</span>
+            </div>
+          </button>
+          <button className="w-full p-4 flex items-center justify-between hover:bg-slate-800 transition" onClick={() => openModule('pass-redeem')}>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-fuchsia-500/20 text-fuchsia-400 flex items-center justify-center">🎫</div>
+              <span className="text-sm font-semibold text-slate-200">{t('profile-my-passes')}</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-500">
+              {passes.length > 0 && (
+                <span className="text-xs bg-fuchsia-500/20 text-fuchsia-300 px-2 py-0.5 rounded-full font-bold">{passes.length}</span>
+              )}
+              <span>›</span>
+            </div>
+          </button>
         </div>
       </section>
 
