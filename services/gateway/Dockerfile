@@ -3,21 +3,20 @@ WORKDIR /app
 RUN npm install -g pnpm
 
 FROM base AS deps
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
-COPY services/gateway/package.json ./services/gateway/
-RUN pnpm install --frozen-lockfile --filter gateway
+COPY package.json ./
+RUN pnpm install --prod=false
 
 FROM base AS build
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/services/gateway/node_modules ./services/gateway/node_modules
-COPY services/gateway ./services/gateway
-COPY package.json pnpm-workspace.yaml ./
-RUN pnpm --filter gateway build
+COPY . .
+RUN pnpm build
 
 FROM node:20-alpine AS runner
 WORKDIR /app
 ENV NODE_ENV=production
-COPY --from=build /app/services/gateway/dist ./dist
-COPY --from=deps /app/services/gateway/node_modules ./node_modules
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/data.json ./data.json
+COPY package.json ./
+RUN npm install -g pnpm && pnpm install --prod
 EXPOSE 3001
 CMD ["node", "dist/index.js"]
