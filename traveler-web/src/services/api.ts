@@ -2,7 +2,9 @@ import { spotFusionData } from '../data/spots'
 import type { LeaderboardPage, SpotRuntime, MerchantStatus } from '../data/types'
 import { getLocaleText } from '../utils/locale'
 
-const API_BASE = '/api'
+const API_BASE = import.meta.env.VITE_API_BASE_URL
+  ? `${import.meta.env.VITE_API_BASE_URL}/api`
+  : '/api'
 
 export async function apiPost<T = any>(path: string, body: object): Promise<T> {
   const res = await fetch(`${API_BASE}${path}`, {
